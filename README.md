@@ -15,8 +15,11 @@ and initialize it with `source .env`.
 
 `make upload`
 
-## Running
+## Deployments
 
-From the home dir, run
+```python3 src/optimizer.py --algorithm hill_climbing --steps 4```
 
-`python src/main.py`
+Hill Climbing: The deploy phase runs mpirun with 1 process with access to 16 cores.
+
+Successive Descents: The deploy phases run sbatch with 4 nodes, each one with one hill climbing in run phase.
+

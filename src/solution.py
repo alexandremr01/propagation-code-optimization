@@ -1,5 +1,7 @@
 import subprocess
 import re
+import threading
+import os 
 
 class Solution:
     def __init__(self, olevel, simd, problem_size_x, problem_size_y, problem_size_z, nthreads, thrdblock_x, thrdblock_y, thrdblock_z) -> None:
@@ -13,15 +15,20 @@ class Solution:
         self.thrdblock_y = thrdblock_y
         self.thrdblock_z = thrdblock_z
 
-    def cost(self, verbose=False, num_evaluations=3):
+    def cost(self, verbose=False, delete_file=True, num_evaluations=3):
+        file_name = str(threading.get_ident())
+        file_name_with_ext = f'{file_name}.exe'
+        executable_path = f'iso3dfd-st7/bin/{file_name_with_ext}'
 
-        result = subprocess.run(['make', f'Olevel={self.olevel}', f'simd={self.simd}', 'last'], stdout=subprocess.DEVNULL)
+        result = subprocess.run(['make', '-C', 'iso3dfd-st7', f'Olevel={self.olevel}', f'simd={self.simd}', 'last'], 
+            stdout=subprocess.DEVNULL,
+            env=dict(os.environ, CONFIG_EXE_NAME=file_name_with_ext))
         if result.returncode != 0:
             raise Exception( f'Failed compiling: { result.returncode }' )
 
         mean_throughput = 0
         for _ in range(num_evaluations):
-            result = subprocess.run([f'bin/iso3dfd_dev13_cpu_{self.simd}.exe', 
+            result = subprocess.run([executable_path, 
                 self.problem_size_x, self.problem_size_y, self.problem_size_z,
                 self.nthreads, '100', self.thrdblock_x, self.thrdblock_y, self.thrdblock_z], capture_output=True)
             if result.returncode != 0:
@@ -36,6 +43,11 @@ class Solution:
                 raise ValueError('throughput not a float')
             if verbose:
                 print(output)
+	
+        if delete_file:
+            result = subprocess.run(['rm', executable_path])
+            if result.returncode != 0:
+                raise Exception( f'Failed deleting: { result.returncode }' )
 
         mean_throughput = round(mean_throughput/num_evaluations, 2)
         return mean_throughput
@@ -47,12 +59,12 @@ class Solution:
         olevels.remove(self.olevel)
         for level in olevels:
             neigh.add((level, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z))
-
+      
         simds = set(['avx', 'avx2', 'avx512'])
         simds.remove(self.simd)
         for simd in simds:
             neigh.add((self.olevel, simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z))
-
+             
         if int(self.thrdblock_x) > 16:
             neigh.add( (self.olevel, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, self.nthreads, str(int(self.thrdblock_x)//2), self.thrdblock_y, self.thrdblock_z) )
         if int(self.thrdblock_y) > 1:
@@ -67,6 +79,6 @@ class Solution:
         if int(self.nthreads) <= 32:
             neigh.add( (self.olevel, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, str(int(self.nthreads)*2), self.thrdblock_x, self.thrdblock_y, self.thrdblock_z) )
         return [Solution(*n) for n in neigh]
-
+    
     def display(self):
         print(self.olevel, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z)
