@@ -1,5 +1,6 @@
 import os, sys
 import time
+import re
 
 class Logger():
     def __init__(self, process_id, logfile):
@@ -25,8 +26,8 @@ class Logger():
         self.log.write(logstring + "\n")
 
     def write_info(self, infostring):
-        self.terminal.write(infostring + "\n")
-        self.log.write(infostring + "\n")
+        self.terminal.write("[info] " + infostring + "\n")
+        self.log.write("[info] " + infostring + "\n")
 
     def __del__(self):
         self.log.close()
@@ -42,31 +43,29 @@ def log_to_list(logfile):
     data = []
     with open(logfile, 'r') as f:
         for line in f:
-            line_dict = {}
-            for txt in line.split('\t'):
-                # remove brackets when present
-                txt = txt.translate({
-                    ord('['): None,
-                    ord(']'): None,
-                })
-                # time regex
-                m = re.search("/(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)/", txt)
-                if m is not None:
-                    line_dict['time'] = m.group(0)
-                else:
-                # process number, iteration number and cost regex
-                    m = re.search("([A-Za-z]+)(=)(.*)", txt)
+            if line.startswith('[info]'):
+                continue
+            else:
+                line_dict = {}
+                for txt in line.split('\t'):
+                    # remove brackets (when present)
+                    txt = txt.translate({
+                        ord('['): None,
+                        ord(']'): None,
+                    })
+                    # time regex
+                    m = re.search("/(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)/", txt)
                     if m is not None:
-                        if m.group(2) is not None:
-                            if m.group(2) == '=':
-                                line_dict[m.group(1)] = m.group(3)
-                # TODO: compilation flags and flair
-            if not line_dict:
-                # if line_dict is not empty
-                data.append(line_dict)
+                        line_dict['time'] = m.group(0)
+                    else:
+                    # process number, iteration number and cost regex
+                        m = re.search("([A-Za-z]+)(=)(.*)", txt)
+                        if m is not None:
+                            if m.group(2) is not None:
+                                if m.group(2) == '=':
+                                    line_dict[m.group(1)] = m.group(3)
+                    # TODO: compilation flags and flair
+                if line_dict:
+                    # if line_dict is not empty
+                    data.append(line_dict)
     return data
-
-
-    
-
-    
