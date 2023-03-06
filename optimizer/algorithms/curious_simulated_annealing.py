@@ -17,8 +17,8 @@ def ungroup_particles(particles):
     return [item for sublist in particles for item in sublist]
 
 class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particles=6, temperature_schedule=None)
-    def __init__(self, hparams, problem_size, comm) -> None:
-        super().__init__(hparams, problem_size, comm)
+    def __init__(self, hparams, problem_size, comm, logger) -> None:
+        super().__init__(hparams, problem_size, comm, logger)
         self.T0 = hparams.get('t0', 200)
         # TODO: current temperature function is hard coded
         self.f = lambda x: 0.9 * x

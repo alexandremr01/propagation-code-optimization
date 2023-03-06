@@ -24,8 +24,31 @@ def make_deterministic(seed):
         
 def run_algorithm(args):
     algorithm_class = get_algorithm(args.algorithm)
-    algorithm = algorithm_class(args, hparams)
-    algorithm.run(args.steps)
+    algorithm = algorithm_class(hparams, args.problem_size, logger)
+    best_solution, best_cost, path = algorithm.run(args.steps)
+    
+    print('\n\nPath taken:')
+    for sol in path:
+        print(sol[1], end=' ')
+        sol[0].display()
+
+    print('\n\nBest solution found:', end=' ')
+    best_solution.display()
+    print(best_cost)
+
+    TabE = comm.gather(best_cost,root=0)
+    TabS = comm.gather(best_solution,root=0)
+    if (Me == 0):
+        print('\n\nBest solutions:')
+        for i in range(len(TabE)):
+            TabS[i].display()
+            print(TabE[i])
+        print('\nBest overall:')
+        Eopt = max(TabE)
+        idx = TabE.index(Eopt)
+        Sopt = TabS[idx]
+        Sopt.display()
+        print(Eopt)
 
 if __name__ == "__main__":
     logger = Logger(process_id=comm.Get_rank(), logfile="mytest.log")

@@ -6,8 +6,8 @@ from optimizer.solution import Solution
 
 
 class Greedy(Algorithm):
-    def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+    def __init__(self, hparams, problem_size, comm, logger) -> None:
+        super().__init__(hparams, problem_size, comm, logger)
 
     def run(self, kmax, evaluation_session):
         Sbest = get_random_solution(self.problem_size, evaluation_session)

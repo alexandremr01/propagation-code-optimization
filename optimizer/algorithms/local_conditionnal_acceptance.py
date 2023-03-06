@@ -7,8 +7,8 @@ from optimizer.algorithms import Algorithm
 
 
 class LocalConditionnalAcceptance(Algorithm):
-    def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+    def __init__(self, hparams, problem_size, comm, logger) -> None:
+        super().__init__(hparams, problem_size, comm, logger)
         self.register_hyperparameter('t0', 100)
         self.parse_hyperparameters()
 

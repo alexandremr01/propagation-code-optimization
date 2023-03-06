@@ -19,14 +19,14 @@ class Logger():
         f"\tCost={cost}"
         f"\t{compilation_flags}")
         if flair:
-            logstring += f"\t{flair}"
+            logstring += f"\t({flair})"
 
-        self.terminal.write(logstring)
-        self.log.write(logstring)
+        self.terminal.write(logstring + "\n")
+        self.log.write(logstring + "\n")
 
     def write_info(self, infostring):
-        self.terminal.write(infostring)
-        self.log.write(infostring)
+        self.terminal.write(infostring + "\n")
+        self.log.write(infostring + "\n")
 
     def __del__(self):
         self.log.close()

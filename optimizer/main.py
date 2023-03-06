@@ -79,12 +79,12 @@ if __name__ == "__main__":
     for k, v in sorted(vars(args).items()):
         print('\t{}: {}'.format(k, v))
     
-    algorithm_class = get_algorithm(args.algorithm)
-    algorithm = algorithm_class(hparams, args.problem_size, comm)
-
     print('Hyperparameters:')
     for k, v in sorted(algorithm.hparams.items()):
         print('\t{}: {}'.format(k, v))
+
+    algorithm_class = get_algorithm(args.algorithm)
+    algorithm = algorithm_class(hparams, args.problem_size, comm, logger)
 
     make_deterministic(args.seed)
 
