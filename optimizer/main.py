@@ -10,6 +10,7 @@ import numpy as np
 from optimizer.algorithms import get_algorithm
 from optimizer.deployment import deploy_kangaroo, deploy_single
 from optimizer.evaluator import Simulator
+from optimizer.logger import Logger
 
 from mpi4py import MPI
 
@@ -53,8 +54,6 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             print('Total cost evaluations:', total_runs)
 
 if __name__ == "__main__":
-    comm = MPI.COMM_WORLD
-
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
     parser.add_argument('--algorithm', type=str, default='hill_climbing')
     parser.add_argument('--steps', type=int, default=10,
@@ -72,6 +71,9 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     hparams = json.loads(args.hparams)
+
+    comm = MPI.COMM_WORLD
+    logger = Logger(process_id=comm.Get_rank(), logfile="mytest.log")
 
     print('Args:')
     for k, v in sorted(vars(args).items()):
