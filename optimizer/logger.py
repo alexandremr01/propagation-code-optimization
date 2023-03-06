@@ -61,7 +61,9 @@ def log_to_list(logfile):
                             if m.group(2) == '=':
                                 line_dict[m.group(1)] = m.group(3)
                 # TODO: compilation flags and flair
-            data.append(line_dict)
+            if not line_dict:
+                # if line_dict is not empty
+                data.append(line_dict)
     return data
 
 
