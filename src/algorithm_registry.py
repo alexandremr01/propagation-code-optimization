@@ -1,9 +1,12 @@
 from hill_climbing import HillClimbing
-from successive_descents import SuccessiveDescents
+from greedy import Greedy, TabuGreedy
+from local_conditionnal_acceptance import LocalConditionnalAcceptance
 
 ALGORITHMS = {
     'hill_climbing': HillClimbing,
-    'successive_descents': SuccessiveDescents,
+    'greedy': Greedy,
+    'tabu_greedy': TabuGreedy,
+    'simulated_annealing': LocalConditionnalAcceptance,
 }
 
 def get_algorithm(algorithm_name):
