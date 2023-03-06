@@ -3,7 +3,7 @@ import re
 import threading
 import os
 from evaluator import Simulator
-from solution_space import SolutionSpace
+
 
 class Solution:
     def __init__(self, olevel, simd, problem_size_x, problem_size_y, problem_size_z, nthreads, thrdblock_x, thrdblock_y, thrdblock_z, simulator) -> None:
@@ -21,7 +21,7 @@ class Solution:
 
         self.simulator.sol_increase()
 
-    def cost(self, verbose=False, delete_file=True, num_evaluations=1):
+    def cost(self, verbose=False, delete_file=True, num_evaluations=3):
 
         self.simulator.run_increase(num_evaluations)  # Increases in num_evaluations the counter of runs
 
@@ -69,13 +69,13 @@ class Solution:
     def get_neighbors(self):
         neigh = set()
 
-        olevels = set(SolutionSpace.o_levels)
+        olevels = set(['-O2', '-O3', '-Ofast'])
         olevels.remove(self.olevel)
         for level in olevels:
             neigh.add((level, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z,
                       self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z))
 
-        simds = set(SolutionSpace.simds)
+        simds = set(['avx', 'avx2', 'avx512'])
         simds.remove(self.simd)
         for simd in simds:
             neigh.add((self.olevel, simd, self.problem_size_x, self.problem_size_y, self.problem_size_z,

@@ -3,6 +3,7 @@ import subprocess
 import threading
 
 from solution import Solution
+from multiprocessing import get_number_of_nodes
 
 from algorithm import Algorithm
 

@@ -15,21 +15,11 @@ and initialize it with `source .env`.
 
 `make upload`
 
-## Deployment Examples
+## Deployments
 
-```
-python3 src/optimizer.py --algorithm hill_climbing --steps 4
-python3 src/optimizer.py --algorithm greedy --steps 4
-python3 src/optimizer.py --algorithm tabu_greedy --steps 4 --hparams '{"n_tabu":5}'
-python3 src/optimizer.py --algorithm simulated_annealing --steps 10 --hparams '{"t0":20}'
-python3 src/optimizer.py --algorithm cmaes --steps 10
-```
+```python3 src/optimizer.py --algorithm hill_climbing --steps 4```
+```python3 src/optimizer.py --algorithm tabu_greedy --steps 4 --hparams '{"n_tabu":5}'```
 
-Flag `-kangaroo`: runs 4 instances in parallel with different initializations. 
-Flag `-parallel`: runs 4 instances to calculate the cost function in parallel. It is only not available for Hill Climbing.
+Hill Climbing: The deploy phase runs mpirun with 1 process with access to 16 cores.
 
-We recommend using parallel for all methods in which it is available.
-
-## FAQ
-
-Installation of CMA: Check if the pip used to install is the same as the Python being used to run. Sometimes we need to use `/usr/bin/pip` (TODO: avoid this).
+Flag `-kangaroo`: runs 4 in parallel with different initializations
