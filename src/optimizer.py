@@ -50,7 +50,7 @@ def run_algorithm(args):
         logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags())
 
 if __name__ == "__main__":
-    logger = Logger(process_id=comm.Get_rank(), logfile="mytest.log")
+    logger = Logger(process_id=comm.Get_rank(), logfile="myLog.log")
 
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
     parser.add_argument('--algorithm', type=str, default='hill_climbing')
@@ -77,8 +77,8 @@ if __name__ == "__main__":
     make_deterministic(args.seed)
 
     if args.phase == 'deploy' and args.kangaroo:
-        deploy_kangaroo(args, sys.argv[0])
+        deploy_kangaroo(args, sys.argv[0], logger)
     elif args.phase == 'deploy' and not args.kangaroo:
-        deploy_single(args, sys.argv[0])
+        deploy_single(args, sys.argv[0], logger)
     else: # phase is run
         run_algorithm(args)

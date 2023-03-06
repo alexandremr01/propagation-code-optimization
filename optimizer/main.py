@@ -71,7 +71,7 @@ if __name__ == "__main__":
     hparams = json.loads(args.hparams)
 
     comm = MPI.COMM_WORLD
-    logger = Logger(process_id=comm.Get_rank(), logfile="mytest.log")
+    logger = Logger(process_id=comm.Get_rank(), logfile="myLog.log")
 
     logger.write_info('Args:')
     for k, v in sorted(vars(args).items()):
@@ -87,9 +87,9 @@ if __name__ == "__main__":
     make_deterministic(args.seed)
 
     if args.phase == 'deploy' and args.kangaroo:
-        deploy_kangaroo(args, sys.argv[0])
+        deploy_kangaroo(args, sys.argv[0], logger)
     elif args.phase == 'deploy' and not args.kangaroo:
-        deploy_single(args, sys.argv[0])
+        deploy_single(args, sys.argv[0], logger)
     else: # phase is run
         evaluation_session = Simulator()
         run_algorithm(algorithm, args, comm, evaluation_session)

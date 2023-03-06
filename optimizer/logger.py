@@ -24,19 +24,23 @@ class Logger():
 
         self.terminal.write(logstring + "\n")
         self.log.write(logstring + "\n")
+        self.log.flush()
 
     def write_info(self, infostring):
         self.terminal.write("[info] " + infostring + "\n")
         self.log.write("[info] " + infostring + "\n")
+        self.log.flush()
 
     def jumpline(self):
         self.terminal.write("\n")
         self.log.write("\n")
+        self.log.flush()
 
     def write_raw(self, textstring):
         # Safe to use with strings starting with '\t'
         self.terminal.write(textstring + "\n")
         self.log.write(textstring + "\n")
+        self.log.flush()
 
     def __del__(self):
         self.log.close()

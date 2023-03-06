@@ -21,7 +21,7 @@ class HillClimbing(Algorithm):
         k = 0
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
-            k, Ebest, Sbest.get_compilation_flags(),
+            k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
         while k < num_steps and len(neighbors) > 0:
             selected_index = random.randint(0, len(neighbors)-1)
