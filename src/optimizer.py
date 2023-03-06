@@ -8,8 +8,7 @@ import json
 import numpy as np 
 from algorithm_registry import get_algorithm
 from deployment import deploy_kangaroo, deploy_single
-
-from logger import Logger
+from logger import Logger, find_slurmfile, slurm_to_logfile
 
 from mpi4py import MPI
 comm = MPI.COMM_WORLD
@@ -50,8 +49,6 @@ def run_algorithm(args):
         logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags())
 
 if __name__ == "__main__":
-    logger = Logger(process_id=comm.Get_rank(), logfile="myLog.log")
-
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
     parser.add_argument('--algorithm', type=str, default='hill_climbing')
     parser.add_argument('--steps', type=int, default=10, help='Number of steps')
@@ -64,6 +61,12 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     hparams = json.loads(args.hparams)
+
+    logfile = "myLog.log"
+    if args.kangaroo:
+        logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False)
+    else:
+        logger = Logger(process_id=comm.Get_rank(), logfile=logfile)
 
     logger.write_info('Args:')
     for k, v in sorted(vars(args).items()):
@@ -82,3 +85,7 @@ if __name__ == "__main__":
         deploy_single(args, sys.argv[0], logger)
     else: # phase is run
         run_algorithm(args)
+
+    # retrieve logs from slurm file
+    if args.kangaroo:
+        slurm_to_logfile(find_slurmfile(os.getcwd()), logfile)

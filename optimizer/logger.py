@@ -1,13 +1,14 @@
 import os, sys
 import time
 import re
+import shutil, glob
 
 class Logger():
-    def __init__(self, process_id, logfile):
+    def __init__(self, process_id, logfile='lastrun.log', save_to_logfile=True):
         self.Me = process_id
 
+        self.log = open(logfile, "w") if save_to_logfile else None
         self.terminal = sys.stdout
-        self.log = open(logfile, "w")
     
     def write_msg(self, iteration_number, cost, compilation_flags, flair=None):
         # Example:
@@ -23,27 +24,43 @@ class Logger():
             logstring += f"\t({flair})"
 
         self.terminal.write(logstring + "\n")
-        self.log.write(logstring + "\n")
-        self.log.flush()
+        if self.log: self.log.write(logstring + "\n")
+        if self.log: self.log.flush()
 
     def write_info(self, infostring):
-        self.terminal.write("[info] " + infostring + "\n")
-        self.log.write("[info] " + infostring + "\n")
-        self.log.flush()
+        self.terminal.write(f"[info] [Me={self.Me}] " + infostring + "\n")
+        if self.log: self.log.write(f"[info] [Me={self.Me}] " + infostring + "\n")
+        if self.log: self.log.flush()
 
     def jumpline(self):
         self.terminal.write("\n")
-        self.log.write("\n")
-        self.log.flush()
+        if self.log: self.log.write("\n")
+        if self.log: self.log.flush()
 
     def write_raw(self, textstring):
         # Safe to use with strings starting with '\t'
         self.terminal.write(textstring + "\n")
-        self.log.write(textstring + "\n")
-        self.log.flush()
+        if self.log: self.log.write(textstring + "\n")
+        if self.log: self.log.flush()
 
     def __del__(self):
-        self.log.close()
+        if self.log: self.log.close()
+
+def find_slurmfile(directory):
+    candidates = glob.glob(directory + '/slurm-*.out')
+    try:
+        latest_slurmfile = candidates[0]
+    except:
+        raise FileNotFoundError(f"could not find a slurmfile in {directory}")
+        
+    for slurmfile in candidates[1:]:
+        if os.path.getctime(slurmfile) > os.path.getctime(latest_slurmfile):
+            latest_slurmfile = slurmfile
+    return latest_slurmfile
+        
+
+def slurm_to_logfile(slurmfile, logfile):
+    shutil.copy(slurmfile, logfile)
 
 def log_to_list(logfile):
     """
