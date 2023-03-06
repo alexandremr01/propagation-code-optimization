@@ -6,8 +6,13 @@ from optimizer.solution import Solution
 
 
 class Greedy(Algorithm):
+<<<<<<< HEAD:optimizer/algorithms/greedy.py
     def __init__(self, hparams, problem_size, comm, logger) -> None:
         super().__init__(hparams, problem_size, comm, logger)
+=======
+    def __init__(self, hparams, problem_size, logger) -> None:
+        super().__init__(hparams, problem_size, logger)
+>>>>>>> bug fix: search for highest cost neighbor:src/greedy.py
 
     def run(self, kmax, evaluation_session):
         Sbest = get_random_solution(self.problem_size, evaluation_session)
@@ -15,10 +20,10 @@ class Greedy(Algorithm):
         neighbors = Sbest.get_neighbors()
         k = 0
         newBetterS = True
-
-        print('Cost= ', Ebest, end=' ')
         path = [(Sbest, Ebest)]
-        Sbest.display()
+        self.logger.write_msg(
+            k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+        )
 
         while k < kmax and len(neighbors) > 0 and newBetterS:
             S1 = neighbors.pop()
