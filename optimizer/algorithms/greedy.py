@@ -6,15 +6,11 @@ from optimizer.solution import Solution
 
 
 class Greedy(Algorithm):
-<<<<<<< HEAD:optimizer/algorithms/greedy.py
     def __init__(self, hparams, problem_size, comm, logger) -> None:
         super().__init__(hparams, problem_size, comm, logger)
-=======
-    def __init__(self, hparams, problem_size, logger) -> None:
-        super().__init__(hparams, problem_size, logger)
->>>>>>> bug fix: search for highest cost neighbor:src/greedy.py
 
     def run(self, kmax, evaluation_session):
+        self.logger.write_info('Starting greedy hill climbing')
         Sbest = get_random_solution(self.problem_size, evaluation_session)
         Ebest = Sbest.cost()
         neighbors = Sbest.get_neighbors()
@@ -38,19 +34,16 @@ class Greedy(Algorithm):
                 Ebest = E1
                 neighbors = Sbest.get_neighbors()
                 path.append((Sbest, Ebest))
-
-                print('New best:', end=' ')
-                Sbest.display()
-                print('Actual Cost: ' + str(Ebest))
-
+                self.logger.write_msg(
+                    k+1, Ebest, Sbest.get_compilation_flags(),
+                )
             else:
                 newBetterS = False
-                print("\nNo better element. End of the loop")
+                self.logger.write_info("No better element. End of the loop")
 
             k = k+1
-        print("End of the loop via number of iterations")
-        return Sbest, Ebest, path
-
+        self.logger.write_info("End of the loop via number of iterations")
+        return Sbest, Ebest, path    
 
 class TabuGreedy(Algorithm):
     def __init__(self, hparams, problem_size) -> None:
@@ -59,6 +52,7 @@ class TabuGreedy(Algorithm):
         self.parse_hyperparameters()
 
     def run(self, kmax, evaluation_session):
+        self.logger.write_info('Starting tabu-greedy hill climbing')
         N_Tabu = self.hparams['n_tabu']
         Sbest = get_random_solution(self.problem_size, evaluation_session)
         Ebest = Sbest.cost()
