@@ -14,6 +14,7 @@ class HillClimbing(Algorithm):
         super().__init__(hparams, problem_size, comm, logger)
         
     def run(self, num_steps, evaluation_session):
+        self.logger.write_info('Starting hill_climbing')
         Sbest = get_random_solution(self.problem_size, evaluation_session)
         Ebest = Sbest.cost()
         neighbors = Sbest.get_neighbors()
@@ -36,7 +37,7 @@ class HillClimbing(Algorithm):
             else:
                 log_flair = None
             k += 1
-            
+
             self.logger.write_msg(
                 k, E_new, S_new.get_compilation_flags(), flair=log_flair
             )

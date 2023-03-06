@@ -26,32 +26,30 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
     Me = comm.Get_rank()
     best_solution, best_cost, path = algorithm.run(args.steps, evaluation_session)
 
-
     if best_cost is not None:
-        print('\n\nPath taken:')
+        logger.write_info('Path taken:')
         for sol in path:
-            print(sol[1], end=' ')
-            sol[0].display()
+            logger.write_raw('\t' + str(sol[1]) + ' ' + sol[0].get_compilation_flags())
 
-        print('\n\nBest solution found:', end=' ')
-        best_solution.display()
-        print(best_cost)
+        logger.write_info('Best solution found:')
+        logger.write_raw('\t' + str(best_cost) + ' ' + best_solution.get_compilation_flags())
 
         TabE = comm.gather(best_cost,root=0)
         TabS = comm.gather(best_solution,root=0)
         total_runs = comm.reduce(evaluation_session.run_counter,op=MPI.SUM, root=0)
         if (Me == 0):
-            print('\n\nBest solutions:')
+            logger.jumpline()
+            logger.write_info('Gathering solutions from all processes')
+            logger.write_info('Best solutions:')
             for i in range(len(TabE)):
-                TabS[i].display()
-                print(TabE[i])
-            print('\nBest overall:')
+                logger.write_raw('\t' + str(TabE[i]) + ' ' + TabS[i].get_compilation_flags())
+            
+            logger.write_info('Best overall:')
             Eopt = max(TabE)
             idx = TabE.index(Eopt)
             Sopt = TabS[idx]
-            Sopt.display()
-            print(Eopt)
-            print('Total cost evaluations:', total_runs)
+            logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags())
+            logger.write_info(f'Total cost evaluations: {total_runs}')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
@@ -75,13 +73,13 @@ if __name__ == "__main__":
     comm = MPI.COMM_WORLD
     logger = Logger(process_id=comm.Get_rank(), logfile="mytest.log")
 
-    print('Args:')
+    logger.write_info('Args:')
     for k, v in sorted(vars(args).items()):
-        print('\t{}: {}'.format(k, v))
+        logger.write_raw('\t{}: {}'.format(k, v))
     
-    print('Hyperparameters:')
-    for k, v in sorted(algorithm.hparams.items()):
-        print('\t{}: {}'.format(k, v))
+    logger.write_info('Hyperparameters:')
+    for k, v in sorted(hparams.items()):
+        logger.write_raw('\t{}: {}'.format(k, v))
 
     algorithm_class = get_algorithm(args.algorithm)
     algorithm = algorithm_class(hparams, args.problem_size, comm, logger)

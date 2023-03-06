@@ -29,6 +29,15 @@ class Logger():
         self.terminal.write("[info] " + infostring + "\n")
         self.log.write("[info] " + infostring + "\n")
 
+    def jumpline(self):
+        self.terminal.write("\n")
+        self.log.write("\n")
+
+    def write_raw(self, textstring):
+        # Safe to use with strings starting with '\t'
+        self.terminal.write(textstring + "\n")
+        self.log.write(textstring + "\n")
+
     def __del__(self):
         self.log.close()
 
@@ -43,7 +52,7 @@ def log_to_list(logfile):
     data = []
     with open(logfile, 'r') as f:
         for line in f:
-            if line.startswith('[info]'):
+            if line.startswith('[info]') or line.startswith('\t'):
                 continue
             else:
                 line_dict = {}
