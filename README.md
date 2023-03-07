@@ -25,10 +25,10 @@ python3 -m optimizer.main --algorithm simulated_annealing --steps 10 --hparams '
 python3 -m optimizer.main --algorithm cmaes --steps 10
 ```
 
-Flag `-kangaroo`: runs 4 instances in parallel with different initializations. 
-Flag `-parallel`: runs 4 instances to calculate the cost function in parallel. It is only not available for Hill Climbing.
+Flag `-batch`: runs 4 instances. Can either 
 
-We recommend using parallel for all methods in which it is available.
+- Calculate the cost function in parallel (CSA, CMAES)
+- Runs sequential programs in different instances in parallel with different initializations (Hill Climbing, Greedy, Tabu Greedy, Simulated Annealing)
 
 ## FAQ
 

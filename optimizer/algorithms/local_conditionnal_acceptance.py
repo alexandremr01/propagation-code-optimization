@@ -5,10 +5,9 @@ from optimizer.solution import Solution
 from optimizer.random_solution import get_random_solution
 from optimizer.algorithms import Algorithm
 
-
 class LocalConditionnalAcceptance(Algorithm):
-    def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+    def __init__(self, hparams, problem_size, comm) -> None:
+        super().__init__(hparams, problem_size, comm)
         self.register_hyperparameter('t0', 100)
         self.parse_hyperparameters()
 
