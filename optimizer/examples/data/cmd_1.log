@@ -1,0 +1,169 @@
+=================================
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3065839): Gdk-CRITICAL **: 23:26:36.847: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=0] Args:
+	algorithm: greedy
+	batch: True
+	hparams: {}
+	log: cmd_1.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=0] Hyperparameters:
+[info] [Me=0] real seed: 33
+Simulator initialized
+[info] [Me=0] Starting greedy hill climbing
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3008919): Gdk-CRITICAL **: 23:26:36.870: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3004240): Gdk-CRITICAL **: 23:26:36.871: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3034296): Gdk-CRITICAL **: 23:26:36.872: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=2] Args:
+	algorithm: greedy
+	batch: True
+	hparams: {}
+	log: cmd_1.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=2] Hyperparameters:
+[info] [Me=2] real seed: 99
+Simulator initialized
+[info] [Me=2] Starting greedy hill climbing
+[info] [Me=3] Args:
+	algorithm: greedy
+	batch: True
+	hparams: {}
+	log: cmd_1.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=3] Hyperparameters:
+[info] [Me=3] real seed: 132
+Simulator initialized
+[info] [Me=3] Starting greedy hill climbing
+[info] [Me=1] Args:
+	algorithm: greedy
+	batch: True
+	hparams: {}
+	log: cmd_1.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=1] Hyperparameters:
+[info] [Me=1] real seed: 66
+Simulator initialized
+[info] [Me=1] Starting greedy hill climbing
+[23:26:38]	[Me=1]	[k=0]	Cost=973.92	-O2 avx 256 256 256 32 512 64 16	(Initial)
+[23:26:39]	[Me=0]	[k=0]	Cost=813.21	-O2 avx 256 256 256 32 64 16 128	(Initial)
+[23:26:40]	[Me=3]	[k=0]	Cost=415.56	-O3 avx512 256 256 256 16 64 128 64	(Initial)
+[23:26:41]	[Me=2]	[k=0]	Cost=332.58	-O3 avx2 256 256 256 8 32 512 8	(Initial)
+[23:27:03]	[Me=1]	[k=1]	Cost=1332.12	-O2 avx 256 256 256 32 512 32 16
+[23:27:07]	[Me=0]	[k=1]	Cost=986.35	-O2 avx 256 256 256 32 128 16 128
+[23:27:24]	[Me=1]	[k=2]	Cost=1600.0	-O2 avx 256 256 256 32 512 16 16
+[23:27:31]	[Me=3]	[k=1]	Cost=570.79	-O3 avx512 256 256 256 32 64 128 64
+[23:27:36]	[Me=0]	[k=2]	Cost=1255.91	-O2 avx 256 256 256 32 256 16 128
+[23:27:44]	[Me=1]	[k=3]	Cost=1639.96	-O2 avx 256 256 256 32 512 16 8
+[23:27:45]	[Me=2]	[k=1]	Cost=407.16	-O3 avx2 256 256 256 16 32 512 8
+[23:28:00]	[Me=0]	[k=3]	Cost=1297.35	-O2 avx 256 256 256 32 256 8 128
+[23:28:01]	[Me=1]	[k=4]	Cost=1666.09	-O2 avx 256 256 256 32 512 8 8
+[23:28:16]	[Me=3]	[k=2]	Cost=651.4	-O3 avx512 256 256 256 32 64 64 64
+[23:28:17]	[Me=1]	[k=5]	Cost=1770.17	-O2 avx512 256 256 256 32 512 8 8
+[23:28:20]	[Me=0]	[k=4]	Cost=1453.16	-O2 avx 256 256 256 32 256 8 64
+[23:28:32]	[Me=2]	[k=2]	Cost=520.6	-O3 avx2 256 256 256 16 16 512 8
+[23:28:33]	[Me=1]	[k=6]	Cost=1808.64	-Ofast avx512 256 256 256 32 512 8 8
+[23:28:38]	[Me=0]	[k=5]	Cost=1687.87	-O2 avx 256 256 256 32 256 8 32
+[23:28:49]	[Me=1]	[k=7]	Cost=1885.37	-Ofast avx512 256 256 256 32 512 4 8
+[23:28:49]	[Me=3]	[k=3]	Cost=783.14	-O3 avx512 256 256 256 32 64 32 64
+[info] [Me=0] No better element. End of the loop
+[info] [Me=0] End of the loop via number of iterations
+[info] [Me=1] No better element. End of the loop
+[info] [Me=1] End of the loop via number of iterations
+[23:29:08]	[Me=2]	[k=3]	Cost=738.48	-O3 avx2 256 256 256 32 16 512 8
+[23:29:19]	[Me=3]	[k=4]	Cost=832.57	-O3 avx512 256 256 256 32 64 16 64
+[23:29:36]	[Me=2]	[k=4]	Cost=756.4	-O2 avx2 256 256 256 32 16 512 8
+[23:29:45]	[Me=3]	[k=5]	Cost=986.76	-O3 avx512 256 256 256 32 64 16 32
+[23:30:05]	[Me=2]	[k=5]	Cost=774.5	-O2 avx512 256 256 256 32 16 512 8
+[23:30:08]	[Me=3]	[k=6]	Cost=1173.77	-O3 avx512 256 256 256 32 64 8 32
+[23:30:30]	[Me=3]	[k=7]	Cost=1325.21	-O3 avx512 256 256 256 32 64 8 16
+[23:30:34]	[Me=2]	[k=6]	Cost=824.5	-Ofast avx512 256 256 256 32 16 512 8
+[23:30:49]	[Me=3]	[k=8]	Cost=1409.31	-O3 avx512 256 256 256 32 64 8 8
+[23:31:02]	[Me=2]	[k=7]	Cost=826.14	-Ofast avx512 256 256 256 32 16 256 8
+[23:31:08]	[Me=3]	[k=9]	Cost=1565.56	-O3 avx512 256 256 256 32 128 8 8
+[23:31:28]	[Me=3]	[k=10]	Cost=1779.68	-O3 avx512 256 256 256 32 256 8 8
+[info] [Me=3] End of the loop via number of iterations
+[info] [Me=2] No better element. End of the loop
+[info] [Me=2] End of the loop via number of iterations
+[info] [Me=2] Path taken:
+[info] [Me=0] Path taken:
+	332.58 -O3 avx2 256 256 256 8 32 512 8
+	407.16 -O3 avx2 256 256 256 16 32 512 8
+	520.6 -O3 avx2 256 256 256 16 16 512 8
+	738.48 -O3 avx2 256 256 256 32 16 512 8
+	756.4 -O2 avx2 256 256 256 32 16 512 8
+	774.5 -O2 avx512 256 256 256 32 16 512 8
+	824.5 -Ofast avx512 256 256 256 32 16 512 8
+	813.21 -O2 avx 256 256 256 32 64 16 128
+	986.35 -O2 avx 256 256 256 32 128 16 128
+	1255.91 -O2 avx 256 256 256 32 256 16 128
+	1297.35 -O2 avx 256 256 256 32 256 8 128
+	1453.16 -O2 avx 256 256 256 32 256 8 64
+	1687.87 -O2 avx 256 256 256 32 256 8 32
+[info] [Me=0] Best solution found:
+	1687.87 -O2 avx 256 256 256 32 256 8 32
+[info] [Me=3] Path taken:
+	826.14 -Ofast avx512 256 256 256 32 16 256 8
+[info] [Me=2] Best solution found:
+	826.14 -Ofast avx512 256 256 256 32 16 256 8
+	415.56 -O3 avx512 256 256 256 16 64 128 64
+	570.79 -O3 avx512 256 256 256 32 64 128 64
+[info] [Me=1] Path taken:
+	651.4 -O3 avx512 256 256 256 32 64 64 64
+	783.14 -O3 avx512 256 256 256 32 64 32 64
+	832.57 -O3 avx512 256 256 256 32 64 16 64
+	986.76 -O3 avx512 256 256 256 32 64 16 32
+	1173.77 -O3 avx512 256 256 256 32 64 8 32
+	1325.21 -O3 avx512 256 256 256 32 64 8 16
+	1409.31 -O3 avx512 256 256 256 32 64 8 8
+	1565.56 -O3 avx512 256 256 256 32 128 8 8
+	1779.68 -O3 avx512 256 256 256 32 256 8 8
+[info] [Me=3] Best solution found:
+	1779.68 -O3 avx512 256 256 256 32 256 8 8
+	973.92 -O2 avx 256 256 256 32 512 64 16
+	1332.12 -O2 avx 256 256 256 32 512 32 16
+	1600.0 -O2 avx 256 256 256 32 512 16 16
+	1639.96 -O2 avx 256 256 256 32 512 16 8
+	1666.09 -O2 avx 256 256 256 32 512 8 8
+	1770.17 -O2 avx512 256 256 256 32 512 8 8
+	1808.64 -Ofast avx512 256 256 256 32 512 8 8
+	1885.37 -Ofast avx512 256 256 256 32 512 4 8
+[info] [Me=1] Best solution found:
+	1885.37 -Ofast avx512 256 256 256 32 512 4 8
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	1687.87 -O2 avx 256 256 256 32 256 8 32
+	1885.37 -Ofast avx512 256 256 256 32 512 4 8
+	826.14 -Ofast avx512 256 256 256 32 16 256 8
+	1779.68 -O3 avx512 256 256 256 32 256 8 8
+[info] [Me=0] Best overall:
+	1885.37 -Ofast avx512 256 256 256 32 512 4 8
+[info] [Me=0] Total cost evaluations: 382
+[info] [Me=0] Run finished. Logs can be found at cmd_1.log.
+[info] [Me=1] Run finished. Logs can be found at cmd_1.log.
+[info] [Me=3] Run finished. Logs can be found at cmd_1.log.
+[info] [Me=2] Run finished. Logs can be found at cmd_1.log.
+=================================
