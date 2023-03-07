@@ -25,7 +25,9 @@ def make_deterministic(seed):
 def run_algorithm(algorithm, args, comm, evaluation_session):
     Me = comm.Get_rank()
     best_solution, best_cost, path = algorithm.run(args.steps, evaluation_session)
-
+    TabE = comm.gather(best_cost,root=0)
+    TabS = comm.gather(best_solution,root=0)
+    total_runs = comm.reduce(evaluation_session.run_counter,op=MPI.SUM, root=0)
     if best_cost is not None:
         logger.write_info('Path taken:')
         for sol in path:
@@ -34,9 +36,6 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
         logger.write_info('Best solution found:')
         logger.write_raw('\t' + str(best_cost) + ' ' + best_solution.get_compilation_flags())
 
-        TabE = comm.gather(best_cost,root=0)
-        TabS = comm.gather(best_solution,root=0)
-        total_runs = comm.reduce(evaluation_session.run_counter,op=MPI.SUM, root=0)
         if (Me == 0):
             TabE = [x for x in TabE if x is not None]
             TabS = [x for x in TabS if x is not None]
