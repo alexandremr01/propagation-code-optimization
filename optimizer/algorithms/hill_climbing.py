@@ -10,8 +10,8 @@ from optimizer.random_solution import get_random_solution
 from optimizer.algorithms import Algorithm
 
 class HillClimbing(Algorithm):
-    def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+    def __init__(self, hparams, problem_size, comm) -> None:
+        super().__init__(hparams, problem_size, comm)
         self.comm = MPI.COMM_WORLD        
         
     def run(self, num_steps, evaluation_session):

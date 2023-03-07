@@ -6,8 +6,8 @@ from optimizer.solution import Solution
 
 
 class Greedy(Algorithm):
-    def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+    def __init__(self, hparams, problem_size, comm) -> None:
+        super().__init__(hparams, problem_size, comm)
 
     def run(self, kmax, evaluation_session):
         Sbest = get_random_solution(self.problem_size, evaluation_session)
@@ -48,8 +48,8 @@ class Greedy(Algorithm):
 
 
 class TabuGreedy(Algorithm):
-    def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+    def __init__(self, hparams, problem_size, comm) -> None:
+        super().__init__(hparams, problem_size, comm)
         self.register_hyperparameter('n_tabu', 5)
         self.parse_hyperparameters()
 
