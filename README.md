@@ -15,6 +15,10 @@ and initialize it with `source .env`.
 
 `make upload`
 
+## Downloading the generated graph
+
+`make get_graph`
+
 ## Deployment Examples
 
 ```
