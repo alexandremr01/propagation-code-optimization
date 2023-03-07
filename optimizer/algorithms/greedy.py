@@ -46,8 +46,8 @@ class Greedy(Algorithm):
         return Sbest, Ebest, path    
 
 class TabuGreedy(Algorithm):
-    def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+    def __init__(self, hparams, problem_size, comm, logger) -> None:
+        super().__init__(hparams, problem_size, comm, logger)
         self.register_hyperparameter('n_tabu', 5)
         self.parse_hyperparameters()
 
@@ -58,32 +58,32 @@ class TabuGreedy(Algorithm):
         Ebest = Sbest.cost()
         neighbors = Sbest.get_neighbors()
         k = 0
-        newBetterS = True
-
-        visited = []
-
-        print('Cost= ', Ebest, end=' ')
         path = [(Sbest, Ebest)]
-        Sbest.display()
+        self.logger.write_msg(
+            k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+        )
+
+        newBetterS = True
+        visited = []
 
         while k < kmax and newBetterS:
             S1, E1 = TabuFindBest(neighbors, visited)
             if E1 > Ebest:
                 Sbest = S1
                 Ebest = E1
-                visited = FifoAdd(Sbest, visited, N_Tabu)
+                visited = FifoAdd(self.logger, Sbest, visited, N_Tabu)
 
                 path.append((Sbest, Ebest))
 
-                print('New best:', end=' ')
-                Sbest.display()
-                print('Actual Cost: ' + str(Ebest))
+                self.logger.write_msg(
+                    k+1, Ebest, Sbest.get_compilation_flags(),
+                )
 
                 neighbors = Sbest.get_neighbors()
 
             else:
                 newBetterS = False
-                print("\nNo better element. End of the loop")
+                self.logger.write_info("No better element. End of the loop")
 
             k = k+1
 
@@ -137,20 +137,14 @@ class parallelgreedy(Algorithm):
         return Sbest, path
 
 
-def FifoAdd(Sbest, Ltabu, TabuSize=10):
+def FifoAdd(logger, Sbest, Ltabu, TabuSize=10):
     if len(Ltabu) == TabuSize:
         Ltabu.pop(0)
     Ltabu.append(Sbest)
 
-    print("Tabu List: [", end=" ")
+    logger.write_info("Tabu List:")
     for i in Ltabu:
-        if i == Ltabu[-1]:
-            print(Sbest.olevel, Sbest.simd, Sbest.problem_size_x, Sbest.problem_size_y, Sbest.problem_size_z,
-                  Sbest.nthreads, Sbest.thrdblock_x, Sbest.thrdblock_y, Sbest.thrdblock_z, end=' ')
-            print(']')
-        else:
-            print(Sbest.olevel, Sbest.simd, Sbest.problem_size_x, Sbest.problem_size_y, Sbest.problem_size_z,
-                  Sbest.nthreads, Sbest.thrdblock_x, Sbest.thrdblock_y, Sbest.thrdblock_z, end=', ')
+            logger.write_raw("\t" + i.get_compilation_flags())
 
     return Ltabu
 
