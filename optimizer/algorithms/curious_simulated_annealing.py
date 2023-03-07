@@ -14,7 +14,15 @@ def group_particles(particles, n_groups):
     return new_particles
 
 def ungroup_particles(particles):
-    return [item for sublist in particles for item in sublist]
+    list_pointer = 0
+    new_particles = []
+    list_indexes = [0] * len(particles)
+    while list_indexes[list_pointer] != len(particles[list_pointer]):
+        index_in_list = list_indexes[list_pointer]
+        new_particles.append(particles[list_pointer][index_in_list])
+        list_indexes[list_pointer] += 1
+        list_pointer = (list_pointer+1) % len(particles)
+    return new_particles
 
 class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particles=6, temperature_schedule=None)
     def __init__(self, hparams, problem_size, comm, logger) -> None:
@@ -63,7 +71,7 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
             for i in range(len(particles)):
                 # Perturb the particle
                 perturbed_particle = particles[i].get_random_neighbor()
-                print('Cost= ', perturbed_particle.cost(), end=' ')
+                print('N=', my_rank, 'Cost= ', perturbed_particle.cost(), end=' ')
                 perturbed_particle.display()
 
                 # Calculate the energy difference

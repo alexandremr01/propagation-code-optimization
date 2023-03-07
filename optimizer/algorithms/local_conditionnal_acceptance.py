@@ -5,7 +5,6 @@ from optimizer.solution import Solution
 from optimizer.random_solution import get_random_solution
 from optimizer.algorithms import Algorithm
 
-
 class LocalConditionnalAcceptance(Algorithm):
     def __init__(self, hparams, problem_size, comm, logger) -> None:
         super().__init__(hparams, problem_size, comm, logger)

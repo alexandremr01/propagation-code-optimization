@@ -38,6 +38,8 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
         TabS = comm.gather(best_solution,root=0)
         total_runs = comm.reduce(evaluation_session.run_counter,op=MPI.SUM, root=0)
         if (Me == 0):
+            TabE = [x for x in TabE if x is not None]
+            TabS = [x for x in TabS if x is not None]
             logger.jumpline()
             logger.write_info('Gathering solutions from all processes')
             logger.write_info('Best solutions:')
@@ -57,8 +59,8 @@ if __name__ == "__main__":
     parser.add_argument('--steps', type=int, default=10,
                         help='Number of steps')
     parser.add_argument('--seed', type=int, default=33, help='Random seed')
-    parser.add_argument('--kangaroo', action='store_true',
-                        help='Run in parallel with different initializations')
+    parser.add_argument('--batch', action='store_true',
+                        help='Uses multiple nodes')
     parser.add_argument('--hparams', type=str, default='{}',
                         help='JSON-serialized hparams dict')
     parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Problem size')
@@ -73,7 +75,7 @@ if __name__ == "__main__":
     comm = MPI.COMM_WORLD
 
     logfile = "myLog.log"
-    if args.kangaroo:
+    if args.batch:
         logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False)
     else:
         logger = Logger(process_id=comm.Get_rank(), logfile=logfile)
@@ -91,14 +93,14 @@ if __name__ == "__main__":
 
     make_deterministic(args.seed)
 
-    if args.phase == 'deploy' and args.kangaroo:
+    if args.phase == 'deploy' and args.batch:
         deploy_kangaroo(args, sys.argv[0], logger)
-    elif args.phase == 'deploy' and not args.kangaroo:
+    elif args.phase == 'deploy' and not args.batch:
         deploy_single(args, sys.argv[0], logger)
     else: # phase is run
         evaluation_session = Simulator()
         run_algorithm(algorithm, args, comm, evaluation_session)
     
     # retrieve logs from slurm file
-    if args.kangaroo:
+    if args.batch:
         slurm_to_logfile(find_slurmfile(os.getcwd()), logfile)
