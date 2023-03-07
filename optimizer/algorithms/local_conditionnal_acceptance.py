@@ -17,6 +17,7 @@ class LocalConditionnalAcceptance(Algorithm):
         self.f = lambda x: 0.9*x
 
     def run(self, kmax):
+        self.logger.write_info('Starting simulated_annealing')
         T0 = self.T0
         f = self.f
         S_best = get_random_solution(self.problem_size)
@@ -26,26 +27,28 @@ class LocalConditionnalAcceptance(Algorithm):
         neighbors = S_best.get_neighbors()
         T = T0
         k = 0
+        self.logger.write_msg(
+            k, E, S.get_compilation_flags(), flair='Initial'
+        )
         while k < kmax > 0:
             selected_index = random.randint(0, len(neighbors)-1)
             S_new = neighbors[selected_index]
             E_new = S_new.cost()
-            print('Cost= ', E_new, end=' ')
-            S_new.display()
-            path = [(S_best, E_best)]
+            path = [(S_best, E_best)] # FIXME
             if E_new > E or random.uniform(0, 1) < math.exp((E_new-E)/T):
                 if E_new <= E:
-                    print('Risky choice !', end=' ')
-                    S.display()
+                    log_flair = 'Risky choice !'
                 S = S_new
                 E = E_new
                 neighbors = S.get_neighbors()
                 if E > E_best:
                     S_best = S
                     E_best = E
-                    print('New best:', end=' ')
-                    S_new.display()
+                    log_flair = 'New best'
                     path.append((S_best, E_best))
             T = f(T)
             k += 1
+            self.logger.write_msg(
+                k, E_new, S_new.get_compilation_flags(), log_flair,
+            )
         return S_best, E_best, path

@@ -52,7 +52,7 @@ class TabuGreedy(Algorithm):
         self.parse_hyperparameters()
 
     def run(self, kmax, evaluation_session):
-        self.logger.write_info('Starting tabu-greedy hill climbing')
+        self.logger.write_info('Starting tabu_greedy hill climbing')
         N_Tabu = self.hparams['n_tabu']
         Sbest = get_random_solution(self.problem_size, evaluation_session)
         Ebest = Sbest.cost()
