@@ -19,8 +19,8 @@ class LocalConditionnalAcceptance(Algorithm):
         self.logger.write_info('Starting simulated_annealing')
         T0 = self.T0
         f = self.f
-        S_best = get_random_solution(self.problem_size, evaluation_session)
-        E_best = S_best.cost()
+        S_best = get_random_solution(self.problem_size)
+        E_best = S_best.cost(evaluation_session)
         S = S_best
         E = E_best
         neighbors = S_best.get_neighbors()
@@ -33,7 +33,7 @@ class LocalConditionnalAcceptance(Algorithm):
         while k < kmax > 0:
             selected_index = random.randint(0, len(neighbors)-1)
             S_new = neighbors[selected_index]
-            E_new = S_new.cost()
+            E_new = S_new.cost(evaluation_session)
             if E_new > E or random.uniform(0, 1) < math.exp((E_new-E)/T):
                 if E_new <= E:
                     log_flair = 'Risky choice !'

@@ -42,14 +42,14 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
 
         if my_rank == 0:
 
-            init_state = get_random_solution(self.problem_size, evaluation_session)
+            init_state = get_random_solution(self.problem_size)
             particles = [init_state for _ in range(n_particles)]
             particle_weights = np.ones(n_particles) / n_particles
-            path = [(init_state, init_state.cost())]
+            path = [(init_state, init_state.cost(evaluation_session))]
 
             # Initialize the current state and current energy
             current_state = init_state
-            current_energy = init_state.cost()
+            current_energy = init_state.cost(evaluation_session)
 
             print('Cost= ', current_energy, end=' ')
             current_state.display()
@@ -71,30 +71,29 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
             for i in range(len(particles)):
                 # Perturb the particle
                 perturbed_particle = particles[i].get_random_neighbor()
-                print('N=', my_rank, 'Cost= ', perturbed_particle.cost(), end=' ')
-                perturbed_particle.display()
 
                 # Calculate the energy difference
-                energy_diff = perturbed_particle.cost() - particles[i].cost()
+                energy_diff = perturbed_particle.cost(evaluation_session) - particles[i].cost(evaluation_session)
+                print('N=', my_rank, 'Cost= ', perturbed_particle.cost(evaluation_session), end=' ')
+                perturbed_particle.display()
 
                 # Update the particle or move to a new state with a certain probability
-                if acceptance_func(energy_diff, temp) > np.random.uniform():
+                if energy_diff < 0 or acceptance_func(energy_diff, temp) > np.random.uniform():
                     particles[i] = perturbed_particle
-
             # Update the particle weights based on the new states
             particles = self.comm.gather(particles, root=0)
 
             if my_rank == 0:
                 particles = ungroup_particles(particles)
                 for i in range(n_particles):
-                    particle_weights[i] = np.exp((particles[i].cost())/temp)
+                    particle_weights[i] = np.exp((particles[i].cost(evaluation_session))/temp)
 
                 # Normalize the weights
                 particle_weights /= np.sum(particle_weights)
 
                 # Update the current state and current energy
-                best_particle = particles[np.argmax([p.cost() for p in particles])]
-                best_energy = best_particle.cost()
+                best_particle = particles[np.argmax([p.cost(evaluation_session) for p in particles])]
+                best_energy = best_particle.cost(evaluation_session)
 
                 if best_energy > current_energy:
                     current_state = best_particle

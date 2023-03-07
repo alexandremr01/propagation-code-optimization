@@ -15,8 +15,8 @@ class HillClimbing(Algorithm):
         
     def run(self, num_steps, evaluation_session):
         self.logger.write_info('Starting hill_climbing')
-        Sbest = get_random_solution(self.problem_size, evaluation_session)
-        Ebest = Sbest.cost()
+        Sbest = get_random_solution(self.problem_size)
+        Ebest = Sbest.cost(evaluation_session)
         neighbors = Sbest.get_neighbors()
         k = 0
         path = [(Sbest, Ebest)]
@@ -27,7 +27,7 @@ class HillClimbing(Algorithm):
             selected_index = random.randint(0, len(neighbors)-1)
             S_new = neighbors[selected_index]
             neighbors.pop(selected_index)
-            E_new = S_new.cost()
+            E_new = S_new.cost(evaluation_session)
             if E_new > Ebest:
                 log_flair = 'New best!'
                 Ebest = E_new
