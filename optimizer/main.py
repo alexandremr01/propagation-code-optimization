@@ -7,7 +7,7 @@ import json
 
 import numpy as np 
 
-from optimizer.algorithms import get_algorithm
+from optimizer import algorithms
 from optimizer.deployment import deploy_kangaroo, deploy_single
 from optimizer.evaluator import Simulator
 from optimizer.logger import Logger, find_slurmfile, slurm_to_logfile
@@ -58,15 +58,15 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
-    parser.add_argument('--algorithm', type=str, default='hill_climbing')
+    parser.add_argument('--algorithm', type=str, choices=algorithms.ALGORITHMS.keys(), default='hill_climbing')
     parser.add_argument('--steps', type=int, default=10,
                         help='Number of steps')
     parser.add_argument('--seed', type=int, default=33, help='Random seed')
     parser.add_argument('--batch', action='store_true',
                         help='Uses multiple nodes')
     parser.add_argument('--hparams', type=str, default='{}',
-                        help='JSON-serialized hparams dict')
-    parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Problem size')
+                        help='JSON-serialized hyperparameters dictionary')
+    parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Three dimensions of problem size')
 
     # usually you dont need to change this
     parser.add_argument('--phase', type=str,
@@ -87,7 +87,7 @@ if __name__ == "__main__":
     for k, v in sorted(vars(args).items()):
         logger.write_raw('\t{}: {}'.format(k, v))
     
-    algorithm_class = get_algorithm(args.algorithm)
+    algorithm_class = algorithms.get_algorithm(args.algorithm)
     algorithm = algorithm_class(hparams, args.problem_size, comm, logger)
 
     logger.write_info('Hyperparameters:')
