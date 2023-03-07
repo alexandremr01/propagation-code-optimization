@@ -31,7 +31,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
     if best_cost is not None:
         logger.write_info('Path taken:')
         for sol in path:
-            logger.write_raw('\t' + str(sol[1]) + ' ' + sol[0].get_compilation_flags())
+            logger.write_raw('\t' + str(sol[2]) + ' ' + str(sol[1]) + ' ' + sol[0].get_compilation_flags())
 
         logger.write_info('Best solution found:')
         logger.write_raw('\t' + str(best_cost) + ' ' + best_solution.get_compilation_flags())
@@ -52,6 +52,12 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             Sopt = TabS[idx]
             logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags())
             logger.write_info(f'Total cost evaluations: {total_runs}')
+
+            #TODO: maybe implement 4 graphs for kangoroo method
+            energy_path = [item[1] for item in path]
+            index_path = [item[2] for item in path]
+            logger.plot_graph(energy_path, index_path, args.steps)
+
             return
     if (Me != 0):
         comm.Barrier()
@@ -78,10 +84,11 @@ if __name__ == "__main__":
     comm = MPI.COMM_WORLD
 
     logfile = "myLog.log"
+    graphfile = "myGraph.png"
     if args.batch:
-        logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False)
+        logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False, graphfile=graphfile)
     else:
-        logger = Logger(process_id=comm.Get_rank(), logfile=logfile)
+        logger = Logger(process_id=comm.Get_rank(), logfile=logfile, graphfile=graphfile)
 
     logger.write_info('Args:')
     for k, v in sorted(vars(args).items()):
