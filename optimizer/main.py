@@ -107,3 +107,5 @@ if __name__ == "__main__":
     # retrieve logs from slurm file
     if args.batch:
         slurm_to_logfile(find_slurmfile(os.getcwd()), logfile)
+
+    logger.write_info(f"Run finished. Logs can be found at {logfile}.")
