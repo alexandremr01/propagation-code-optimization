@@ -37,6 +37,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
         logger.write_raw('\t' + str(best_cost) + ' ' + best_solution.get_compilation_flags())
 
         if (Me == 0):
+            comm.Barrier() # guarantee that these will be the final messages
             TabE = [x for x in TabE if x is not None]
             TabS = [x for x in TabS if x is not None]
             logger.jumpline()
@@ -51,6 +52,9 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             Sopt = TabS[idx]
             logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags())
             logger.write_info(f'Total cost evaluations: {total_runs}')
+            return
+        else:
+            comm.Barrier()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Optimizer Launcher')

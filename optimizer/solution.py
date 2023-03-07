@@ -4,11 +4,10 @@ import threading
 import os
 import numpy as np
 
-from optimizer.evaluator import Simulator
 from optimizer.solution_space import SolutionSpace
 
 class Solution:
-    def __init__(self, olevel, simd, problem_size_x, problem_size_y, problem_size_z, nthreads, thrdblock_x, thrdblock_y, thrdblock_z, simulator) -> None:
+    def __init__(self, olevel, simd, problem_size_x, problem_size_y, problem_size_z, nthreads, thrdblock_x, thrdblock_y, thrdblock_z) -> None:
         self.olevel = olevel
         self.simd = simd
         self.problem_size_x = problem_size_x
@@ -20,15 +19,11 @@ class Solution:
         self.thrdblock_z = thrdblock_z
         self.calculated_cost = None
 
-        self.simulator = simulator
-
-        self.simulator.sol_increase()
-
-    def cost(self, verbose=False, delete_file=True, num_evaluations=1):
+    def cost(self, evaluation_session, verbose=False, delete_file=True, num_evaluations=1):
         if self.calculated_cost is not None:
             return self.calculated_cost
 
-        self.simulator.run_increase(num_evaluations)  # Increases in num_evaluations the counter of runs
+        evaluation_session.run_increase(num_evaluations)  # Increases in num_evaluations the counter of runs
 
         file_name = str(threading.get_ident())
         file_name_with_ext = f'{file_name}.exe'
@@ -108,7 +103,7 @@ class Solution:
                   self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z*2))
         if self.nthreads <= 32:
             neigh.add( (self.olevel, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, self.nthreads*2, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z) )
-        return [Solution(*n, self.simulator) for n in neigh]
+        return [Solution(*n) for n in neigh]
 
     def get_random_neighbor(self):
         neighbors = self.get_neighbors()

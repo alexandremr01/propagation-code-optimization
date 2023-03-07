@@ -20,13 +20,13 @@ class CMAESAlgorithm(Algorithm):
             self.execute_slave()
             return None, None, None
 
-        initial_solution = get_random_solution(self.problem_size, evaluation_session)
+        initial_solution = get_random_solution(self.problem_size)
         x0 = self.solution_to_x(initial_solution)
         sigma0 = 1   # initial standard deviation to sample new solutions
         options = {
             'bounds': self.get_bounds(),
             'integer_variables': [0, 1, 2, 3, 4, 5],
-            'maxiter': kmax,
+            'maxfevals': kmax,
         }
         # TODO: pass parallel_objective instead of cost_function
         x, es = cma.fmin2(
@@ -43,11 +43,11 @@ class CMAESAlgorithm(Algorithm):
         Sbest.display()
         # TODO: how to manage path for CMAES?
         path = [ ]
-        return Sbest, Sbest.cost(), path
+        return Sbest, Sbest.cost(evaluation_session), path
 
     def cost_function(self, x):
         solution = self.x_to_solution(x)
-        cost = solution.cost()
+        cost = solution.cost(self.evaluation_session)
         print('Evaluating:', end=' ')
         solution.display()
         print('Cost: ', cost)
@@ -68,7 +68,7 @@ class CMAESAlgorithm(Algorithm):
         costs = [ ]
         for x in data:
             solution = self.x_to_solution(x)
-            cost = solution.cost()
+            cost = solution.cost(self.evaluation_session)
             print('N=', self.comm.Get_rank(), 'Evaluating:', end=' ')
             solution.display()
             print('Cost: ', cost)
@@ -100,7 +100,6 @@ class CMAESAlgorithm(Algorithm):
             thrdblock_x=SolutionSpace.threadblocks[3:][x_parsed[3]],  # must be multiple of 16
             thrdblock_y=SolutionSpace.threadblocks[x_parsed[4]],
             thrdblock_z=SolutionSpace.threadblocks[x_parsed[5]],
-            simulator=self.evaluation_session
         )
     
     def solution_to_x(self, solution):

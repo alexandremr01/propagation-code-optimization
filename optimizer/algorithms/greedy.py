@@ -11,8 +11,8 @@ class Greedy(Algorithm):
 
     def run(self, kmax, evaluation_session):
         self.logger.write_info('Starting greedy hill climbing')
-        Sbest = get_random_solution(self.problem_size, evaluation_session)
-        Ebest = Sbest.cost()
+        Sbest = get_random_solution(self.problem_size)
+        Ebest = Sbest.cost(evaluation_session)
         neighbors = Sbest.get_neighbors()
         k = 0
         newBetterS = True
@@ -23,9 +23,9 @@ class Greedy(Algorithm):
 
         while k < kmax and len(neighbors) > 0 and newBetterS:
             S1 = neighbors.pop()
-            E1 = S1.cost()
+            E1 = S1.cost(evaluation_session)
             for S2 in neighbors:
-                E2 = S2.cost()
+                E2 = S2.cost(evaluation_session)
                 if E2 > E1:
                     S1 = S2
                     E1 = E2
@@ -54,8 +54,8 @@ class TabuGreedy(Algorithm):
     def run(self, kmax, evaluation_session):
         self.logger.write_info('Starting tabu_greedy hill climbing')
         N_Tabu = self.hparams['n_tabu']
-        Sbest = get_random_solution(self.problem_size, evaluation_session)
-        Ebest = Sbest.cost()
+        Sbest = get_random_solution(self.problem_size)
+        Ebest = Sbest.cost(evaluation_session)
         neighbors = Sbest.get_neighbors()
         k = 0
         path = [(Sbest, Ebest)]
@@ -98,7 +98,7 @@ class parallelgreedy(Algorithm):
     def run(self, kmax):
 
         Sbest = get_random_solution(self.problem_size)
-        Ebest = Sbest.cost()
+        Ebest = Sbest.cost(evaluation_session)
         neighbors = Sbest.get_neighbors()
         n = len(neighbors)
         k = 0
@@ -110,7 +110,7 @@ class parallelgreedy(Algorithm):
 
         while k < kmax and n > 0 and newBetterS:
             for i in range(n):
-                tabE[i] = neighbors[i].cost()
+                tabE[i] = neighbors[i].cost(evaluation_session)
 
             j = 0
             for i in range(n):
@@ -154,7 +154,7 @@ def TabuFindBest(Lneigh, Ltabu):
     S1 = None
     for S2 in Lneigh:
         if S2 not in Ltabu:
-            E2 = S2.cost()
+            E2 = S2.cost(evaluation_session)
             if E2 > E1:
                 S1 = S2
                 E1 = E2
