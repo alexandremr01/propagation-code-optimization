@@ -27,7 +27,6 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
     best_solution, best_cost, path = algorithm.run(args.steps, evaluation_session)
     TabE = comm.gather(best_cost,root=0)
     TabS = comm.gather(best_solution,root=0)
-    print('runs:', evaluation_session.run_counter)
     total_runs = comm.reduce(evaluation_session.run_counter,op=MPI.SUM, root=0)
     if best_cost is not None:
         logger.write_info('Path taken:')

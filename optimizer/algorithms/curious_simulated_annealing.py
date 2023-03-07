@@ -78,7 +78,7 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
                 perturbed_particle.display()
 
                 # Update the particle or move to a new state with a certain probability
-                if energy_diff < 0 or acceptance_func(energy_diff, temp) > np.random.uniform():
+                if energy_diff > 0 or acceptance_func(energy_diff, temp) > np.random.uniform():
                     particles[i] = perturbed_particle
             # Update the particle weights based on the new states
             particles = self.comm.gather(particles, root=0)
