@@ -67,7 +67,7 @@ class TabuGreedy(Algorithm):
         visited = []
 
         while k < kmax and newBetterS:
-            S1, E1 = TabuFindBest(neighbors, visited)
+            S1, E1 = TabuFindBest(neighbors, visited, evaluation_session)
             if E1 > Ebest:
                 Sbest = S1
                 Ebest = E1
@@ -149,7 +149,7 @@ def FifoAdd(logger, Sbest, Ltabu, TabuSize=10):
     return Ltabu
 
 
-def TabuFindBest(Lneigh, Ltabu):
+def TabuFindBest(Lneigh, Ltabu, evaluation_session):
     E1 = -math.inf
     S1 = None
     for S2 in Lneigh:
