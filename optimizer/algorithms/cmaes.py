@@ -9,8 +9,8 @@ from optimizer.algorithms import Algorithm
 from optimizer.algorithms.curious_simulated_annealing import group_particles, ungroup_particles
 
 class CMAESAlgorithm(Algorithm):
-    def __init__(self, hparams, problem_size, comm) -> None:
-        super().__init__(hparams, problem_size, comm)
+    def __init__(self, hparams, problem_size, comm, logger) -> None:
+        super().__init__(hparams, problem_size, comm, logger)
 
     def run(self, kmax, evaluation_session):
         self.evaluation_session = evaluation_session

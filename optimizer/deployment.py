@@ -6,7 +6,7 @@ from optimizer.solution import Solution
 
 from optimizer.algorithms import Algorithm
     
-def deploy_kangaroo(args, script_name):
+def deploy_kangaroo(args, script_name, logger):
     file_name = str(threading.get_ident())
     file_name_with_ext = f'launch_{file_name}.sh'
 
@@ -19,16 +19,16 @@ def deploy_kangaroo(args, script_name):
         script_file.write(script)
 
     cmd = f"sbatch -p cpu_prod --exclusive -N 4 -n 128 --qos=16nodespu {file_name_with_ext}" 
-    print("Executed command: " + cmd)
-    print("---->")
+    logger.write_info("Executed command: " + cmd)
+    # print("---->")
     res = subprocess.run(cmd,shell=True, env=os.environ)
 
-def deploy_single(args, script_name):
+def deploy_single(args, script_name, logger):
     args.phase = 'run'
     formatted_new_args = print_args(args)
     cmd = f'/usr/bin/mpirun -np 1 -map-by ppr:1:node:PE=16 python3 -m optimizer.main {formatted_new_args}'
-    print("Executed command: " + cmd)
-    print("---->")
+    logger.write_info("Executed command: " + cmd)
+    # print("---->")
     subprocess.run(cmd, shell=True, env=os.environ)
     
 def get_script(process_number, command):

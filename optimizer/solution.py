@@ -113,7 +113,11 @@ class Solution:
     def get_random_neighbor(self):
         neighbors = self.get_neighbors()
         return np.random.choice(neighbors)
-    
+
     def display(self):
         print(self.olevel, self.simd, self.problem_size_x, self.problem_size_y,
               self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z)
+
+    def get_compilation_flags(self):
+        return " ".join((self.olevel, self.simd, str(self.problem_size_x), str(self.problem_size_y), str(self.problem_size_z), str(self.nthreads), str(self.thrdblock_x), str(self.thrdblock_y), str(self.thrdblock_z)))
+    
