@@ -25,6 +25,7 @@ class LocalConditionnalAcceptance(Algorithm):
         S = S_best
         E = E_best
         neighbors = S_best.get_neighbors()
+        path = [(S_best, E_best)]
         T = T0
         k = 0
         self.logger.write_msg(
@@ -34,7 +35,6 @@ class LocalConditionnalAcceptance(Algorithm):
             selected_index = random.randint(0, len(neighbors)-1)
             S_new = neighbors[selected_index]
             E_new = S_new.cost()
-            path = [(S_best, E_best)] # FIXME
             if E_new > E or random.uniform(0, 1) < math.exp((E_new-E)/T):
                 if E_new <= E:
                     log_flair = 'Risky choice !'
