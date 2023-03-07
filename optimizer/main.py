@@ -20,7 +20,7 @@ def make_deterministic(seed):
     real_seed = seed*(Me + 1)
     random.seed(real_seed)
     np.random.seed(real_seed)
-    print(f'\nreal seed: {real_seed}\n')    
+    logger.write_info(f'real seed: {real_seed}')    
         
 def run_algorithm(algorithm, args, comm, evaluation_session):
     Me = comm.Get_rank()

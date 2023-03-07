@@ -16,11 +16,11 @@ class LocalConditionnalAcceptance(Algorithm):
         # TODO: current temperature function is hard coded
         self.f = lambda x: 0.9*x
 
-    def run(self, kmax):
+    def run(self, kmax, evaluation_session):
         self.logger.write_info('Starting simulated_annealing')
         T0 = self.T0
         f = self.f
-        S_best = get_random_solution(self.problem_size)
+        S_best = get_random_solution(self.problem_size, evaluation_session)
         E_best = S_best.cost()
         S = S_best
         E = E_best
@@ -46,6 +46,8 @@ class LocalConditionnalAcceptance(Algorithm):
                     E_best = E
                     log_flair = 'New best'
                     path.append((S_best, E_best))
+            else:
+                log_flair = None
             T = f(T)
             k += 1
             self.logger.write_msg(
