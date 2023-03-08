@@ -10,9 +10,9 @@ def get_random_solution(problem_size):
         problem_size_x=problem_size[0],
         problem_size_y=problem_size[1],
         problem_size_z=problem_size[2],
-        nthreads=np.random.choice(SolutionSpace.n_threads),
-        thrdblock_x=np.random.choice(
-            SolutionSpace.threadblocks[3:]),  # must be multiple of 16
+        nthreads=np.random.choice(SolutionSpace.nthreads),
+        # fixed at problem size
+        thrdblock_x=problem_size[0], 
         thrdblock_y=np.random.choice(SolutionSpace.threadblocks),
         thrdblock_z=np.random.choice(SolutionSpace.threadblocks),
     )
