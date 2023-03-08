@@ -19,6 +19,28 @@ class Solution:
         self.thrdblock_z = thrdblock_z
         self.calculated_cost = None
 
+    def get_modified_copy(self, olevel=None, simd=None, problem_size_x=None, problem_size_y=None, problem_size_z=None, nthreads=None, thrdblock_x=None, thrdblock_y=None, thrdblock_z=None):
+        new_sol = Solution(self.olevel, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z)
+        if olevel is not None:
+            new_sol.olevel = olevel
+        if simd is not None:
+            new_sol.simd = simd
+        if problem_size_x is not None:
+            new_sol.problem_size_x = problem_size_x
+        if problem_size_y is not None:
+            new_sol.problem_size_y = problem_size_y
+        if problem_size_z is not None:
+            new_sol.problem_size_z = problem_size_z
+        if nthreads is not None:
+            new_sol.nthreads = nthreads
+        if thrdblock_x is not None:
+            new_sol.thrdblock_x = thrdblock_x
+        if thrdblock_y is not None:
+            new_sol.thrdblock_y = thrdblock_y
+        if thrdblock_z is not None:
+            new_sol.thrdblock_z = thrdblock_z
+        return new_sol
+            
     def cost(self, evaluation_session, verbose=False, delete_file=True, num_evaluations=1):
         if self.calculated_cost is not None:
             return self.calculated_cost
@@ -36,6 +58,7 @@ class Solution:
             raise Exception(f'Failed compiling: { result.returncode }')
 
         mean_throughput = 0
+        new_environment = dict(os.environ, KMP_AFFINITY='scatter')
         for _ in range(num_evaluations):
             result = subprocess.run([executable_path,
                                      str(self.problem_size_x),
@@ -44,7 +67,9 @@ class Solution:
                                      str(self.nthreads), '100',
                                      str(self.thrdblock_x),
                                      str(self.thrdblock_y),
-                                     str(self.thrdblock_z)], capture_output=True)
+                                     str(self.thrdblock_z)], 
+                                     capture_output=True,
+                                     env=new_environment)
             if result.returncode != 0:
                 raise Exception(f'Failed executing: { result.returncode }')
 
@@ -69,41 +94,49 @@ class Solution:
         return mean_throughput
 
     def get_neighbors(self):
-        neigh = set()
+        neigh = [ ]
 
         olevels = set(SolutionSpace.o_levels)
         olevels.remove(self.olevel)
         for level in olevels:
-            neigh.add((level, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z,
-                      self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z))
+            neigh.append(self.get_modified_copy(olevel=level))
 
         simds = set(SolutionSpace.simds)
         simds.remove(self.simd)
         for simd in simds:
-            neigh.add((self.olevel, simd, self.problem_size_x, self.problem_size_y, self.problem_size_z,
-                      self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z))
+            neigh.append(self.get_modified_copy(simd=simd))
 
-        if self.thrdblock_x > 16:
-            neigh.add((self.olevel, self.simd, self.problem_size_x, self.problem_size_y,
-                      self.problem_size_z, self.nthreads, self.thrdblock_x//2, self.thrdblock_y, self.thrdblock_z))
-        if self.thrdblock_y > 1:
-            neigh.add((self.olevel, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z,
-                      self.nthreads,  self.thrdblock_x, self.thrdblock_y//2, self.thrdblock_z))
-        if self.thrdblock_z > 1:
-            neigh.add((self.olevel, self.simd, self.problem_size_x, self.problem_size_y,
-                      self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z//2))
-        if self.nthreads > 1:
-            neigh.add((self.olevel, self.simd, self.problem_size_x, self.problem_size_y,
-                      self.problem_size_z, self.nthreads//2, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z))
-        neigh.add((self.olevel, self.simd, self.problem_size_x, self.problem_size_y,
-                  self.problem_size_z, self.nthreads, self.thrdblock_x*2, self.thrdblock_y, self.thrdblock_z))
-        neigh.add((self.olevel, self.simd, self.problem_size_x, self.problem_size_y,
-                  self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y*2, self.thrdblock_z))
-        neigh.add((self.olevel, self.simd, self.problem_size_x, self.problem_size_y,
-                  self.problem_size_z, self.nthreads, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z*2))
-        if self.nthreads <= 32:
-            neigh.add( (self.olevel, self.simd, self.problem_size_x, self.problem_size_y, self.problem_size_z, self.nthreads*2, self.thrdblock_x, self.thrdblock_y, self.thrdblock_z) )
-        return [Solution(*n) for n in neigh]
+        n_thread_ix = SolutionSpace.nthreads.index(self.nthreads)
+        if n_thread_ix > 0:
+            new_n_thread = SolutionSpace.nthreads[n_thread_ix-1]
+            neighbor = self.get_modified_copy(nthreads=new_n_thread)
+            neigh.append(neighbor)
+        if n_thread_ix < len(SolutionSpace.nthreads) - 1:
+            new_n_thread = SolutionSpace.nthreads[n_thread_ix+1]
+            neighbor = self.get_modified_copy(nthreads=new_n_thread)
+            neigh.append(neighbor)
+        
+        thrdblock_y_ix = SolutionSpace.threadblocks.index(self.thrdblock_y)
+        if thrdblock_y_ix > 0:
+            new_thrdblock_y = SolutionSpace.threadblocks[thrdblock_y_ix-1]
+            neighbor = self.get_modified_copy(thrdblock_y=new_thrdblock_y)
+            neigh.append(neighbor)
+        if thrdblock_y_ix < len(SolutionSpace.threadblocks) - 1:
+            new_thrdblock_y = SolutionSpace.threadblocks[thrdblock_y_ix+1]
+            neighbor = self.get_modified_copy(thrdblock_y=new_thrdblock_y)
+            neigh.append(neighbor)
+
+        thrdblock_z_ix = SolutionSpace.threadblocks.index(self.thrdblock_z)
+        if thrdblock_z_ix > 0:
+            new_thrdblock_z = SolutionSpace.threadblocks[thrdblock_z_ix-1]
+            neighbor = self.get_modified_copy(thrdblock_z=new_thrdblock_z)
+            neigh.append(neighbor)
+        if thrdblock_z_ix < len(SolutionSpace.threadblocks) - 1:
+            new_thrdblock_z = SolutionSpace.threadblocks[thrdblock_z_ix+1]
+            neighbor = self.get_modified_copy(thrdblock_z=new_thrdblock_z)
+            neigh.append(neighbor)
+
+        return neigh
 
     def get_random_neighbor(self):
         neighbors = self.get_neighbors()
