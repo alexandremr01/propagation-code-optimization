@@ -35,6 +35,14 @@ Flag `--batch`: runs 4 instances. Can either
 - Calculate the cost function in parallel (CSA, CMAES)
 - Runs sequential programs in different instances in parallel with different initializations (Hill Climbing, Greedy, Tabu Greedy, Simulated Annealing)
 
+## Scripts
+
+Test affinity parameters: run
+
+```
+/usr/bin/mpirun -np 1 -map-by ppr:1:node:PE=16 python3 optimizer/test_affinity.py
+```
+
 ## FAQ
 
 Installation of CMA: Check if the pip used to install is the same as the Python being used to run. Sometimes we need to use `/usr/bin/pip` (TODO: avoid this).

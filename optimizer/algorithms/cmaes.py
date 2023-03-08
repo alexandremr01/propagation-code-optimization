@@ -26,7 +26,7 @@ class CMAESAlgorithm(Algorithm):
         sigma0 = 1   # initial standard deviation to sample new solutions
         options = {
             'bounds': self.get_bounds(),
-            'integer_variables': [0, 1, 2, 3, 4, 5],
+            'integer_variables': [0, 1, 2, 3],
             'maxfevals': kmax,
             'verbose': -9,
         }
@@ -102,18 +102,16 @@ class CMAESAlgorithm(Algorithm):
             problem_size_x=self.problem_size[0],
             problem_size_y=self.problem_size[1],
             problem_size_z=self.problem_size[2],
-            nthreads=SolutionSpace.n_threads[x_parsed[2]],
-            thrdblock_x=SolutionSpace.threadblocks[3:][x_parsed[3]],  # must be multiple of 16
-            thrdblock_y=SolutionSpace.threadblocks[x_parsed[4]],
-            thrdblock_z=SolutionSpace.threadblocks[x_parsed[5]],
+            nthreads=16, # fixed 
+            thrdblock_x=self.problem_size[0],  # fixed
+            thrdblock_y=SolutionSpace.threadblocks[x_parsed[2]],
+            thrdblock_z=SolutionSpace.threadblocks[x_parsed[3]],
         )
     
     def solution_to_x(self, solution):
         return [
             SolutionSpace.o_levels.index(solution.olevel),
             SolutionSpace.simds.index(solution.simd),
-            SolutionSpace.n_threads.index(solution.nthreads),
-            SolutionSpace.threadblocks.index(solution.thrdblock_x)-3,
             SolutionSpace.threadblocks.index(solution.thrdblock_y),
             SolutionSpace.threadblocks.index(solution.thrdblock_z),
         ]
@@ -122,8 +120,6 @@ class CMAESAlgorithm(Algorithm):
         return [0, [
             len(SolutionSpace.o_levels)-1e-3, 
             len(SolutionSpace.simds)-1e-3, 
-            len(SolutionSpace.n_threads)-1e-3, 
-            len(SolutionSpace.threadblocks[3:])-1e-3, 
             len(SolutionSpace.threadblocks)-1e-3, 
             len(SolutionSpace.threadblocks)-1e-3, 
         ]]
