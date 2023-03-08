@@ -50,7 +50,7 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
             init_state = get_random_solution(self.problem_size)
             particles = [init_state for _ in range(n_particles)]
             particle_weights = np.ones(n_particles) / n_particles
-            path = [(init_state, init_state.cost(evaluation_session), 0)]
+            path = [(init_state, init_state.cost(evaluation_session))]
 
             # Initialize the current state and current energy
             current_state = init_state
@@ -103,7 +103,7 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
                 if best_energy > current_energy:
                     current_state = best_particle
                     current_energy = best_energy
-                    path.append((current_state, current_energy, k * n_particles))
+                    path.append((current_state, current_energy))
                     print('New best:', end=' ')
                     current_state.display()
                     print('Actual Cost: ' + str(current_energy))

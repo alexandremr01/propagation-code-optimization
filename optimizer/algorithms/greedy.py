@@ -16,7 +16,7 @@ class Greedy(Algorithm):
         neighbors = Sbest.get_neighbors()
         k = 0
         newBetterS = True
-        path = [(Sbest, Ebest, 0)]
+        path = [(Sbest, Ebest)]
         self.logger.write_msg(
             k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
@@ -33,7 +33,7 @@ class Greedy(Algorithm):
                 Sbest = S1
                 Ebest = E1
                 neighbors = Sbest.get_neighbors()
-                path.append((Sbest, Ebest, k))
+                path.append((Sbest, Ebest))
                 self.logger.write_msg(
                     k+1, Ebest, Sbest.get_compilation_flags(),
                 )
@@ -58,7 +58,7 @@ class TabuGreedy(Algorithm):
         Ebest = Sbest.cost(evaluation_session)
         neighbors = Sbest.get_neighbors()
         k = 0
-        path = [(Sbest, Ebest, 0)]
+        path = [(Sbest, Ebest)]
         self.logger.write_msg(
             k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
@@ -73,7 +73,7 @@ class TabuGreedy(Algorithm):
                 Ebest = E1
                 visited = FifoAdd(self.logger, Sbest, visited, N_Tabu)
 
-                path.append((Sbest, Ebest, k))
+                path.append((Sbest, Ebest))
 
                 self.logger.write_msg(
                     k+1, Ebest, Sbest.get_compilation_flags(),
@@ -105,7 +105,7 @@ class parallelgreedy(Algorithm):
         newBetterS = True
         tabE = [0 for i in range(n)]
         print('Cost= ', Ebest, end=' ')
-        path = [(Sbest, Ebest, 0)]
+        path = [(Sbest, Ebest)]
         Sbest.display()
 
         while k < kmax and n > 0 and newBetterS:
@@ -123,7 +123,7 @@ class parallelgreedy(Algorithm):
                 Sbest = S1
                 Ebest = E1
                 neighbors = Sbest.get_neighbors()
-                path.append((Sbest, Ebest, k))
+                path.append((Sbest, Ebest))
                 print('New best:', end=' ')
                 Sbest.display()
                 print('Actual Cost: ' + str(Ebest))
