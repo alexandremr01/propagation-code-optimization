@@ -56,8 +56,9 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
             current_state = init_state
             current_energy = init_state.cost(evaluation_session)
 
-            print('Cost= ', current_energy, end=' ')
-            current_state.display()
+            self.logger.write_msg(
+                0, current_energy, current_state.get_compilation_flags(), flair='Initial'
+            )
 
         # Iterate over the temperature schedule
         k = 0
@@ -79,8 +80,9 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
 
                 # Calculate the energy difference
                 energy_diff = perturbed_particle.cost(evaluation_session) - particles[i].cost(evaluation_session)
-                print('N=', my_rank, 'Cost= ', perturbed_particle.cost(evaluation_session), end=' ')
-                perturbed_particle.display()
+                self.logger.write_msg(
+                    k+1, perturbed_particle.cost(evaluation_session), perturbed_particle.get_compilation_flags(), flair=None,
+                )
 
                 # Update the particle or move to a new state with a certain probability
                 if energy_diff > 0 or acceptance_func(energy_diff, temp) > np.random.uniform():
@@ -104,9 +106,7 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
                     current_state = best_particle
                     current_energy = best_energy
                     path.append((current_state, current_energy))
-                    print('New best:', end=' ')
-                    current_state.display()
-                    print('Actual Cost: ' + str(current_energy))
+
 
             temp = self.f(temp)
             k += 1
