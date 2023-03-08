@@ -11,6 +11,7 @@ from optimizer.algorithms.curious_simulated_annealing import group_particles, un
 class CMAESAlgorithm(Algorithm):
     def __init__(self, hparams, problem_size, comm, logger) -> None:
         super().__init__(hparams, problem_size, comm, logger)
+        self.iteration = 0
 
     def run(self, kmax, evaluation_session):
         self.evaluation_session = evaluation_session
@@ -27,6 +28,7 @@ class CMAESAlgorithm(Algorithm):
             'bounds': self.get_bounds(),
             'integer_variables': [0, 1, 2, 3, 4, 5],
             'maxfevals': kmax,
+            'verbose': -9,
         }
         # TODO: pass parallel_objective instead of cost_function
         x, es = cma.fmin2(
@@ -45,7 +47,7 @@ class CMAESAlgorithm(Algorithm):
         path = [ ]
         return Sbest, Sbest.cost(evaluation_session), path
 
-    def cost_function(self, x):
+    def cost_function(self, x): #currntly unuseed function
         solution = self.x_to_solution(x)
         cost = solution.cost(self.evaluation_session)
         print('Evaluating:', end=' ')
@@ -63,15 +65,18 @@ class CMAESAlgorithm(Algorithm):
             costs = self.list_costs(solutions)
             # send costs back
             self.comm.gather(costs,root=0)
+            self.iteration = self.iteration + 1
 
     def list_costs(self, data):
         costs = [ ]
         for x in data:
             solution = self.x_to_solution(x)
             cost = solution.cost(self.evaluation_session)
-            print('N=', self.comm.Get_rank(), 'Evaluating:', end=' ')
-            solution.display()
-            print('Cost: ', cost)
+            self.logger.write_msg(
+                self.iteration + 1, solution.cost(self.evaluation_session), solution.get_compilation_flags(),
+                flair=None,
+            )
+
             costs.append(-cost)
         return costs
 
@@ -85,7 +90,8 @@ class CMAESAlgorithm(Algorithm):
         # calculate own costs
         costs = self.list_costs(data) 
         # aggregate costs from all processes
-        costs = self.comm.gather(costs,root=0) 
+        costs = self.comm.gather(costs,root=0)
+        self.iteration = self.iteration + 1
         return ungroup_particles(costs)
 
     def x_to_solution(self, x):
