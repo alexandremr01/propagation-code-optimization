@@ -12,7 +12,7 @@ def get_random_solution(problem_size):
         problem_size_z=problem_size[2],
         nthreads=np.random.choice(SolutionSpace.nthreads),
         # fixed at problem size
-        thrdblock_x=problem_size[0], 
+        thrdblock_x=np.random.choice(SolutionSpace.threadblocksx),
         thrdblock_y=np.random.choice(SolutionSpace.threadblocks),
         thrdblock_z=np.random.choice(SolutionSpace.threadblocks),
     )

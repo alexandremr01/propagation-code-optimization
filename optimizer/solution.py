@@ -64,6 +64,16 @@ class Solution:
             neighbor = self.get_modified_copy(nthreads=new_n_thread)
             neigh.append(neighbor)
 
+        thrdblock_x_ix = SolutionSpace.threadblocksx.index(self.thrdblock_x)
+        if thrdblock_x_ix > 0:
+            new_thrdblock_x = SolutionSpace.threadblocksx[thrdblock_x_ix - 1]
+            neighbor = self.get_modified_copy(thrdblock_x=new_thrdblock_x)
+            neigh.append(neighbor)
+        if thrdblock_x_ix < len(SolutionSpace.threadblocksx) - 1:
+            new_thrdblock_x = SolutionSpace.threadblocksx[thrdblock_x_ix + 1]
+            neighbor = self.get_modified_copy(thrdblock_x=new_thrdblock_x)
+            neigh.append(neighbor)
+
         thrdblock_y_ix = SolutionSpace.threadblocks.index(self.thrdblock_y)
         if thrdblock_y_ix > 0:
             new_thrdblock_y = SolutionSpace.threadblocks[thrdblock_y_ix - 1]
