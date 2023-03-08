@@ -1,0 +1,159 @@
+=================================
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:2969075): Gdk-CRITICAL **: 23:49:18.802: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3002530): Gdk-CRITICAL **: 23:49:18.804: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:2965745): Gdk-CRITICAL **: 23:49:18.814: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Impossible de se connecter : Connection refused
+[info] [Me=3] Args:
+	algorithm: simulated_annealing
+	batch: True
+	hparams: {"t0":50}
+	log: myLog.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=3] Hyperparameters:
+	t0: 50
+
+(main.py:3007132): Gdk-CRITICAL **: 23:49:18.820: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=3] real seed: 132
+Simulator initialized
+[info] [Me=3] Starting simulated_annealing
+[info] [Me=1] Args:
+	algorithm: simulated_annealing
+	batch: True
+	hparams: {"t0":50}
+	log: myLog.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=1] Hyperparameters:
+	t0: 50
+[info] [Me=1] real seed: 66
+Simulator initialized
+[info] [Me=1] Starting simulated_annealing
+[info] [Me=2] Args:
+	algorithm: simulated_annealing
+	batch: True
+	hparams: {"t0":50}
+	log: myLog.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=2] Hyperparameters:
+	t0: 50
+[info] [Me=2] real seed: 99
+Simulator initialized
+[info] [Me=2] Starting simulated_annealing
+[info] [Me=0] Args:
+	algorithm: simulated_annealing
+	batch: True
+	hparams: {"t0":50}
+	log: myLog.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=0] Hyperparameters:
+	t0: 50
+[info] [Me=0] real seed: 33
+Simulator initialized
+[info] [Me=0] Starting simulated_annealing
+[23:49:20]	[Me=1]	[k=0]	Cost=974.27	-O2 avx 256 256 256 32 512 64 16	(Initial)
+[23:49:21]	[Me=0]	[k=0]	Cost=738.94	-O2 avx 256 256 256 32 64 16 128	(Initial)
+[23:49:22]	[Me=1]	[k=1]	Cost=896.53	-O2 avx2 256 256 256 32 512 64 16
+[23:49:22]	[Me=3]	[k=0]	Cost=402.41	-O3 avx512 256 256 256 16 64 128 64	(Initial)
+[23:49:23]	[Me=0]	[k=1]	Cost=808.27	-O2 avx 256 256 256 32 64 16 64	(New best)
+[23:49:23]	[Me=2]	[k=0]	Cost=322.36	-O3 avx2 256 256 256 8 32 512 8	(Initial)
+[23:49:25]	[Me=1]	[k=2]	Cost=708.59	-O2 avx 256 256 256 32 512 128 16
+[23:49:25]	[Me=0]	[k=2]	Cost=950.46	-O2 avx2 256 256 256 32 64 16 64	(New best)
+[23:49:26]	[Me=3]	[k=1]	Cost=391.11	-O3 avx512 256 256 256 16 64 256 64	(Risky choice !)
+[23:49:27]	[Me=0]	[k=3]	Cost=976.74	-O2 avx512 256 256 256 32 64 16 64	(New best)
+[23:49:27]	[Me=1]	[k=3]	Cost=872.43	-O2 avx 256 256 256 32 512 64 32
+[23:49:28]	[Me=2]	[k=1]	Cost=331.48	-O3 avx2 256 256 256 8 32 512 4	(New best)
+[23:49:28]	[Me=0]	[k=4]	Cost=959.07	-O2 avx512 256 256 256 32 128 16 64
+[23:49:29]	[Me=1]	[k=4]	Cost=900.33	-O2 avx 256 256 256 32 1024 64 16	(Risky choice !)
+[23:49:30]	[Me=3]	[k=2]	Cost=423.96	-O3 avx2 256 256 256 16 64 256 64	(New best)
+[23:49:31]	[Me=1]	[k=5]	Cost=923.71	-O3 avx 256 256 256 32 1024 64 16	(Risky choice !)
+[23:49:31]	[Me=0]	[k=5]	Cost=836.15	-Ofast avx512 256 256 256 32 64 16 64
+[23:49:32]	[Me=1]	[k=6]	Cost=1259.03	-O3 avx 256 256 256 32 1024 32 16	(New best)
+[23:49:33]	[Me=2]	[k=2]	Cost=316.03	-O3 avx2 256 256 256 8 32 1024 4	(Risky choice !)
+[23:49:33]	[Me=0]	[k=6]	Cost=644.98	-O2 avx512 256 256 256 64 64 16 64
+[23:49:34]	[Me=1]	[k=7]	Cost=1366.95	-O2 avx 256 256 256 32 1024 32 16	(New best)
+[23:49:34]	[Me=3]	[k=3]	Cost=417.78	-O3 avx2 256 256 256 16 64 128 64
+[23:49:35]	[Me=1]	[k=8]	Cost=1054.88	-O2 avx 256 256 256 16 1024 32 16
+[23:49:35]	[Me=0]	[k=7]	Cost=829.96	-O2 avx2 256 256 256 32 64 16 64
+[23:49:37]	[Me=1]	[k=9]	Cost=1188.69	-O2 avx 256 256 256 32 1024 32 8
+[23:49:37]	[Me=2]	[k=3]	Cost=322.34	-O3 avx2 256 256 256 8 32 1024 8	(Risky choice !)
+[23:49:37]	[Me=0]	[k=8]	Cost=846.84	-O2 avx512 256 256 256 32 64 8 64
+[23:49:38]	[Me=3]	[k=4]	Cost=369.41	-O3 avx2 256 256 256 16 32 256 64	(Risky choice !)
+[23:49:39]	[Me=1]	[k=10]	Cost=893.73	-O2 avx 256 256 256 32 1024 64 16
+[23:49:40]	[Me=0]	[k=9]	Cost=719.74	-O2 avx512 256 256 256 16 64 16 64
+[23:49:40]	[Me=0]	[k=10]	Cost=644.98	-O2 avx512 256 256 256 64 64 16 64
+[23:49:42]	[Me=2]	[k=4]	Cost=326.45	-O3 avx2 256 256 256 8 32 1024 4	(Risky choice !)
+[23:49:42]	[Me=3]	[k=5]	Cost=354.5	-O3 avx2 256 256 256 16 32 512 64	(Risky choice !)
+[23:49:47]	[Me=2]	[k=5]	Cost=353.75	-O3 avx2 256 256 256 8 64 1024 4	(New best)
+[23:49:47]	[Me=3]	[k=6]	Cost=344.05	-O3 avx2 256 256 256 16 32 1024 64	(Risky choice !)
+[23:49:51]	[Me=3]	[k=7]	Cost=364.0	-O3 avx 256 256 256 16 32 1024 64	(Risky choice !)
+[23:49:51]	[Me=2]	[k=6]	Cost=320.4	-O3 avx2 256 256 256 8 32 1024 4
+[23:49:56]	[Me=3]	[k=8]	Cost=347.01	-O3 avx512 256 256 256 16 32 1024 64
+[23:49:56]	[Me=2]	[k=7]	Cost=375.36	-O3 avx2 256 256 256 8 64 512 4	(New best)
+[23:49:59]	[Me=3]	[k=9]	Cost=408.3	-O3 avx 256 256 256 16 32 1024 128
+[23:50:02]	[Me=2]	[k=8]	Cost=235.87	-O3 avx2 256 256 256 4 64 512 4
+[23:50:03]	[Me=3]	[k=10]	Cost=422.62	-O3 avx2 256 256 256 16 32 1024 128
+[23:50:06]	[Me=2]	[k=9]	Cost=437.46	-O3 avx2 256 256 256 8 128 512 4	(New best)
+[23:50:09]	[Me=2]	[k=10]	Cost=442.31	-Ofast avx2 256 256 256 8 128 512 4	(New best)
+[info] [Me=0] Path taken:
+[info] [Me=2] Path taken:
+[info] [Me=3] Path taken:
+	738.94 -O2 avx 256 256 256 32 64 16 128
+	808.27 -O2 avx 256 256 256 32 64 16 64
+	950.46 -O2 avx2 256 256 256 32 64 16 64
+	976.74 -O2 avx512 256 256 256 32 64 16 64
+[info] [Me=0] Best solution found:
+	976.74 -O2 avx512 256 256 256 32 64 16 64
+	322.36 -O3 avx2 256 256 256 8 32 512 8
+	402.41 -O3 avx512 256 256 256 16 64 128 64
+	331.48 -O3 avx2 256 256 256 8 32 512 4
+[info] [Me=1] Path taken:
+	423.96 -O3 avx2 256 256 256 16 64 256 64
+[info] [Me=3] Best solution found:
+	423.96 -O3 avx2 256 256 256 16 64 256 64
+	353.75 -O3 avx2 256 256 256 8 64 1024 4
+	375.36 -O3 avx2 256 256 256 8 64 512 4
+	437.46 -O3 avx2 256 256 256 8 128 512 4
+	974.27 -O2 avx 256 256 256 32 512 64 16
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	976.74 -O2 avx512 256 256 256 32 64 16 64
+	442.31 -Ofast avx2 256 256 256 8 128 512 4
+[info] [Me=2] Best solution found:
+	1259.03 -O3 avx 256 256 256 32 1024 32 16
+	1366.95 -O2 avx 256 256 256 32 1024 32 16
+[info] [Me=1] Best solution found:
+	1366.95 -O2 avx 256 256 256 32 1024 32 16
+	1366.95 -O2 avx 256 256 256 32 1024 32 16
+	442.31 -Ofast avx2 256 256 256 8 128 512 4
+	423.96 -O3 avx2 256 256 256 16 64 256 64
+[info] [Me=0] Best overall:
+	1366.95 -O2 avx 256 256 256 32 1024 32 16
+[info] [Me=0] Total cost evaluations: 43
+	442.31 -Ofast avx2 256 256 256 8 128 512 4
+[info] [Me=0] Run finished. Logs can be found at myLog.log.
+[info] [Me=1] Run finished. Logs can be found at myLog.log.
+[info] [Me=2] Run finished. Logs can be found at myLog.log.
+[info] [Me=3] Run finished. Logs can be found at myLog.log.
+=================================

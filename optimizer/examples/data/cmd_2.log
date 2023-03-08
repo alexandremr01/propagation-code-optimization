@@ -1,0 +1,228 @@
+=================================
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3070613): Gdk-CRITICAL **: 23:32:08.710: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3014096): Gdk-CRITICAL **: 23:32:08.725: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=0] Args:
+	algorithm: tabu_greedy
+	batch: True
+	hparams: {"n_tabu":5}
+	log: cmd_2.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=0] Hyperparameters:
+	n_tabu: 5
+[info] [Me=0] real seed: 33
+Simulator initialized
+[info] [Me=0] Starting tabu_greedy hill climbing
+[info] [Me=2] Args:
+	algorithm: tabu_greedy
+	batch: True
+	hparams: {"n_tabu":5}
+	log: cmd_2.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=2] Hyperparameters:
+	n_tabu: 5
+[info] [Me=2] real seed: 99
+Simulator initialized
+[info] [Me=2] Starting tabu_greedy hill climbing
+Unable to init server: Impossible de se connecter : Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3011742): Gdk-CRITICAL **: 23:32:08.742: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+
+(main.py:3040542): Gdk-CRITICAL **: 23:32:08.743: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=3] Args:
+	algorithm: tabu_greedy
+	batch: True
+	hparams: {"n_tabu":5}
+	log: cmd_2.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=3] Hyperparameters:
+	n_tabu: 5
+[info] [Me=3] real seed: 132
+Simulator initialized
+[info] [Me=3] Starting tabu_greedy hill climbing
+[info] [Me=1] Args:
+	algorithm: tabu_greedy
+	batch: True
+	hparams: {"n_tabu":5}
+	log: cmd_2.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=1] Hyperparameters:
+	n_tabu: 5
+[info] [Me=1] real seed: 66
+Simulator initialized
+[info] [Me=1] Starting tabu_greedy hill climbing
+[23:32:10]	[Me=1]	[k=0]	Cost=990.78	-O2 avx 256 256 256 32 512 64 16	(Initial)
+[23:32:10]	[Me=0]	[k=0]	Cost=788.11	-O2 avx 256 256 256 32 64 16 128	(Initial)
+[23:32:12]	[Me=3]	[k=0]	Cost=398.88	-O3 avx512 256 256 256 16 64 128 64	(Initial)
+[23:32:13]	[Me=2]	[k=0]	Cost=323.84	-O3 avx2 256 256 256 8 32 512 8	(Initial)
+[info] [Me=1] Tabu List:
+	-O2 avx 256 256 256 32 512 32 16
+[23:32:38]	[Me=1]	[k=1]	Cost=1376.14	-O2 avx 256 256 256 32 512 32 16
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 32 128 16 128
+[23:32:42]	[Me=0]	[k=1]	Cost=856.65	-O2 avx 256 256 256 32 128 16 128
+[info] [Me=1] Tabu List:
+	-O2 avx 256 256 256 32 512 32 16
+	-O2 avx 256 256 256 32 512 16 16
+[23:32:57]	[Me=1]	[k=2]	Cost=1564.5	-O2 avx 256 256 256 32 512 16 16
+[info] [Me=3] Tabu List:
+	-O3 avx512 256 256 256 32 64 128 64
+[23:32:59]	[Me=3]	[k=1]	Cost=529.95	-O3 avx512 256 256 256 32 64 128 64
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 32 128 16 128
+	-O2 avx 256 256 256 32 256 16 128
+[23:33:07]	[Me=0]	[k=2]	Cost=1182.98	-O2 avx 256 256 256 32 256 16 128
+[info] [Me=2] Tabu List:
+	-O3 avx2 256 256 256 16 32 512 8
+[23:33:12]	[Me=2]	[k=1]	Cost=413.91	-O3 avx2 256 256 256 16 32 512 8
+[info] [Me=1] Tabu List:
+	-O2 avx 256 256 256 32 512 32 16
+	-O2 avx 256 256 256 32 512 16 16
+	-O2 avx 256 256 256 32 512 8 16
+[23:33:14]	[Me=1]	[k=3]	Cost=1721.58	-O2 avx 256 256 256 32 512 8 16
+[info] [Me=1] Tabu List:
+	-O2 avx 256 256 256 32 512 32 16
+	-O2 avx 256 256 256 32 512 16 16
+	-O2 avx 256 256 256 32 512 8 16
+	-O2 avx2 256 256 256 32 512 8 16
+[23:33:30]	[Me=1]	[k=4]	Cost=1784.92	-O2 avx2 256 256 256 32 512 8 16
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 32 128 16 128
+	-O2 avx 256 256 256 32 256 16 128
+	-O2 avx 256 256 256 32 256 8 128
+[23:33:31]	[Me=0]	[k=3]	Cost=1348.05	-O2 avx 256 256 256 32 256 8 128
+[info] [Me=3] Tabu List:
+	-O3 avx512 256 256 256 32 64 128 64
+	-O3 avx512 256 256 256 32 64 64 64
+[23:33:43]	[Me=3]	[k=2]	Cost=648.5	-O3 avx512 256 256 256 32 64 64 64
+[info] [Me=1] No better element. End of the loop
+End of the loop via number of iterations
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 32 128 16 128
+	-O2 avx 256 256 256 32 256 16 128
+	-O2 avx 256 256 256 32 256 8 128
+	-O2 avx 256 256 256 32 256 4 128
+[23:33:50]	[Me=0]	[k=4]	Cost=1430.72	-O2 avx 256 256 256 32 256 4 128
+[info] [Me=2] Tabu List:
+	-O3 avx2 256 256 256 16 32 512 8
+	-O3 avx2 256 256 256 16 16 512 8
+[23:33:59]	[Me=2]	[k=2]	Cost=518.46	-O3 avx2 256 256 256 16 16 512 8
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 32 128 16 128
+	-O2 avx 256 256 256 32 256 16 128
+	-O2 avx 256 256 256 32 256 8 128
+	-O2 avx 256 256 256 32 256 4 128
+	-O2 avx 256 256 256 32 256 4 64
+[23:34:11]	[Me=0]	[k=5]	Cost=1434.67	-O2 avx 256 256 256 32 256 4 64
+[info] [Me=3] Tabu List:
+	-O3 avx512 256 256 256 32 64 128 64
+	-O3 avx512 256 256 256 32 64 64 64
+	-O3 avx512 256 256 256 32 64 64 128
+[23:34:16]	[Me=3]	[k=3]	Cost=749.14	-O3 avx512 256 256 256 32 64 64 128
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 32 256 16 128
+	-O2 avx 256 256 256 32 256 8 128
+	-O2 avx 256 256 256 32 256 4 128
+	-O2 avx 256 256 256 32 256 4 64
+	-O2 avx 256 256 256 32 256 4 32
+[23:34:29]	[Me=0]	[k=6]	Cost=1598.08	-O2 avx 256 256 256 32 256 4 32
+[info] [Me=2] Tabu List:
+	-O3 avx2 256 256 256 16 32 512 8
+	-O3 avx2 256 256 256 16 16 512 8
+	-O3 avx2 256 256 256 32 16 512 8
+[23:34:35]	[Me=2]	[k=3]	Cost=752.48	-O3 avx2 256 256 256 32 16 512 8
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 32 256 8 128
+	-O2 avx 256 256 256 32 256 4 128
+	-O2 avx 256 256 256 32 256 4 64
+	-O2 avx 256 256 256 32 256 4 32
+	-Ofast avx 256 256 256 32 256 4 32
+[23:34:46]	[Me=0]	[k=7]	Cost=1703.54	-Ofast avx 256 256 256 32 256 4 32
+[info] [Me=3] Tabu List:
+	-O3 avx512 256 256 256 32 64 128 64
+	-O3 avx512 256 256 256 32 64 64 64
+	-O3 avx512 256 256 256 32 64 64 128
+	-Ofast avx512 256 256 256 32 64 64 128
+[23:34:55]	[Me=3]	[k=4]	Cost=804.61	-Ofast avx512 256 256 256 32 64 64 128
+[info] [Me=0] No better element. End of the loop
+End of the loop via number of iterations
+[info] [Me=2] Tabu List:
+	-O3 avx2 256 256 256 16 32 512 8
+	-O3 avx2 256 256 256 16 16 512 8
+	-O3 avx2 256 256 256 32 16 512 8
+	-O3 avx512 256 256 256 32 16 512 8
+[23:35:05]	[Me=2]	[k=4]	Cost=790.19	-O3 avx512 256 256 256 32 16 512 8
+[info] [Me=2] No better element. End of the loop
+End of the loop via number of iterations
+[info] [Me=3] No better element. End of the loop
+End of the loop via number of iterations
+[info] [Me=3] Path taken:
+	398.88 -O3 avx512 256 256 256 16 64 128 64
+	529.95 -O3 avx512 256 256 256 32 64 128 64
+	648.5 -O3 avx512 256 256 256 32 64 64 64
+	749.14 -O3 avx512 256 256 256 32 64 64 128
+	804.61 -Ofast avx512 256 256 256 32 64 64 128
+[info] [Me=3] Best solution found:
+	804.61 -Ofast avx512 256 256 256 32 64 64 128
+[info] [Me=0] Path taken:
+	788.11 -O2 avx 256 256 256 32 64 16 128
+	856.65 -O2 avx 256 256 256 32 128 16 128
+	1182.98 -O2 avx 256 256 256 32 256 16 128
+	1348.05 -O2 avx 256 256 256 32 256 8 128
+	1430.72 -O2 avx 256 256 256 32 256 4 128
+	1434.67 -O2 avx 256 256 256 32 256 4 64
+[info] [Me=1] Path taken:
+	1598.08 -O2 avx 256 256 256 32 256 4 32
+	1703.54 -Ofast avx 256 256 256 32 256 4 32
+[info] [Me=0] Best solution found:
+	1703.54 -Ofast avx 256 256 256 32 256 4 32
+[info] [Me=2] Path taken:
+	990.78 -O2 avx 256 256 256 32 512 64 16
+	1376.14 -O2 avx 256 256 256 32 512 32 16
+	1564.5 -O2 avx 256 256 256 32 512 16 16
+	1721.58 -O2 avx 256 256 256 32 512 8 16
+	1784.92 -O2 avx2 256 256 256 32 512 8 16
+[info] [Me=1] Best solution found:
+	1784.92 -O2 avx2 256 256 256 32 512 8 16
+	323.84 -O3 avx2 256 256 256 8 32 512 8
+	413.91 -O3 avx2 256 256 256 16 32 512 8
+	518.46 -O3 avx2 256 256 256 16 16 512 8
+	752.48 -O3 avx2 256 256 256 32 16 512 8
+	790.19 -O3 avx512 256 256 256 32 16 512 8
+[info] [Me=2] Best solution found:
+	790.19 -O3 avx512 256 256 256 32 16 512 8
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	1703.54 -Ofast avx 256 256 256 32 256 4 32
+	1784.92 -O2 avx2 256 256 256 32 512 8 16
+	790.19 -O3 avx512 256 256 256 32 16 512 8
+	804.61 -Ofast avx512 256 256 256 32 64 64 128
+[info] [Me=0] Best overall:
+	1784.92 -O2 avx2 256 256 256 32 512 8 16
+[info] [Me=0] Total cost evaluations: 277
+[info] [Me=1] Run finished. Logs can be found at cmd_2.log.
+[info] [Me=3] Run finished. Logs can be found at cmd_2.log.
+[info] [Me=2] Run finished. Logs can be found at cmd_2.log.
+[info] [Me=0] Run finished. Logs can be found at cmd_2.log.
+=================================
