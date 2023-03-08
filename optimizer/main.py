@@ -66,7 +66,10 @@ if __name__ == "__main__":
                         help='Uses multiple nodes')
     parser.add_argument('--hparams', type=str, default='{}',
                         help='JSON-serialized hyperparameters dictionary')
-    parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Three dimensions of problem size')
+    parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256],
+                        help='Three dimensions of problem size')
+    parser.add_argument('--log', type=str, default='myLog.log',
+                        help='Name of the log file (with extension)')
 
     # usually you dont need to change this
     parser.add_argument('--phase', type=str,
@@ -77,7 +80,7 @@ if __name__ == "__main__":
 
     comm = MPI.COMM_WORLD
 
-    logfile = "myLog.log"
+    logfile = args.log
     if args.batch:
         logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False)
     else:
