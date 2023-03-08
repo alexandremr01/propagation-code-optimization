@@ -1,0 +1,198 @@
+=================================
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3793669): Gdk-CRITICAL **: 07:48:02.775: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+
+(main.py:3412872): Gdk-CRITICAL **: 07:48:02.775: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:1141703): Gdk-CRITICAL **: 07:48:02.776: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=1] Args:
+	algorithm: csa
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 100
+[info] [Me=0] Args:
+	algorithm: csa
+[info] [Me=1] Hyperparameters:
+	popsize: 6
+	t0: 100
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 100
+[info] [Me=1] real seed: 66
+[info] [Me=0] Hyperparameters:
+	popsize: 6
+	t0: 100
+Simulator initialized
+[info] [Me=0] real seed: 33
+Simulator initialized
+[info] [Me=2] Args:
+	algorithm: csa
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 100
+[info] [Me=2] Hyperparameters:
+	popsize: 6
+	t0: 100
+[info] [Me=2] real seed: 99
+Simulator initialized
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:3516962): Gdk-CRITICAL **: 07:48:02.793: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=3] Args:
+	algorithm: csa
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 100
+[info] [Me=3] Hyperparameters:
+	popsize: 6
+	t0: 100
+[info] [Me=3] real seed: 132
+Simulator initialized
+[07:48:06]	[Me=0]	[k=0]	Cost=695.88	-O2 avx 256 256 256 32 64 16 128	(Initial)
+[07:48:08]	[Me=1]	[k=1]	Cost=977.59	-O2 avx 256 256 256 32 128 16 128
+[07:48:09]	[Me=2]	[k=1]	Cost=794.91	-O2 avx512 256 256 256 32 64 16 128
+[07:48:09]	[Me=3]	[k=1]	Cost=759.29	-O2 avx 256 256 256 32 64 32 128
+[07:48:09]	[Me=0]	[k=1]	Cost=741.38	-O2 avx 256 256 256 32 64 8 128
+[07:48:10]	[Me=1]	[k=1]	Cost=825.65	-O2 avx512 256 256 256 32 64 16 128
+[07:48:11]	[Me=0]	[k=1]	Cost=680.62	-O2 avx2 256 256 256 32 64 16 128
+[07:48:13]	[Me=2]	[k=2]	Cost=1003.1	-O2 avx512 256 256 256 32 128 16 128
+[07:48:13]	[Me=1]	[k=2]	Cost=845.16	-O2 avx 256 256 256 32 128 16 256
+[07:48:13]	[Me=3]	[k=2]	Cost=845.99	-O2 avx512 256 256 256 32 64 16 256
+[07:48:13]	[Me=0]	[k=2]	Cost=804.24	-O2 avx 256 256 256 32 128 32 128
+[07:48:15]	[Me=1]	[k=2]	Cost=1084.21	-O2 avx 256 256 256 32 128 16 64
+[07:48:16]	[Me=0]	[k=2]	Cost=752.76	-O2 avx 256 256 256 32 128 32 128
+[07:48:17]	[Me=2]	[k=3]	Cost=986.0	-Ofast avx512 256 256 256 32 128 16 128
+[07:48:18]	[Me=0]	[k=3]	Cost=928.41	-Ofast avx 256 256 256 32 128 16 64
+[07:48:18]	[Me=1]	[k=3]	Cost=837.12	-O2 avx 256 256 256 32 128 32 128
+[07:48:19]	[Me=3]	[k=3]	Cost=515.79	-O2 avx 256 256 256 64 128 16 128
+[07:48:19]	[Me=0]	[k=3]	Cost=976.06	-O2 avx 256 256 256 32 128 16 128
+[07:48:20]	[Me=1]	[k=3]	Cost=743.33	-O2 avx 256 256 256 32 64 16 128
+[07:48:22]	[Me=3]	[k=4]	Cost=1017.13	-O2 avx 256 256 256 32 128 16 128
+[07:48:22]	[Me=2]	[k=4]	Cost=989.69	-O3 avx 256 256 256 32 128 16 128
+[07:48:22]	[Me=0]	[k=4]	Cost=902.7	-O2 avx 256 256 256 32 128 8 128
+[07:48:22]	[Me=1]	[k=4]	Cost=809.46	-O2 avx 256 256 256 32 64 16 64
+[07:48:24]	[Me=1]	[k=4]	Cost=945.4	-O2 avx 256 256 256 32 128 16 128
+[07:48:24]	[Me=0]	[k=4]	Cost=696.57	-O2 avx512 256 256 256 32 64 16 128
+[07:48:26]	[Me=2]	[k=5]	Cost=1089.51	-O2 avx 256 256 256 32 128 8 64
+[07:48:26]	[Me=0]	[k=5]	Cost=1004.26	-Ofast avx512 256 256 256 32 128 16 128
+[07:48:26]	[Me=1]	[k=5]	Cost=998.42	-O3 avx 256 256 256 32 128 16 64
+[07:48:26]	[Me=3]	[k=5]	Cost=995.35	-O2 avx2 256 256 256 32 128 16 64
+[07:48:28]	[Me=0]	[k=5]	Cost=946.18	-Ofast avx 256 256 256 32 128 16 64
+[07:48:28]	[Me=1]	[k=5]	Cost=940.42	-O2 avx512 256 256 256 32 128 16 64
+[07:48:30]	[Me=3]	[k=6]	Cost=1506.9	-O2 avx 256 256 256 32 256 8 64
+[07:48:30]	[Me=1]	[k=6]	Cost=1021.54	-O2 avx 256 256 256 32 128 16 64
+[07:48:30]	[Me=2]	[k=6]	Cost=1008.98	-O3 avx2 256 256 256 32 128 16 64
+[07:48:31]	[Me=0]	[k=6]	Cost=770.62	-O2 avx 256 256 256 64 128 8 64
+[07:48:32]	[Me=1]	[k=6]	Cost=953.41	-O2 avx 256 256 256 32 128 16 64
+[07:48:32]	[Me=0]	[k=6]	Cost=973.82	-O3 avx512 256 256 256 32 128 16 128
+[07:48:34]	[Me=2]	[k=7]	Cost=1528.06	-Ofast avx 256 256 256 32 256 8 64
+[07:48:34]	[Me=1]	[k=7]	Cost=1479.72	-O2 avx 256 256 256 32 512 8 64
+[07:48:34]	[Me=0]	[k=7]	Cost=1316.5	-O2 avx 256 256 256 32 256 8 128
+[07:48:34]	[Me=3]	[k=7]	Cost=925.37	-O2 avx 256 256 256 64 256 8 64
+[07:48:35]	[Me=0]	[k=7]	Cost=1446.19	-O2 avx 256 256 256 32 512 8 64
+[07:48:36]	[Me=1]	[k=7]	Cost=1017.47	-O2 avx 256 256 256 16 256 8 64
+[07:48:37]	[Me=0]	[k=8]	Cost=1609.67	-O2 avx 256 256 256 32 256 8 32
+[07:48:37]	[Me=1]	[k=8]	Cost=1495.82	-O2 avx512 256 256 256 32 512 8 64
+[07:48:37]	[Me=3]	[k=8]	Cost=1474.81	-O2 avx 256 256 256 32 256 4 64
+[07:48:37]	[Me=2]	[k=8]	Cost=1094.19	-O2 avx 256 256 256 16 512 8 64
+[07:48:38]	[Me=1]	[k=8]	Cost=1492.94	-O3 avx 256 256 256 32 256 8 64
+[07:48:39]	[Me=0]	[k=8]	Cost=1027.57	-O2 avx 256 256 256 16 256 8 64
+[07:48:40]	[Me=1]	[k=9]	Cost=1643.95	-O2 avx 256 256 256 32 512 8 32
+[07:48:40]	[Me=2]	[k=9]	Cost=1506.88	-O2 avx 256 256 256 32 256 16 32
+[07:48:40]	[Me=0]	[k=9]	Cost=1511.99	-O3 avx 256 256 256 32 512 8 64
+[07:48:40]	[Me=3]	[k=9]	Cost=1362.08	-O2 avx512 256 256 256 32 512 8 128
+[07:48:41]	[Me=1]	[k=9]	Cost=1454.95	-O2 avx 256 256 256 32 256 16 32
+[07:48:41]	[Me=0]	[k=9]	Cost=1623.72	-O2 avx 256 256 256 32 256 8 16
+[07:48:43]	[Me=3]	[k=10]	Cost=1706.27	-O2 avx 256 256 256 32 512 8 16
+[07:48:43]	[Me=0]	[k=10]	Cost=1607.49	-O2 avx 256 256 256 32 512 8 16
+[07:48:43]	[Me=2]	[k=10]	Cost=1581.38	-O2 avx2 256 256 256 32 512 8 32
+[07:48:43]	[Me=1]	[k=10]	Cost=1553.66	-O3 avx 256 256 256 32 512 8 32
+[07:48:44]	[Me=0]	[k=10]	Cost=1457.8	-O2 avx 256 256 256 32 256 16 32
+[07:48:44]	[Me=1]	[k=10]	Cost=1011.64	-O2 avx 256 256 256 16 256 8 16
+[07:48:46]	[Me=0]	[k=11]	Cost=1794.75	-O2 avx2 256 256 256 32 512 8 16
+[07:48:46]	[Me=3]	[k=11]	Cost=1723.38	-O2 avx512 256 256 256 32 512 8 16
+[07:48:46]	[Me=1]	[k=11]	Cost=1628.66	-O2 avx 256 256 256 32 256 8 32
+[07:48:46]	[Me=2]	[k=11]	Cost=1611.84	-O2 avx 256 256 256 32 256 8 32
+[07:48:47]	[Me=0]	[k=11]	Cost=1658.42	-O2 avx 256 256 256 32 256 8 16
+[07:48:47]	[Me=1]	[k=11]	Cost=1665.28	-O2 avx 256 256 256 32 512 8 8
+[07:48:48]	[Me=3]	[k=12]	Cost=1773.61	-O2 avx512 256 256 256 32 256 8 16
+[07:48:48]	[Me=1]	[k=12]	Cost=1554.08	-O2 avx512 256 256 256 32 512 8 32
+[07:48:49]	[Me=2]	[k=12]	Cost=1170.85	-O2 avx2 256 256 256 64 512 8 16
+[07:48:49]	[Me=0]	[k=12]	Cost=1075.63	-O2 avx 256 256 256 64 512 8 32
+[07:48:50]	[Me=1]	[k=12]	Cost=1681.69	-O2 avx2 256 256 256 32 256 8 16
+[07:48:50]	[Me=0]	[k=12]	Cost=1679.83	-O2 avx512 256 256 256 32 512 8 16
+[07:48:51]	[Me=2]	[k=13]	Cost=1770.48	-Ofast avx2 256 256 256 32 512 8 16
+[07:48:51]	[Me=3]	[k=13]	Cost=1723.19	-O3 avx2 256 256 256 32 512 8 16
+[07:48:51]	[Me=1]	[k=13]	Cost=1627.16	-O2 avx512 256 256 256 32 256 8 8
+[07:48:52]	[Me=0]	[k=13]	Cost=1283.47	-O2 avx2 256 256 256 64 512 8 16
+[07:48:53]	[Me=1]	[k=13]	Cost=1693.52	-O2 avx2 256 256 256 32 1024 8 16
+[07:48:53]	[Me=0]	[k=13]	Cost=1585.09	-O2 avx2 256 256 256 32 512 8 32
+[07:48:54]	[Me=1]	[k=14]	Cost=1805.27	-O3 avx2 256 256 256 32 1024 8 16
+[07:48:54]	[Me=3]	[k=14]	Cost=1754.53	-O2 avx2 256 256 256 32 512 8 8
+[07:48:54]	[Me=2]	[k=14]	Cost=1760.53	-O2 avx2 256 256 256 32 256 8 16
+[07:48:54]	[Me=0]	[k=14]	Cost=1644.88	-O2 avx2 256 256 256 32 512 16 16
+[07:48:55]	[Me=1]	[k=14]	Cost=1727.49	-O2 avx2 256 256 256 32 512 8 8
+[07:48:56]	[Me=0]	[k=14]	Cost=1218.63	-O2 avx2 256 256 256 64 512 8 16
+[07:48:57]	[Me=3]	[k=15]	Cost=1753.6	-O2 avx2 256 256 256 32 512 4 16
+[07:48:57]	[Me=2]	[k=15]	Cost=1720.52	-O3 avx2 256 256 256 32 2048 8 16
+[07:48:57]	[Me=0]	[k=15]	Cost=1709.64	-O2 avx2 256 256 256 32 512 4 16
+[07:48:57]	[Me=1]	[k=15]	Cost=1638.66	-O2 avx2 256 256 256 32 512 8 8
+[07:48:58]	[Me=0]	[k=15]	Cost=1760.21	-Ofast avx2 256 256 256 32 512 8 16
+[07:48:59]	[Me=1]	[k=15]	Cost=1133.11	-O3 avx2 256 256 256 16 1024 8 16
+[07:49:00]	[Me=3]	[k=16]	Cost=1733.74	-O2 avx2 256 256 256 32 1024 8 16
+[07:49:00]	[Me=1]	[k=16]	Cost=1702.05	-Ofast avx2 256 256 256 32 512 8 16
+[07:49:00]	[Me=0]	[k=16]	Cost=1717.42	-O2 avx2 256 256 256 32 256 8 16
+[07:49:00]	[Me=2]	[k=16]	Cost=1687.2	-O2 avx2 256 256 256 32 1024 8 16
+[07:49:01]	[Me=1]	[k=16]	Cost=1774.39	-O2 avx2 256 256 256 32 1024 8 16
+[07:49:01]	[Me=0]	[k=16]	Cost=1625.13	-O3 avx2 256 256 256 32 1024 16 16
+[07:49:03]	[Me=2]	[k=17]	Cost=1750.37	-O2 avx2 256 256 256 32 512 4 16
+[07:49:03]	[Me=3]	[k=17]	Cost=1744.86	-Ofast avx2 256 256 256 32 1024 8 16
+[07:49:03]	[Me=0]	[k=17]	Cost=1668.8	-O3 avx512 256 256 256 32 1024 8 16
+[07:49:03]	[Me=1]	[k=17]	Cost=1112.63	-O3 avx2 256 256 256 16 1024 8 16
+[07:49:04]	[Me=0]	[k=17]	Cost=1599.72	-O3 avx2 256 256 256 32 1024 8 32
+[07:49:05]	[Me=1]	[k=17]	Cost=1134.84	-O3 avx2 256 256 256 16 1024 8 16
+[info] [Me=0] Path taken:
+	695.88 -O2 avx 256 256 256 32 64 16 128
+	977.59 -O2 avx 256 256 256 32 128 16 128
+	1084.21 -O2 avx 256 256 256 32 128 16 64
+	1089.51 -O2 avx 256 256 256 32 128 8 64
+	1506.9 -O2 avx 256 256 256 32 256 8 64
+	1528.06 -Ofast avx 256 256 256 32 256 8 64
+	1609.67 -O2 avx 256 256 256 32 256 8 32
+	1643.95 -O2 avx 256 256 256 32 512 8 32
+	1706.27 -O2 avx 256 256 256 32 512 8 16
+	1794.75 -O2 avx2 256 256 256 32 512 8 16
+	1805.27 -O3 avx2 256 256 256 32 1024 8 16
+[info] [Me=0] Best solution found:
+	1805.27 -O3 avx2 256 256 256 32 1024 8 16
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	1805.27 -O3 avx2 256 256 256 32 1024 8 16
+[info] [Me=0] Best overall:
+	1805.27 -O3 avx2 256 256 256 32 1024 8 16
+[info] [Me=0] Total cost evaluations: 103
+[info] [Me=0] Run finished. Logs can be found at myLog.log.
+[info] [Me=3] Run finished. Logs can be found at myLog.log.
+[info] [Me=1] Run finished. Logs can be found at myLog.log.
+[info] [Me=2] Run finished. Logs can be found at myLog.log.
+=================================

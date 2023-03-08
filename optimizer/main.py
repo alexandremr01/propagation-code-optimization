@@ -7,7 +7,7 @@ import json
 
 import numpy as np 
 
-from optimizer import algorithms
+from optimizer.algorithms import get_algorithm, ALGORITHMS
 from optimizer.deployment import deploy_kangaroo, deploy_single
 from optimizer.evaluator import Simulator
 from optimizer.logger import Logger, find_slurmfile, slurm_to_logfile
@@ -31,7 +31,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
     if best_cost is not None:
         logger.write_info('Path taken:')
         for sol in path:
-            logger.write_raw('\t' + str(sol[2]) + ' ' + str(sol[1]) + ' ' + sol[0].get_compilation_flags())
+            logger.write_raw('\t' + str(sol[1]) + ' ' + sol[0].get_compilation_flags())
 
         logger.write_info('Best solution found:')
         logger.write_raw('\t' + str(best_cost) + ' ' + best_solution.get_compilation_flags())
@@ -52,19 +52,13 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             Sopt = TabS[idx]
             logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags())
             logger.write_info(f'Total cost evaluations: {total_runs}')
-
-            #TODO: maybe implement 4 graphs for kangoroo method
-            energy_path = [item[1] for item in path]
-            index_path = [item[2] for item in path]
-            logger.plot_graph(energy_path, index_path, args.steps)
-
             return
     if (Me != 0):
         comm.Barrier()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
-    parser.add_argument('--algorithm', type=str, choices=algorithms.ALGORITHMS.keys(), default='hill_climbing')
+    parser.add_argument('--algorithm', type=str, choices=ALGORITHMS.keys(), default='hill_climbing')
     parser.add_argument('--steps', type=int, default=10,
                         help='Number of steps')
     parser.add_argument('--seed', type=int, default=33, help='Random seed')
@@ -84,17 +78,16 @@ if __name__ == "__main__":
     comm = MPI.COMM_WORLD
 
     logfile = "myLog.log"
-    graphfile = "myGraph.png"
     if args.batch:
-        logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False, graphfile=graphfile)
+        logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False)
     else:
-        logger = Logger(process_id=comm.Get_rank(), logfile=logfile, graphfile=graphfile)
+        logger = Logger(process_id=comm.Get_rank(), logfile=logfile)
 
     logger.write_info('Args:')
     for k, v in sorted(vars(args).items()):
         logger.write_raw('\t{}: {}'.format(k, v))
     
-    algorithm_class = algorithms.get_algorithm(args.algorithm)
+    algorithm_class = get_algorithm(args.algorithm)
     algorithm = algorithm_class(hparams, args.problem_size, comm, logger)
 
     logger.write_info('Hyperparameters:')

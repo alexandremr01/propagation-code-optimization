@@ -24,7 +24,7 @@ class LocalConditionnalAcceptance(Algorithm):
         S = S_best
         E = E_best
         neighbors = S_best.get_neighbors()
-        path = [(S_best, E_best, 0)]
+        path = [(S_best, E_best)]
         T = T0
         k = 0
         self.logger.write_msg(
@@ -44,7 +44,7 @@ class LocalConditionnalAcceptance(Algorithm):
                     S_best = S
                     E_best = E
                     log_flair = 'New best'
-                    path.append((S_best, E_best, k))
+                    path.append((S_best, E_best))
             else:
                 log_flair = None
             T = f(T)
