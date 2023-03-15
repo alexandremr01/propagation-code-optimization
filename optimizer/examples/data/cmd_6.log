@@ -1,0 +1,202 @@
+=================================
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:46892): Gdk-CRITICAL **: 16:56:30.175: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:13758): Gdk-CRITICAL **: 16:56:30.257: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Could not connect: Connection refused
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:16623): Gdk-CRITICAL **: 16:56:30.362: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+Unable to init server: Impossible de se connecter : Connection refused
+
+(main.py:7418): Gdk-CRITICAL **: 16:56:30.373: gdk_cursor_new_for_display: assertion 'GDK_IS_DISPLAY (display)' failed
+[info] [Me=2] Args:
+	algorithm: ego
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=2] Hyperparameters:
+[info] [Me=2] real seed: 99
+Simulator initialized
+[info] [Me=3] Args:
+	algorithm: ego
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=3] Hyperparameters:
+[info] [Me=3] real seed: 132
+Simulator initialized
+[info] [Me=0] Args:
+	algorithm: ego
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=0] Hyperparameters:
+[info] [Me=0] real seed: 33
+Simulator initialized
+[info] [Me=0] Starting Efficient Global Optimization
+[info] [Me=1] Args:
+	algorithm: ego
+	batch: True
+	hparams: {}
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=1] Hyperparameters:
+[info] [Me=1] real seed: 66
+Simulator initialized
+[16:56:32]	[Me=2]	[k=1]	Cost=1176.1	-Ofast avx512 256 256 256 16 256 3 3
+[16:56:32]	[Me=3]	[k=1]	Cost=1166.23	-Ofast avx512 256 256 256 16 256 3 3
+[16:56:32]	[Me=1]	[k=1]	Cost=773.55	-O2 avx 256 256 256 16 256 1 1
+[16:56:32]	[Me=0]	[k=1]	Cost=771.75	-O2 avx 256 256 256 16 256 1 1
+[16:56:44]	[Me=0]	[k=2]	Cost=1302.13	-Ofast avx 256 256 256 16 256 14 16
+[16:56:44]	[Me=3]	[k=2]	Cost=1221.97	-Ofast avx 256 256 256 16 256 1 12
+[16:56:45]	[Me=2]	[k=2]	Cost=771.63	-O2 avx512 256 256 256 16 256 1 1
+[16:56:45]	[Me=1]	[k=2]	Cost=764.19	-Ofast avx512 256 256 256 16 256 1 1
+[16:57:04]	[Me=2]	[k=3]	Cost=1368.44	-Ofast avx 256 256 256 16 256 8 14
+[16:57:04]	[Me=3]	[k=3]	Cost=1347.57	-Ofast avx512 256 256 256 16 256 16 11
+[16:57:04]	[Me=1]	[k=3]	Cost=1325.21	-Ofast avx 256 256 256 16 256 16 6
+[16:57:04]	[Me=0]	[k=3]	Cost=1305.7	-O3 avx2 256 256 256 16 256 14 16
+[16:57:27]	[Me=0]	[k=4]	Cost=1368.06	-Ofast avx2 256 256 256 16 256 11 11
+[16:57:27]	[Me=1]	[k=4]	Cost=1358.07	-O3 avx2 256 256 256 16 256 16 8
+[16:57:27]	[Me=2]	[k=4]	Cost=1349.72	-O3 avx512 256 256 256 16 256 7 16
+[16:57:27]	[Me=3]	[k=4]	Cost=811.3	-Ofast avx 256 256 256 16 256 4 1
+[16:57:38]	[Me=3]	[k=5]	Cost=1380.95	-O3 avx 256 256 256 16 256 6 11
+[16:57:38]	[Me=2]	[k=5]	Cost=1380.26	-O3 avx 256 256 256 16 256 6 11
+[16:57:38]	[Me=1]	[k=5]	Cost=1350.45	-O3 avx 256 256 256 16 256 10 7
+[16:57:38]	[Me=0]	[k=5]	Cost=1227.17	-O2 avx 256 256 256 16 256 1 16
+[16:57:47]	[Me=1]	[k=6]	Cost=1320.83	-Ofast avx 256 256 256 16 256 14 13
+[16:57:48]	[Me=3]	[k=6]	Cost=1283.23	-O3 avx 256 256 256 16 256 5 15
+[16:57:48]	[Me=0]	[k=6]	Cost=1284.28	-O3 avx 256 256 256 16 256 5 15
+[16:57:48]	[Me=2]	[k=6]	Cost=822.98	-O3 avx2 256 256 256 16 256 11 1
+[16:57:57]	[Me=2]	[k=7]	Cost=1374.24	-O2 avx512 256 256 256 16 256 10 11
+[16:57:57]	[Me=1]	[k=7]	Cost=1338.82	-O2 avx 256 256 256 16 256 16 12
+[16:57:57]	[Me=3]	[k=7]	Cost=1328.96	-O3 avx512 256 256 256 16 256 13 6
+[16:57:57]	[Me=0]	[k=7]	Cost=1279.58	-O2 avx 256 256 256 16 256 14 5
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+[16:58:11]	[Me=1]	[k=8]	Cost=1393.97	-O2 avx 256 256 256 16 256 4 10
+[16:58:11]	[Me=3]	[k=8]	Cost=1332.41	-Ofast avx512 256 256 256 16 256 9 16
+[16:58:11]	[Me=0]	[k=8]	Cost=1285.26	-O2 avx512 256 256 256 16 256 5 15
+[16:58:11]	[Me=2]	[k=8]	Cost=1221.84	-O3 avx2 256 256 256 16 256 1 9
+[16:58:26]	[Me=0]	[k=9]	Cost=1370.76	-O2 avx 256 256 256 16 256 10 12
+[16:58:26]	[Me=3]	[k=9]	Cost=1328.84	-O2 avx2 256 256 256 16 256 15 6
+[16:58:26]	[Me=2]	[k=9]	Cost=1317.32	-O3 avx512 256 256 256 16 256 13 14
+[16:58:26]	[Me=1]	[k=9]	Cost=1215.12	-O2 avx2 256 256 256 16 256 8 3
+[16:58:37]	[Me=0]	[k=10]	Cost=1353.13	-Ofast avx2 256 256 256 16 256 9 7
+[16:58:37]	[Me=2]	[k=10]	Cost=1348.65	-Ofast avx512 256 256 256 16 256 16 9
+[16:58:37]	[Me=3]	[k=10]	Cost=1349.47	-Ofast avx2 256 256 256 16 256 9 7
+[16:58:37]	[Me=1]	[k=10]	Cost=1326.6	-Ofast avx512 256 256 256 16 256 2 12
+[16:58:46]	[Me=1]	[k=11]	Cost=1382.08	-O2 avx2 256 256 256 16 256 7 9
+[16:58:46]	[Me=0]	[k=11]	Cost=1381.15	-Ofast avx512 256 256 256 16 256 4 8
+[16:58:46]	[Me=3]	[k=11]	Cost=1382.98	-Ofast avx2 256 256 256 16 256 6 12
+[16:58:47]	[Me=2]	[k=11]	Cost=1300.85	-Ofast avx 256 256 256 16 256 2 8
+-O2 avx 256 256 256 16 256 4 10
+[info] [Me=0] Path taken:
+[info] [Me=0] Best solution found:
+	[-1393.97] -O2 avx 256 256 256 16 256 4 10
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	[-1393.97] -O2 avx 256 256 256 16 256 4 10
+[info] [Me=0] Best overall:
+	[-1393.97] -O2 avx 256 256 256 16 256 4 10
+[info] [Me=0] Total cost evaluations: 44
+[info] [Me=0] Run finished. Logs can be found at myLog.log.
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+/usr/users/st76i1/st76i1_4/.local/lib/python3.8/site-packages/smt/surrogate_models/krg_based.py:211: UserWarning: Warning: multiple x input features have the same value (at least same row twice).
+  warnings.warn("Warning: multiple x input features have the same value (at least same row twice).")
+[info] [Me=3] Run finished. Logs can be found at myLog.log.
+[info] [Me=2] Run finished. Logs can be found at myLog.log.
+[info] [Me=1] Run finished. Logs can be found at myLog.log.
+=================================
