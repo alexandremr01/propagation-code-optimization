@@ -1,8 +1,8 @@
 class Simulator:
     def __init__(self, run_counter=0, solutions_counter=0) -> None:
         print('Simulator initialized')
-        self.run_counter = run_counter
-        self.sol_counter = solutions_counter
+        self.run_counter = run_counter # counts how many solutions were evaluated in a run
+        self.sol_counter = solutions_counter # counts how many solutions were instanced in a run
 
     def sol_increase(self):
         self.sol_counter = self.sol_counter + 1

@@ -18,7 +18,7 @@ class Greedy(Algorithm):
         newBetterS = True
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
-            k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+            k, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
 
         while k < kmax and len(neighbors) > 0 and newBetterS:
@@ -35,7 +35,7 @@ class Greedy(Algorithm):
                 neighbors = Sbest.get_neighbors(self.optimize_problem_size)
                 path.append((Sbest, Ebest))
                 self.logger.write_msg(
-                    k+1, Ebest, Sbest.get_compilation_flags(),
+                    k+1, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(),
                 )
             else:
                 newBetterS = False
@@ -60,7 +60,7 @@ class TabuGreedy(Algorithm):
         k = 0
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
-            k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+            k, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
 
         newBetterS = True
@@ -76,7 +76,7 @@ class TabuGreedy(Algorithm):
                 path.append((Sbest, Ebest))
 
                 self.logger.write_msg(
-                    k+1, Ebest, Sbest.get_compilation_flags(),
+                    k+1, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(),
                 )
 
                 neighbors = Sbest.get_neighbors(self.optimize_problem_size)

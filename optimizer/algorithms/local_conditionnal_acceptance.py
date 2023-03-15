@@ -28,7 +28,7 @@ class LocalConditionnalAcceptance(Algorithm):
         T = T0
         k = 0
         self.logger.write_msg(
-            k, E, S.get_compilation_flags(), flair='Initial'
+            k, evaluation_session.run_counter, E, S.get_compilation_flags(), flair='Initial'
         )
         while k < kmax > 0:
             selected_index = random.randint(0, len(neighbors)-1)
@@ -50,6 +50,6 @@ class LocalConditionnalAcceptance(Algorithm):
             T = f(T)
             k += 1
             self.logger.write_msg(
-                k, E_new, S_new.get_compilation_flags(), log_flair,
+                k, evaluation_session.run_counter, E_new, S_new.get_compilation_flags(), log_flair,
             )
         return S_best, E_best, path
