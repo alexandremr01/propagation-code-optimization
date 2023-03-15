@@ -62,7 +62,7 @@ class Solution:
             raise Exception(f'Failed compiling: {result.returncode}')
 
         mean_throughput = 0
-        new_environment = dict(os.environ, KMP_AFFINITY='scatter')
+        new_environment = dict(os.environ, KMP_AFFINITY='balanced')
         for _ in range(num_evaluations):
             result = subprocess.run([executable_path,
                                      str(self.problem_size_x),

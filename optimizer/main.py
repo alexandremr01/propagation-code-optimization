@@ -12,6 +12,7 @@ from optimizer.algorithms import get_algorithm, ALGORITHMS
 from optimizer.deployment import deploy_kangaroo, deploy_single
 from optimizer.evaluator import Simulator
 from optimizer.logger import Logger, find_slurmfile, slurm_to_logfile
+from optimizer.solution import Solution
 
 from mpi4py import MPI
 
@@ -68,7 +69,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
     parser.add_argument('--algorithm', type=str, choices=ALGORITHMS.keys(), default='hill_climbing')
-    parser.add_argument('--initial_solution', type=str, default=None)
+    parser.add_argument('--initial_solution', nargs=9, type=str, default=None)
     parser.add_argument('--steps', type=int, default=10,
                         help='Number of steps')
     parser.add_argument('--seed', type=int, default=33, help='Random seed')
@@ -94,6 +95,10 @@ if __name__ == "__main__":
     logger.write_info('Args:')
     for k, v in sorted(vars(args).items()):
         logger.write_raw('\t{}: {}'.format(k, v))
+
+    initial_solution = None
+    if args.initial_solution is not None:
+        initial_solution = Solution(*args.initial_solution)
 
     algorithm_class = get_algorithm(args.algorithm)
     algorithm = algorithm_class(hparams, args.problem_size, comm, logger, args.flexible_shape)
