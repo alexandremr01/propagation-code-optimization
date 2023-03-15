@@ -1,5 +1,5 @@
 class Algorithm:
-    def __init__(self, hparams, problem_size, comm, logger) -> None:
+    def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
         self.default_hparams = { }
         self.hparams = { } # this will remain empty untill parse_hyperparameters
         self.raw_hparams = hparams
@@ -7,6 +7,7 @@ class Algorithm:
         self.hyperparameters_parsed = False
         self.comm = comm
         self.logger = logger
+        self.optimize_problem_size = optimize_problem_size
 
     def run(self, num_steps, evaluation_session) -> None:
         raise NotImplementedError

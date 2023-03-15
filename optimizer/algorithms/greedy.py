@@ -6,8 +6,8 @@ from optimizer.solution import Solution
 
 
 class Greedy(Algorithm):
-    def __init__(self, hparams, problem_size, comm, logger) -> None:
-        super().__init__(hparams, problem_size, comm, logger)
+    def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
+        super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
 
     def run(self, kmax, evaluation_session):
         self.logger.write_info('Starting greedy hill climbing')
@@ -46,8 +46,8 @@ class Greedy(Algorithm):
         return Sbest, Ebest, path    
 
 class TabuGreedy(Algorithm):
-    def __init__(self, hparams, problem_size, comm, logger) -> None:
-        super().__init__(hparams, problem_size, comm, logger)
+    def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
+        super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         self.register_hyperparameter('n_tabu', 5)
         self.parse_hyperparameters()
 
@@ -93,7 +93,7 @@ class TabuGreedy(Algorithm):
 
 class parallelgreedy(Algorithm):
     def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size)
+        super().__init__(hparams, problem_size,,
 
     def run(self, kmax):
 

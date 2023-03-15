@@ -5,7 +5,7 @@ import sys
 import subprocess
 import json
 
-import numpy as np 
+import numpy as np
 
 from optimizer.algorithms import get_algorithm, ALGORITHMS
 from optimizer.deployment import deploy_kangaroo, deploy_single
@@ -14,14 +14,14 @@ from optimizer.logger import Logger, find_slurmfile, slurm_to_logfile
 
 from mpi4py import MPI
 
-def make_deterministic(seed): 
+def make_deterministic(seed):
     '''Makes that each process has a different real seed'''
     Me = comm.Get_rank()
     real_seed = seed*(Me + 1)
     random.seed(real_seed)
     np.random.seed(real_seed)
-    logger.write_info(f'real seed: {real_seed}')    
-        
+    logger.write_info(f'real seed: {real_seed}')
+
 def run_algorithm(algorithm, args, comm, evaluation_session):
     Me = comm.Get_rank()
     best_solution, best_cost, path = algorithm.run(args.steps, evaluation_session)
@@ -45,7 +45,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             logger.write_info('Best solutions:')
             for i in range(len(TabE)):
                 logger.write_raw('\t' + str(TabE[i]) + ' ' + TabS[i].get_compilation_flags())
-            
+
             logger.write_info('Best overall:')
             Eopt = max(TabE)
             idx = TabE.index(Eopt)
@@ -67,8 +67,9 @@ if __name__ == "__main__":
     parser.add_argument('--hparams', type=str, default='{}',
                         help='JSON-serialized hyperparameters dictionary')
     parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Three dimensions of problem size')
+    parser.add_argument('--flexible_shape', action='store_true', help='Allows changing the problem shape')
 
-    # usually you dont need to change this
+    # usually you do not need to change this
     parser.add_argument('--phase', type=str,
                         default='deploy', choices=['deploy', 'run'])
 
@@ -86,9 +87,9 @@ if __name__ == "__main__":
     logger.write_info('Args:')
     for k, v in sorted(vars(args).items()):
         logger.write_raw('\t{}: {}'.format(k, v))
-    
+
     algorithm_class = get_algorithm(args.algorithm)
-    algorithm = algorithm_class(hparams, args.problem_size, comm, logger)
+    algorithm = algorithm_class(hparams, args.problem_size, comm, logger, args.flexible_shape)
 
     logger.write_info('Hyperparameters:')
     for k, v in sorted(algorithm.hparams.items()):
@@ -103,7 +104,7 @@ if __name__ == "__main__":
     else: # phase is run
         evaluation_session = Simulator()
         run_algorithm(algorithm, args, comm, evaluation_session)
-    
+
     # retrieve logs from slurm file
     if args.batch:
         slurm_to_logfile(find_slurmfile(os.getcwd()), logfile)

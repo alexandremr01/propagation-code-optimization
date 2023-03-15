@@ -10,8 +10,8 @@ from optimizer.random_solution import get_random_solution
 from optimizer.algorithms import Algorithm
 
 class HillClimbing(Algorithm):
-    def __init__(self, hparams, problem_size, comm, logger) -> None:
-        super().__init__(hparams, problem_size, comm, logger)
+    def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
+        super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         
     def run(self, num_steps, evaluation_session):
         self.logger.write_info('Starting hill_climbing')
