@@ -2,12 +2,12 @@ class SolutionSpace:
     o_levels = ['-O2', '-O3', '-Ofast']
     simds = ['avx', 'avx2', 'avx512']
     nthreads = [16]
-    # L1 cache is 512KiB (512*1024 bytes = 524288 bytes).
-    # worst case: first dimension * 16 * 16 * 4 = 524288 < 512
-    # First dimension 512: 1024 bytes for cache
-    # First dimension 1024: 512 bytes for cache
-    # First dimension 2048: 256 bytes for cache
-    # all of
+    # Reasoning for threadblock sizes:
+    # L1 cache is 512KiB, L2 cache is 16MiB, L3 cache is 22 MiB
+    # size of cache: product of 3 dimensions * 4 bytes/integer * 3 arrays
+    # 512 * 16 * 16 * 4 * 3  = 1.5 MiB
+    # 2048 * 16 * 16 * 4 * 3 = 6 MiB
+    # with sizes problem_size * 16 * 16, it always fit in the cache size
     threadblocks = list(range(1, 17))
-
     problem_size = [32, 64, 128, 256, 512, 1024, 2048]
+

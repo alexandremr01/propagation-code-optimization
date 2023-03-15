@@ -145,24 +145,32 @@ class Solution:
             problem_size_y_ix = SolutionSpace.problem_size.index(self.problem_size_y)
             problem_size_z_ix = SolutionSpace.problem_size.index(self.problem_size_z)
             if self._is_new_shape_available(problem_size_x_ix, problem_size_y_ix):
+                new_problem_size_x = SolutionSpace.problem_size[problem_size_x_ix - 1]
                 neigh.append(self.get_modified_copy(
-                    problem_size_x=SolutionSpace.problem_size[problem_size_x_ix - 1],
+                    problem_size_x=new_problem_size_x,
                     problem_size_y=SolutionSpace.problem_size[problem_size_y_ix + 1],
+                    thrdblock_x=new_problem_size_x,
                 ))
             if self._is_new_shape_available(problem_size_y_ix, problem_size_x_ix):
+                new_problem_size_x = SolutionSpace.problem_size[problem_size_x_ix + 1]
                 neigh.append(self.get_modified_copy(
-                    problem_size_x=SolutionSpace.problem_size[problem_size_x_ix + 1],
+                    problem_size_x=new_problem_size_x,
                     problem_size_y=SolutionSpace.problem_size[problem_size_y_ix - 1],
+                    thrdblock_x=new_problem_size_x,
                 ))
             if self._is_new_shape_available(problem_size_x_ix, problem_size_z_ix):
+                new_problem_size_x = SolutionSpace.problem_size[problem_size_x_ix - 1]
                 neigh.append(self.get_modified_copy(
-                    problem_size_x=SolutionSpace.problem_size[problem_size_x_ix - 1],
+                    problem_size_x=new_problem_size_x,
                     problem_size_z=SolutionSpace.problem_size[problem_size_z_ix + 1],
+                    thrdblock_x=new_problem_size_x,
                 ))
             if self._is_new_shape_available(problem_size_z_ix, problem_size_x_ix):
+                new_problem_size_x = SolutionSpace.problem_size[problem_size_x_ix + 1]
                 neigh.append(self.get_modified_copy(
-                    problem_size_x=SolutionSpace.problem_size[problem_size_x_ix + 1],
+                    problem_size_x=new_problem_size_x,
                     problem_size_z=SolutionSpace.problem_size[problem_size_z_ix - 1],
+                    thrdblock_x=new_problem_size_x,
                 ))
             if self._is_new_shape_available(problem_size_y_ix, problem_size_z_ix):
                 neigh.append(self.get_modified_copy(
