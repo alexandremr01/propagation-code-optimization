@@ -59,7 +59,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             logger.write_raw('\t' + str(best_E_overall) + ' ' + TabS[best_ix].get_compilation_flags())
             logger.write_info(f'Total cost evaluations: {total_runs}')
             final_time = time.time()
-            elapsed_time = final_time - start_time
+            elapsed_time = np.round(final_time - start_time, 2)
             logger.write_info(f'Elapsed time: {elapsed_time} seconds')
             return
     if (Me != 0):
