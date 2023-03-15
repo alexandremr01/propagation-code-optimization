@@ -4,6 +4,7 @@ import random
 import sys
 import subprocess
 import json
+import time
 
 import numpy as np
 
@@ -27,6 +28,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
     best_solution, best_cost, path = algorithm.run(args.steps, evaluation_session)
     TabE = comm.gather(best_cost,root=0)
     TabS = comm.gather(best_solution,root=0)
+    start_time = time.time()
     total_runs = comm.reduce(evaluation_session.run_counter,op=MPI.SUM, root=0)
     if best_cost is not None:
         logger.write_info('Path taken:')
@@ -56,6 +58,9 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             logger.write_info('Best overall:')
             logger.write_raw('\t' + str(best_E_overall) + ' ' + TabS[best_ix].get_compilation_flags())
             logger.write_info(f'Total cost evaluations: {total_runs}')
+            final_time = time.time()
+            elapsed_time = np.round(final_time - start_time, 2)
+            logger.write_info(f'Elapsed time: {elapsed_time} seconds')
             return
     if (Me != 0):
         comm.Barrier()
