@@ -45,8 +45,8 @@ class Solution:
             new_sol.thrdblock_z = thrdblock_z
         return new_sol
 
-    def cost(self, evaluation_session, verbose=False, delete_file=True, num_evaluations=1):
-        if self.calculated_cost is not None:
+    def cost(self, evaluation_session, verbose=False, delete_file=True, num_evaluations=1, ignore_cache=False):
+        if not ignore_cache and self.calculated_cost is not None:
             return self.calculated_cost
 
         evaluation_session.run_increase(num_evaluations)  # Increases in num_evaluations the counter of runs
@@ -182,7 +182,7 @@ class Solution:
         return dim1_ix > 0 and dim2_ix < len(SolutionSpace.problem_size) - 1
 
     def get_random_neighbor(self):
-        neighbors = self.get_neighbors()
+        neighbors = self.get_neighbors(self.optimize_problem_size)
         return np.random.choice(neighbors)
 
     def display(self):

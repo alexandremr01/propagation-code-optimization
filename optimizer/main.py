@@ -50,7 +50,8 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             Eopt = max(TabE)
             idx = TabE.index(Eopt)
             Sopt = TabS[idx]
-            logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags())
+            recalculated_cost = Sopt.cost(num_evaluations=3, ignore_cache=True)
+            logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags() + ' Final evaluation: ' + recalculated_cost)
             logger.write_info(f'Total cost evaluations: {total_runs}')
             return
     if (Me != 0):

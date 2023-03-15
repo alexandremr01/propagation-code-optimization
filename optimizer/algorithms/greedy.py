@@ -13,7 +13,7 @@ class Greedy(Algorithm):
         self.logger.write_info('Starting greedy hill climbing')
         Sbest = get_random_solution(self.problem_size)
         Ebest = Sbest.cost(evaluation_session)
-        neighbors = Sbest.get_neighbors()
+        neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         k = 0
         newBetterS = True
         path = [(Sbest, Ebest)]
@@ -32,7 +32,7 @@ class Greedy(Algorithm):
             if E1 > Ebest:
                 Sbest = S1
                 Ebest = E1
-                neighbors = Sbest.get_neighbors()
+                neighbors = Sbest.get_neighbors(self.optimize_problem_size)
                 path.append((Sbest, Ebest))
                 self.logger.write_msg(
                     k+1, Ebest, Sbest.get_compilation_flags(),
@@ -56,7 +56,7 @@ class TabuGreedy(Algorithm):
         N_Tabu = self.hparams['n_tabu']
         Sbest = get_random_solution(self.problem_size)
         Ebest = Sbest.cost(evaluation_session)
-        neighbors = Sbest.get_neighbors()
+        neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         k = 0
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
@@ -79,7 +79,7 @@ class TabuGreedy(Algorithm):
                     k+1, Ebest, Sbest.get_compilation_flags(),
                 )
 
-                neighbors = Sbest.get_neighbors()
+                neighbors = Sbest.get_neighbors(self.optimize_problem_size)
 
             else:
                 newBetterS = False
@@ -99,7 +99,7 @@ class parallelgreedy(Algorithm):
 
         Sbest = get_random_solution(self.problem_size)
         Ebest = Sbest.cost(evaluation_session)
-        neighbors = Sbest.get_neighbors()
+        neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         n = len(neighbors)
         k = 0
         newBetterS = True
@@ -122,7 +122,7 @@ class parallelgreedy(Algorithm):
             if E1 > Ebest:
                 Sbest = S1
                 Ebest = E1
-                neighbors = Sbest.get_neighbors()
+                neighbors = Sbest.get_neighbors(self.optimize_problem_size)
                 path.append((Sbest, Ebest))
                 print('New best:', end=' ')
                 Sbest.display()

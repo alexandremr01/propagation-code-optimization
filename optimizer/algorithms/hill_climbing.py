@@ -17,7 +17,7 @@ class HillClimbing(Algorithm):
         self.logger.write_info('Starting hill_climbing')
         Sbest = get_random_solution(self.problem_size)
         Ebest = Sbest.cost(evaluation_session)
-        neighbors = Sbest.get_neighbors()
+        neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         k = 0
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
@@ -33,7 +33,7 @@ class HillClimbing(Algorithm):
                 Ebest = E_new
                 Sbest = S_new
                 path.append((Sbest, Ebest))
-                neighbors = Sbest.get_neighbors()
+                neighbors = Sbest.get_neighbors(self.optimize_problem_size)
             else:
                 log_flair = None
             k += 1
