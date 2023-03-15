@@ -93,7 +93,7 @@ class TabuGreedy(Algorithm):
 
 class parallelgreedy(Algorithm):
     def __init__(self, hparams, problem_size) -> None:
-        super().__init__(hparams, problem_size,,
+        super().__init__(hparams, problem_size)
 
     def run(self, kmax):
 
