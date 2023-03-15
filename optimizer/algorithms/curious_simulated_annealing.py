@@ -27,14 +27,14 @@ def ungroup_particles(particles):
 class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particles=6, temperature_schedule=None)
     def __init__(self, hparams, problem_size, comm, logger) -> None:
         super().__init__(hparams, problem_size, comm, logger)
-        self.register_hyperparameter('t0', 100)
+        self.register_hyperparameter('t0', 1000)
         self.register_hyperparameter('popsize', 6)
         self.parse_hyperparameters()
 
         self.T0 = self.hparams['t0']
         self.popsize = self.hparams['popsize']
         # TODO: current temperature function is hard coded
-        self.f = lambda x: 0.9 * x
+        self.f = lambda x: 0.95 * x if x > 10 else x
 
     def run(self, num_steps, evaluation_session) -> None:
         # Initialize communication

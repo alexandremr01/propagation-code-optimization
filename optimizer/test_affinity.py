@@ -3,8 +3,8 @@ import os
 import re 
 import numpy as np
 
-def execute_with_affinity(affinity=None, num_evaluations=20):
-    print('Affinity: ', affinity)
+def execute_with_affinity(affinity=None, nthreads=16, num_evaluations=20):
+    print('Affinity: ', affinity, ' Threads: ', nthreads)
     file_name_with_ext = f'test_affinity.exe'
     executable_path = f'iso3dfd-st7/bin/{file_name_with_ext}'
 
@@ -18,7 +18,8 @@ def execute_with_affinity(affinity=None, num_evaluations=20):
         raise Exception(f'Failed compiling: { result.returncode }')
 
     throughputs = [ ]
-    parameters = [executable_path] + '256 256 256 16 100 256 2 4'.split(' ')
+    arguments = '256 256 256 ' + str(nthreads) + ' 100 256 2 4'
+    parameters = [executable_path] + arguments.split(' ')
     for _ in range(num_evaluations):
         result = subprocess.run(parameters, capture_output=True, env=new_environment)
         if result.returncode != 0:
@@ -37,6 +38,8 @@ def execute_with_affinity(affinity=None, num_evaluations=20):
     print('Std:', np.std(throughputs))
     print('Std/Mean %: ', 100*np.std(throughputs) / np.average(throughputs), '\n\n')
 
+list_nthreads = [16, 32]
 affinities = [None, 'compact', 'scatter']
-for affinity in affinities:
-    execute_with_affinity(affinity)
+for nthreads in list_nthreads:
+    for affinity in affinities:
+        execute_with_affinity(affinity, nthreads)
