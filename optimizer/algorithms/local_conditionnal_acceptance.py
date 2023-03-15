@@ -6,8 +6,8 @@ from optimizer.random_solution import get_random_solution
 from optimizer.algorithms import Algorithm
 
 class LocalConditionnalAcceptance(Algorithm):
-    def __init__(self, hparams, problem_size, comm, logger) -> None:
-        super().__init__(hparams, problem_size, comm, logger)
+    def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
+        super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         self.register_hyperparameter('t0', 100)
         self.parse_hyperparameters()
 
@@ -23,7 +23,7 @@ class LocalConditionnalAcceptance(Algorithm):
         E_best = S_best.cost(evaluation_session)
         S = S_best
         E = E_best
-        neighbors = S_best.get_neighbors()
+        neighbors = S_best.get_neighbors(self.optimize_problem_size)
         path = [(S_best, E_best)]
         T = T0
         k = 0
@@ -39,7 +39,7 @@ class LocalConditionnalAcceptance(Algorithm):
                     log_flair = 'Risky choice !'
                 S = S_new
                 E = E_new
-                neighbors = S.get_neighbors()
+                neighbors = S.get_neighbors(self.optimize_problem_size)
                 if E > E_best:
                     S_best = S
                     E_best = E
