@@ -1,6 +1,6 @@
 class Simulator:
-    def __init__(self, run_counter=0, solutions_counter=0) -> None:
-        print('Simulator initialized')
+    def __init__(self, logger, run_counter=0, solutions_counter=0) -> None:
+        logger.write_info('Simulator initialized')
         self.run_counter = run_counter # counts how many solutions were evaluated in a run
         self.sol_counter = solutions_counter # counts how many solutions were instanced in a run
 

@@ -109,7 +109,7 @@ if __name__ == "__main__":
     elif args.phase == 'deploy' and not args.batch:
         deploy_single(args, sys.argv[0], logger)
     else: # phase is run
-        evaluation_session = Simulator()
+        evaluation_session = Simulator(logger)
         run_algorithm(algorithm, args, comm, evaluation_session)
 <<<<<<< HEAD
 
