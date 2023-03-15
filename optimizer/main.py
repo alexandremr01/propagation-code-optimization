@@ -43,15 +43,18 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             logger.jumpline()
             logger.write_info('Gathering solutions from all processes')
             logger.write_info('Best solutions:')
+
+            best_ix = 0
+            best_E_overall = -1
             for i in range(len(TabE)):
-                logger.write_raw('\t' + str(TabE[i]) + ' ' + TabS[i].get_compilation_flags())
+                recalculated_cost = TabS[i].cost(evaluation_session, num_evaluations=3, ignore_cache=True)
+                logger.write_raw('\t' + str(TabE[i]) + ' ' + TabS[i].get_compilation_flags() + ' Final evaluation: ' + str(recalculated_cost))
+                if recalculated_cost > best_E_overall:
+                    best_E_overall = recalculated_cost
+                    best_ix = i
 
             logger.write_info('Best overall:')
-            Eopt = max(TabE)
-            idx = TabE.index(Eopt)
-            Sopt = TabS[idx]
-            recalculated_cost = Sopt.cost(evaluation_session, num_evaluations=3, ignore_cache=True)
-            logger.write_raw('\t' + str(Eopt) + ' ' + Sopt.get_compilation_flags() + ' Final evaluation: ' + str(recalculated_cost))
+            logger.write_raw('\t' + str(best_E_overall) + ' ' + TabS[best_ix].get_compilation_flags())
             logger.write_info(f'Total cost evaluations: {total_runs}')
             return
     if (Me != 0):
@@ -69,10 +72,7 @@ if __name__ == "__main__":
                         help='JSON-serialized hyperparameters dictionary')
     parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Three dimensions of problem size')
     parser.add_argument('--flexible_shape', action='store_true', help='Allows changing the problem shape')
-
-    # usually you do not need to change this
-    parser.add_argument('--phase', type=str,
-                        default='deploy', choices=['deploy', 'run'])
+    parser.add_argument('--phase', type=str, default='deploy', choices=['deploy', 'run'])
 
     args = parser.parse_args()
     hparams = json.loads(args.hparams)
