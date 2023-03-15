@@ -68,6 +68,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
     parser.add_argument('--algorithm', type=str, choices=ALGORITHMS.keys(), default='hill_climbing')
+    parser.add_argument('--initial_solution', type=str, default=None)
     parser.add_argument('--steps', type=int, default=10,
                         help='Number of steps')
     parser.add_argument('--seed', type=int, default=33, help='Random seed')
