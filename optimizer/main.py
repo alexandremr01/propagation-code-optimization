@@ -16,21 +16,23 @@ from optimizer.solution import Solution
 
 from mpi4py import MPI
 
+
 def make_deterministic(seed):
     '''Makes that each process has a different real seed'''
     Me = comm.Get_rank()
-    real_seed = seed*(Me + 1)
+    real_seed = seed * (Me + 1)
     random.seed(real_seed)
     np.random.seed(real_seed)
     logger.write_info(f'real seed: {real_seed}')
 
+
 def run_algorithm(algorithm, args, comm, evaluation_session):
     Me = comm.Get_rank()
     best_solution, best_cost, path = algorithm.run(args.steps, evaluation_session)
-    TabE = comm.gather(best_cost,root=0)
-    TabS = comm.gather(best_solution,root=0)
+    TabE = comm.gather(best_cost, root=0)
+    TabS = comm.gather(best_solution, root=0)
     start_time = time.time()
-    total_runs = comm.reduce(evaluation_session.run_counter,op=MPI.SUM, root=0)
+    total_runs = comm.reduce(evaluation_session.run_counter, op=MPI.SUM, root=0)
     if best_cost is not None:
         logger.write_info('Path taken:')
         for sol in path:
@@ -40,7 +42,7 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
         logger.write_raw('\t' + str(best_cost) + ' ' + best_solution.get_compilation_flags())
 
         if (Me == 0):
-            comm.Barrier() # guarantee that these will be the final messages
+            comm.Barrier()  # guarantee that these will be the final messages
             TabE = [x for x in TabE if x is not None]
             TabS = [x for x in TabS if x is not None]
             logger.jumpline()
@@ -51,7 +53,9 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
             best_E_overall = -1
             for i in range(len(TabE)):
                 recalculated_cost = TabS[i].cost(evaluation_session, num_evaluations=3, ignore_cache=True)
-                logger.write_raw('\t' + str(TabE[i]) + ' ' + TabS[i].get_compilation_flags() + ' Final evaluation: ' + str(recalculated_cost))
+                logger.write_raw(
+                    '\t' + str(TabE[i]) + ' ' + TabS[i].get_compilation_flags() + ' Final evaluation: ' + str(
+                        recalculated_cost))
                 if recalculated_cost > best_E_overall:
                     best_E_overall = recalculated_cost
                     best_ix = i
@@ -66,10 +70,11 @@ def run_algorithm(algorithm, args, comm, evaluation_session):
     if (Me != 0):
         comm.Barrier()
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Optimizer Launcher')
     parser.add_argument('--algorithm', type=str, choices=ALGORITHMS.keys(), default='hill_climbing')
-    parser.add_argument('--initial_solution', nargs=9, type=str, default=None)
+    parser.add_argument('--initial_solution', type=str, default='')
     parser.add_argument('--steps', type=int, default=10,
                         help='Number of steps')
     parser.add_argument('--seed', type=int, default=33, help='Random seed')
@@ -77,7 +82,8 @@ if __name__ == "__main__":
                         help='Uses multiple nodes')
     parser.add_argument('--hparams', type=str, default='{}',
                         help='JSON-serialized hyperparameters dictionary')
-    parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Three dimensions of problem size')
+    parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256],
+                        help='Three dimensions of problem size')
     parser.add_argument('--flexible_shape', action='store_true', help='Allows changing the problem shape')
     parser.add_argument('--phase', type=str, default='deploy', choices=['deploy', 'run'])
 
@@ -97,8 +103,12 @@ if __name__ == "__main__":
         logger.write_raw('\t{}: {}'.format(k, v))
 
     initial_solution = None
-    if args.initial_solution is not None:
-        initial_solution = Solution(*args.initial_solution)
+    if len(args.initial_solution) > 0:
+        parameters_initial_solution = args.initial_solution.split(' ')
+        if len(parameters_initial_solution) != 9:
+            print('Initial solution should have 9 parameters')
+            exit()
+        initial_solution = Solution(*parameters_initial_solution)
 
     algorithm_class = get_algorithm(args.algorithm)
     algorithm = algorithm_class(hparams, args.problem_size, comm, logger, args.flexible_shape)
@@ -113,7 +123,7 @@ if __name__ == "__main__":
         deploy_kangaroo(args, sys.argv[0], logger)
     elif args.phase == 'deploy' and not args.batch:
         deploy_single(args, sys.argv[0], logger)
-    else: # phase is run
+    else:  # phase is run
         evaluation_session = Simulator()
         run_algorithm(algorithm, args, comm, evaluation_session)
 
