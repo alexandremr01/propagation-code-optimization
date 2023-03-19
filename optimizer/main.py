@@ -111,12 +111,8 @@ if __name__ == "__main__":
     else: # phase is run
         evaluation_session = Simulator(logger)
         run_algorithm(algorithm, args, comm, evaluation_session)
-<<<<<<< HEAD
-
-=======
         logger.write_info(f"Run finished. Logs can be found at {logfile}.")
     
->>>>>>> logger: fix run finished info msg
     # retrieve logs from slurm file
     if args.batch:
         slurm_to_logfile(find_slurmfile(os.getcwd()), logfile)
