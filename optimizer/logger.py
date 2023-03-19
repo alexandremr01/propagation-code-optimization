@@ -95,7 +95,12 @@ def log_to_list(logfile):
                             if m.group(2) is not None:
                                 if m.group(2) == '=':
                                     line_dict[m.group(1)] = m.group(3)
-                    # TODO: compilation flags and flair
+                        else:
+                        # flair regex
+                            m = re.search("\((.+)\)", txt)
+                            if m is not None:
+                                line_dict['flair'] = m.group(1)
+                    # TODO: compilation flags
                 if line_dict:
                     # if line_dict is not empty
                     data.append(line_dict)
