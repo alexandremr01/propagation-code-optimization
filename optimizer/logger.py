@@ -10,7 +10,7 @@ class Logger():
         self.log = open(logfile, "w") if save_to_logfile else None
         self.terminal = sys.stdout
     
-    def write_msg(self, iteration_number, cost, compilation_flags, flair=None):
+    def write_msg(self, iteration_number, evaluation_number, cost, compilation_flags, flair=None):
         # Example:
         # [15:12:58] [Me=0] [k=1] Cost=151.31 -O3 avx512 12 12 12 (New best!)
         current_time = time.strftime("%H:%M:%S", time.localtime())
@@ -18,6 +18,7 @@ class Logger():
         logstring = (f"[{current_time}]"
         f"\t[Me={self.Me}]"
         f"\t[k={iteration_number}]"
+        f"\t[eval={evaluation_number}]"
         f"\tCost={cost}"
         f"\t{compilation_flags}")
         if flair:
@@ -94,7 +95,12 @@ def log_to_list(logfile):
                             if m.group(2) is not None:
                                 if m.group(2) == '=':
                                     line_dict[m.group(1)] = m.group(3)
-                    # TODO: compilation flags and flair
+                        else:
+                        # flair regex
+                            m = re.search("\((.+)\)", txt)
+                            if m is not None:
+                                line_dict['flair'] = m.group(1)
+                    # TODO: compilation flags
                 if line_dict:
                     # if line_dict is not empty
                     data.append(line_dict)

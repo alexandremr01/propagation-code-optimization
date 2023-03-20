@@ -25,18 +25,18 @@ def ungroup_particles(particles):
     return new_particles
 
 class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particles=6, temperature_schedule=None)
-    def __init__(self, hparams, problem_size, comm, logger) -> None:
-        super().__init__(hparams, problem_size, comm, logger)
-        self.register_hyperparameter('t0', 100)
+    def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
+        super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
+        self.register_hyperparameter('t0', 1000)
         self.register_hyperparameter('popsize', 6)
         self.parse_hyperparameters()
 
         self.T0 = self.hparams['t0']
         self.popsize = self.hparams['popsize']
         # TODO: current temperature function is hard coded
-        self.f = lambda x: 0.9 * x
+        self.f = lambda x: 0.95 * x if x > 10 else x
 
-    def run(self, num_steps, evaluation_session) -> None:
+    def run(self, num_steps, evaluator) -> None:
         # Initialize communication
         world_size = self.comm.Get_size()
         my_rank = self.comm.Get_rank()
@@ -50,14 +50,14 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
             init_state = get_random_solution(self.problem_size)
             particles = [init_state for _ in range(n_particles)]
             particle_weights = np.ones(n_particles) / n_particles
-            path = [(init_state, init_state.cost(evaluation_session))]
+            path = [(init_state, evaluator.cost(init_state))]
 
             # Initialize the current state and current energy
             current_state = init_state
-            current_energy = init_state.cost(evaluation_session)
+            current_energy = evaluator.cost(init_state)
 
             self.logger.write_msg(
-                0, current_energy, current_state.get_compilation_flags(), flair='Initial'
+                0, evaluator.get_counter(), current_energy, current_state.get_compilation_flags(), flair='Initial'
             )
 
         # Iterate over the temperature schedule
@@ -79,9 +79,9 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
                 perturbed_particle = particles[i].get_random_neighbor()
 
                 # Calculate the energy difference
-                energy_diff = perturbed_particle.cost(evaluation_session) - particles[i].cost(evaluation_session)
+                energy_diff = evaluator.cost(perturbed_particle) - evaluator.cost(particles[i])
                 self.logger.write_msg(
-                    k+1, perturbed_particle.cost(evaluation_session), perturbed_particle.get_compilation_flags(), flair=None,
+                    k+1, evaluator.get_counter(), evaluator.cost(perturbed_particle), perturbed_particle.get_compilation_flags(), flair=None,
                 )
 
                 # Update the particle or move to a new state with a certain probability
@@ -93,14 +93,14 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
             if my_rank == 0:
                 particles = ungroup_particles(particles)
                 for i in range(n_particles):
-                    particle_weights[i] = np.exp((particles[i].cost(evaluation_session))/temp)
+                    particle_weights[i] = np.exp(evaluator.cost(particles[i])/temp)
 
                 # Normalize the weights
                 particle_weights /= np.sum(particle_weights)
 
                 # Update the current state and current energy
-                best_particle = particles[np.argmax([p.cost(evaluation_session) for p in particles])]
-                best_energy = best_particle.cost(evaluation_session)
+                best_particle = particles[np.argmax([evaluator.cost(p) for p in particles])]
+                best_energy = evaluator.cost(best_particle)
 
                 if best_energy > current_energy:
                     current_state = best_particle
