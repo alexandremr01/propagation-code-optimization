@@ -34,7 +34,7 @@ class NaiveEvaluator(BaseEvaluator):
     def __init__(self, program_path, evaluation_session):
         super().__init__(program_path, evaluation_session)
 
-    def cost(self, solution, verbose=False, delete_file=True, num_evaluations=1, ignore_cache=False):
+    def cost(self, solution, verbose=False, delete_file=True, num_evaluations=1, ignore_cache=False, affinity='balanced'):
         program_path = self.program_path
         if not ignore_cache and solution.calculated_cost is not None:
             return solution.calculated_cost
@@ -52,7 +52,7 @@ class NaiveEvaluator(BaseEvaluator):
             raise Exception(f'Failed compiling: {result.returncode}')
 
         mean_throughput = 0
-        new_environment = dict(os.environ, KMP_AFFINITY='scatter')
+        new_environment = dict(os.environ, KMP_AFFINITY=affinity)
         for _ in range(num_evaluations):
             result = subprocess.run([executable_path,
                                      str(solution.problem_size_x),
