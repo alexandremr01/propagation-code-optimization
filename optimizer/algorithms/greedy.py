@@ -9,23 +9,23 @@ class Greedy(Algorithm):
     def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
 
-    def run(self, kmax, evaluation_session):
+    def run(self, kmax, evaluator):
         self.logger.write_info('Starting greedy hill climbing')
         Sbest = get_random_solution(self.problem_size)
-        Ebest = Sbest.cost(evaluation_session)
+        Ebest = evaluator.cost(Sbest)
         neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         k = 0
         newBetterS = True
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
-            k, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+            k, evaluator.get_counter(), Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
 
         while k < kmax and len(neighbors) > 0 and newBetterS:
             S1 = neighbors.pop()
-            E1 = S1.cost(evaluation_session)
+            E1 = evaluator.cost(S1)
             for S2 in neighbors:
-                E2 = S2.cost(evaluation_session)
+                E2 = evaluator.cost(S2)
                 if E2 > E1:
                     S1 = S2
                     E1 = E2
@@ -35,7 +35,7 @@ class Greedy(Algorithm):
                 neighbors = Sbest.get_neighbors(self.optimize_problem_size)
                 path.append((Sbest, Ebest))
                 self.logger.write_msg(
-                    k+1, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(),
+                    k+1, evaluator.get_counter(), Ebest, Sbest.get_compilation_flags(),
                 )
             else:
                 newBetterS = False
@@ -51,23 +51,23 @@ class TabuGreedy(Algorithm):
         self.register_hyperparameter('n_tabu', 5)
         self.parse_hyperparameters()
 
-    def run(self, kmax, evaluation_session):
+    def run(self, kmax, evaluator):
         self.logger.write_info('Starting tabu_greedy hill climbing')
         N_Tabu = self.hparams['n_tabu']
         Sbest = get_random_solution(self.problem_size)
-        Ebest = Sbest.cost(evaluation_session)
+        Ebest = evaluator.cost(Sbest)
         neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         k = 0
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
-            k, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+            k, evaluator.get_counter(), Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
 
         newBetterS = True
         visited = []
 
         while k < kmax and newBetterS:
-            S1, E1 = TabuFindBest(neighbors, visited, evaluation_session)
+            S1, E1 = TabuFindBest(neighbors, visited, evaluator)
             if E1 > Ebest:
                 Sbest = S1
                 Ebest = E1
@@ -76,7 +76,7 @@ class TabuGreedy(Algorithm):
                 path.append((Sbest, Ebest))
 
                 self.logger.write_msg(
-                    k+1, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(),
+                    k+1, evaluator.get_counter(), Ebest, Sbest.get_compilation_flags(),
                 )
 
                 neighbors = Sbest.get_neighbors(self.optimize_problem_size)
@@ -95,10 +95,10 @@ class parallelgreedy(Algorithm):
     def __init__(self, hparams, problem_size) -> None:
         super().__init__(hparams, problem_size)
 
-    def run(self, kmax):
+    def run(self, kmax, evaluator):
 
         Sbest = get_random_solution(self.problem_size)
-        Ebest = Sbest.cost(evaluation_session)
+        Ebest = evaluator.cost(Sbest)
         neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         n = len(neighbors)
         k = 0
@@ -110,7 +110,7 @@ class parallelgreedy(Algorithm):
 
         while k < kmax and n > 0 and newBetterS:
             for i in range(n):
-                tabE[i] = neighbors[i].cost(evaluation_session)
+                tabE[i] = evaluator.cost(neighbors[i])
 
             j = 0
             for i in range(n):
@@ -149,12 +149,12 @@ def FifoAdd(logger, Sbest, Ltabu, TabuSize=10):
     return Ltabu
 
 
-def TabuFindBest(Lneigh, Ltabu, evaluation_session):
+def TabuFindBest(Lneigh, Ltabu, evaluator):
     E1 = -math.inf
     S1 = None
     for S2 in Lneigh:
         if S2 not in Ltabu:
-            E2 = S2.cost(evaluation_session)
+            E2 = evaluator.cost(S2)
             if E2 > E1:
                 S1 = S2
                 E1 = E2

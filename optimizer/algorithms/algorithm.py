@@ -9,7 +9,7 @@ class Algorithm:
         self.logger = logger
         self.optimize_problem_size = optimize_problem_size
 
-    def run(self, num_steps, evaluation_session) -> None:
+    def run(self, num_steps, evaluator) -> None:
         raise NotImplementedError
     
     def register_hyperparameter(self, key, default_value):

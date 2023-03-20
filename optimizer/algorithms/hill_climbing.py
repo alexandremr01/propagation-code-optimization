@@ -14,21 +14,21 @@ class HillClimbing(Algorithm):
     def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         
-    def run(self, num_steps, evaluation_session):
+    def run(self, num_steps, evaluator):
         self.logger.write_info('Starting hill_climbing')
         Sbest = get_random_solution(self.problem_size)
-        Ebest = Sbest.cost(evaluation_session)
+        Ebest = evaluator.cost(Sbest)
         neighbors = Sbest.get_neighbors(self.optimize_problem_size)
         k = 0
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
-            k, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+            k, evaluator.get_counter(), Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
         while k < num_steps and len(neighbors) > 0:
             selected_index = random.randint(0, len(neighbors)-1)
             S_new = neighbors[selected_index]
             neighbors.pop(selected_index)
-            E_new = S_new.cost(evaluation_session)
+            E_new = evaluator.cost(S_new)
             if E_new > Ebest:
                 log_flair = 'New best!'
                 Ebest = E_new
@@ -40,7 +40,7 @@ class HillClimbing(Algorithm):
             k += 1
 
             self.logger.write_msg(
-                k, evaluation_session.run_counter, E_new, S_new.get_compilation_flags(), flair=log_flair
+                k, evaluator.get_counter(), E_new, S_new.get_compilation_flags(), flair=log_flair
             )
         if len(neighbors) <= 0:
             self.logger.write_info(
