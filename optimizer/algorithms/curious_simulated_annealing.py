@@ -76,7 +76,7 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
             particles = self.comm.scatter(particles,root=0)
             for i in range(len(particles)):
                 # Perturb the particle
-                perturbed_particle = particles[i].get_random_neighbor()
+                perturbed_particle = particles[i].get_random_neighbor(self.optimize_problem_size)
 
                 # Calculate the energy difference
                 energy_diff = evaluator.cost(perturbed_particle) - evaluator.cost(particles[i])
