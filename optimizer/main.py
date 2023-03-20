@@ -49,7 +49,7 @@ def run_algorithm(algorithm, args, comm, evaluator):
             best_ix = 0
             best_E_overall = -1
             for i in range(len(TabE)):
-                recalculated_cost = TabS[i].cost(evaluation_session, num_evaluations=3, ignore_cache=True)
+                recalculated_cost = evaluator.cost(TabS[i], num_evaluations=3, ignore_cache=True)
                 logger.write_raw('\t' + str(TabE[i]) + ' ' + TabS[i].get_compilation_flags() + ' Final evaluation: ' + str(recalculated_cost))
                 if recalculated_cost > best_E_overall:
                     best_E_overall = recalculated_cost
