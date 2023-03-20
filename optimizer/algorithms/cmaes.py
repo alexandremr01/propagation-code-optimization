@@ -2,7 +2,7 @@ import cma
 import numpy as np
 
 from optimizer.solution import Solution
-from optimizer.evaluator import Simulator
+from optimizer.evaluators import Simulator
 from optimizer.random_solution import get_random_solution
 from optimizer.solution_space import SolutionSpace
 from optimizer.algorithms import Algorithm
@@ -13,8 +13,8 @@ class CMAESAlgorithm(Algorithm):
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         self.iteration = 0
 
-    def run(self, kmax, evaluation_session):
-        self.evaluation_session = evaluation_session
+    def run(self, kmax, evaluator):
+        self.evaluator = evaluator
         # slaves: go straight to slave execution, the only thing they will
         # do is wait for the scatter, then 
         if self.comm.Get_rank() != 0:
@@ -32,9 +32,9 @@ class CMAESAlgorithm(Algorithm):
         }
         # TODO: pass parallel_objective instead of cost_function
         x, es = cma.fmin2(
-            None, #lambda x : self.cost_function(x), 
-            x0, 
-            sigma0, 
+            None, #lambda x : self.cost_function(x),
+            x0,
+            sigma0,
             options,
             parallel_objective=lambda xs:self.parallel_cost_function(xs),
         )
@@ -45,16 +45,16 @@ class CMAESAlgorithm(Algorithm):
         Sbest.display()
         # TODO: how to manage path for CMAES?
         path = [ ]
-        return Sbest, Sbest.cost(evaluation_session), path
+        return Sbest, evaluator.cost(Sbest), path
 
     def cost_function(self, x): #currntly unuseed function
         solution = self.x_to_solution(x)
-        cost = solution.cost(self.evaluation_session)
+        cost = self.evaluator.cost(solution)
         print('Evaluating:', end=' ')
         solution.display()
         print('Cost: ', cost)
         return -cost
-    
+
     def execute_slave(self):
         while True:
             self.comm.Barrier()
@@ -71,9 +71,9 @@ class CMAESAlgorithm(Algorithm):
         costs = [ ]
         for x in data:
             solution = self.x_to_solution(x)
-            cost = solution.cost(self.evaluation_session)
+            cost = self.evaluator.cost(solution)
             self.logger.write_msg(
-                self.iteration + 1, evaluation_session.run_counter, solution.cost(self.evaluation_session), solution.get_compilation_flags(),
+                self.iteration + 1, self.evaluator.get_counter(), cost, solution.get_compilation_flags(),
                 flair=None,
             )
 
@@ -82,13 +82,13 @@ class CMAESAlgorithm(Algorithm):
 
     def parallel_cost_function(self, x):
         # make list of N_process lists of arrays
-        grouped_x = group_particles(x, self.comm.Get_size()) 
+        grouped_x = group_particles(x, self.comm.Get_size())
         # alert all process to continue
-        self.comm.Barrier() 
+        self.comm.Barrier()
         # send data to each process
-        data = self.comm.scatter(grouped_x,root=0) 
+        data = self.comm.scatter(grouped_x,root=0)
         # calculate own costs
-        costs = self.list_costs(data) 
+        costs = self.list_costs(data)
         # aggregate costs from all processes
         costs = self.comm.gather(costs,root=0)
         self.iteration = self.iteration + 1
@@ -102,12 +102,12 @@ class CMAESAlgorithm(Algorithm):
             problem_size_x=self.problem_size[0],
             problem_size_y=self.problem_size[1],
             problem_size_z=self.problem_size[2],
-            nthreads=16, # fixed 
+            nthreads=16, # fixed
             thrdblock_x=self.problem_size[0],  # fixed
             thrdblock_y=SolutionSpace.threadblocks[x_parsed[2]],
             thrdblock_z=SolutionSpace.threadblocks[x_parsed[3]],
         )
-    
+
     def solution_to_x(self, solution):
         return [
             SolutionSpace.o_levels.index(solution.olevel),
@@ -115,11 +115,11 @@ class CMAESAlgorithm(Algorithm):
             SolutionSpace.threadblocks.index(solution.thrdblock_y),
             SolutionSpace.threadblocks.index(solution.thrdblock_z),
         ]
-    
+
     def get_bounds(self):
         return [0, [
-            len(SolutionSpace.o_levels)-1e-3, 
-            len(SolutionSpace.simds)-1e-3, 
-            len(SolutionSpace.threadblocks)-1e-3, 
-            len(SolutionSpace.threadblocks)-1e-3, 
+            len(SolutionSpace.o_levels)-1e-3,
+            len(SolutionSpace.simds)-1e-3,
+            len(SolutionSpace.threadblocks)-1e-3,
+            len(SolutionSpace.threadblocks)-1e-3,
         ]]
