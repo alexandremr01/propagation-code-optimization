@@ -124,8 +124,8 @@ class CMAESAlgorithm(Algorithm):
         ]
         if self.optimize_problem_size:
             x += [
-                SolutionSpace.threadblocks.index(solution.problem_size_x),
-                SolutionSpace.threadblocks.index(solution.problem_size_y),
+                SolutionSpace.problem_size.index(solution.problem_size_x),
+                SolutionSpace.problem_size.index(solution.problem_size_y),
             ]
         return x
 
