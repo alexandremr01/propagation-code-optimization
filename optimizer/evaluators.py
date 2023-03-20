@@ -89,7 +89,7 @@ class NaiveEvaluator(BaseEvaluator):
         return mean_throughput
 
 #To use this class you must be root
-class EnergyEvaluator: 
+class EnergyEvaluator(BaseEvaluator): 
     def __init__(self, olevel, simd, problem_size_x, problem_size_y, problem_size_z, nthreads, thrdblock_x, thrdblock_y, thrdblock_z) -> None:
         self.olevel = olevel
         self.simd = simd
@@ -204,4 +204,4 @@ class EnergyEvaluator:
         mean_energy = round(mean_energy/num_evaluations, 2)
         self.calculated_cost = mean_throughput
         self.calculated_energy = mean_energy
-        return mean_throughput,mean_energy
+        return mean_throughput/mean_energy
