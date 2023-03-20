@@ -102,7 +102,7 @@ class CMAESAlgorithm(Algorithm):
         if self.optimize_problem_size:
             problem_size_x = SolutionSpace.problem_size[x_parsed[4]]
             problem_size_y = SolutionSpace.problem_size[x_parsed[5]]
-            problem_size_z = self.problem_size_product / (problem_size_x * problem_size_y)
+            problem_size_z = self.problem_size_product // (problem_size_x * problem_size_y)
         return Solution(
             olevel=SolutionSpace.o_levels[x_parsed[0]],
             simd=SolutionSpace.simds[x_parsed[1]],
