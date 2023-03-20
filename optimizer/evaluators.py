@@ -89,7 +89,7 @@ class NaiveEvaluator(BaseEvaluator):
         return mean_throughput
 
 #To use this class you must be root
-class EnergyEvaluator(BaseEvaluator): 
+class EnergyEvaluator(BaseEvaluator):
     def __init__(self, program_path, evaluation_session):
         super().__init__(program_path, evaluation_session)
 
@@ -105,7 +105,7 @@ class EnergyEvaluator(BaseEvaluator):
             idx = idx.union(sub_df[sub_df.iloc[:,i]>8000.0].index)
         df.drop(idx, inplace=True)
         print('filter out {} rows'.format(idx.size))
-            
+
         (max_row, max_col) = df.shape
         print('row: {}, col: {}'.format(max_row,max_col))
         df[df.select_dtypes(include=[np.number]).ge(0).all(1)]
@@ -121,14 +121,14 @@ class EnergyEvaluator(BaseEvaluator):
         t_min = np.min(t)
         t_max = np.max(t)
 
-        dram_energy = 0.0 
-        pkg_energy = 0.0 
+        dram_energy = 0.0
+        pkg_energy = 0.0
         for i in range(0, power_col):
             dram_energy += np.trapz(power_dram_table.iloc[:,i].to_numpy(),t)/1000.0
             pkg_energy += np.trapz(power_pkg_table.iloc[:,i].to_numpy(),t)/1000.0
 
         return dram_energy,pkg_energy,dram_energy+pkg_energy
-    
+
     def cost(self, solution, verbose=False, delete_file=True, num_evaluations=1, ignore_cache=False, affinity='balanced'):
         program_path = self.program_path
         if not ignore_cache and solution.calculated_cost is not None:
@@ -139,7 +139,7 @@ class EnergyEvaluator(BaseEvaluator):
         file_name_with_ext = f'{file_name}.exe'
         executable_path = f'{program_path}/bin/{file_name_with_ext}'
 
-        result = subprocess.run(['make', '-C', program_path, f'Olevel={self.olevel}', f'simd={self.simd}', 'last'],
+        result = subprocess.run(['make', '-C', program_path, f'Olevel={solution.olevel}', f'simd={solution.simd}', 'last'],
                                 stdout=subprocess.DEVNULL,
                                 env=dict(os.environ, CONFIG_EXE_NAME=file_name_with_ext))
         if result.returncode != 0:
