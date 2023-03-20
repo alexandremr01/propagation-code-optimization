@@ -73,7 +73,7 @@ class CMAESAlgorithm(Algorithm):
             solution = self.x_to_solution(x)
             cost = solution.cost(self.evaluation_session)
             self.logger.write_msg(
-                self.iteration + 1, solution.cost(self.evaluation_session), solution.get_compilation_flags(),
+                self.iteration + 1, evaluation_session.run_counter, solution.cost(self.evaluation_session), solution.get_compilation_flags(),
                 flair=None,
             )
 

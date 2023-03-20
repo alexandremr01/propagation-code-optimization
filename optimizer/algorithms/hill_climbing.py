@@ -9,6 +9,7 @@ from optimizer.solution import Solution
 from optimizer.random_solution import get_random_solution
 from optimizer.algorithms import Algorithm
 
+
 class HillClimbing(Algorithm):
     def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
@@ -21,7 +22,7 @@ class HillClimbing(Algorithm):
         k = 0
         path = [(Sbest, Ebest)]
         self.logger.write_msg(
-            k, Ebest, Sbest.get_compilation_flags(), flair='Initial'
+            k, evaluation_session.run_counter, Ebest, Sbest.get_compilation_flags(), flair='Initial'
         )
         while k < num_steps and len(neighbors) > 0:
             selected_index = random.randint(0, len(neighbors)-1)
@@ -39,6 +40,10 @@ class HillClimbing(Algorithm):
             k += 1
 
             self.logger.write_msg(
-                k, E_new, S_new.get_compilation_flags(), flair=log_flair
+                k, evaluation_session.run_counter, E_new, S_new.get_compilation_flags(), flair=log_flair
             )
+        if len(neighbors) <= 0:
+            self.logger.write_info(
+                'Algorithm exited: Best solution neighborhood was fully explored ')
+
         return Sbest, Ebest, path

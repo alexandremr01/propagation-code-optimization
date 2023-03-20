@@ -15,9 +15,9 @@ and initialize it with `source .env`.
 
 `make upload`
 
-## Downloading log file
+## Downloading log files
 
-`make get_log`
+`make get_logs`
 
 ## Deployment Examples
 

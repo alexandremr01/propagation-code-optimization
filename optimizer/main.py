@@ -78,13 +78,14 @@ if __name__ == "__main__":
     parser.add_argument('--problem_size', type=int, nargs=3, default=[256, 256, 256], help='Three dimensions of problem size')
     parser.add_argument('--flexible_shape', action='store_true', help='Allows changing the problem shape')
     parser.add_argument('--phase', type=str, default='deploy', choices=['deploy', 'run'])
+    parser.add_argument('--log', type=str, default='myLog.log', help='Name of the log file (with extension)')
 
     args = parser.parse_args()
     hparams = json.loads(args.hparams)
 
     comm = MPI.COMM_WORLD
 
-    logfile = "myLog.log"
+    logfile = args.log
     if args.batch:
         logger = Logger(process_id=comm.Get_rank(), save_to_logfile=False)
     else:
@@ -108,11 +109,10 @@ if __name__ == "__main__":
     elif args.phase == 'deploy' and not args.batch:
         deploy_single(args, sys.argv[0], logger)
     else: # phase is run
-        evaluation_session = Simulator()
+        evaluation_session = Simulator(logger)
         run_algorithm(algorithm, args, comm, evaluation_session)
-
+        logger.write_info(f"Run finished. Logs can be found at {logfile}.")
+    
     # retrieve logs from slurm file
     if args.batch:
         slurm_to_logfile(find_slurmfile(os.getcwd()), logfile)
-
-    logger.write_info(f"Run finished. Logs can be found at {logfile}.")
