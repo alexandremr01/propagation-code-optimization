@@ -133,8 +133,8 @@ class Solution:
         """return if it is possible to reduce dim1 and increase dim2"""
         return dim1_ix > 0 and dim2_ix < len(SolutionSpace.problem_size) - 1
 
-    def get_random_neighbor(self):
-        neighbors = self.get_neighbors(self.optimize_problem_size)
+    def get_random_neighbor(self, optimize_problem_size):
+        neighbors = self.get_neighbors(optimize_problem_size)
         return np.random.choice(neighbors)
 
     def display(self):
