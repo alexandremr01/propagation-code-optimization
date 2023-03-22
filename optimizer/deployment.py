@@ -18,7 +18,7 @@ def deploy_kangaroo(args, script_name, logger):
             f'python3 -m optimizer.main {formatted_new_args}')
         script_file.write(script)
 
-    cmd = f"sbatch -p cpu_prod --exclusive -N 4 -n 128 --qos=16nodespu --wait {file_name_with_ext}" 
+    cmd = f"sbatch -p cpu_prod --exclusive -N 4 -n 128 --qos=16nodespu {file_name_with_ext}"
     logger.write_info("Executed command: " + cmd)
     logger.write_info("Waiting for batch job completion...")
     res = subprocess.run(cmd,shell=True, env=os.environ)
