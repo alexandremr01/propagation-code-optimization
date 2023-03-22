@@ -104,12 +104,9 @@ class EnergyEvaluator(BaseEvaluator):
         for i in range(0, max_col):
             idx = idx.union(sub_df[sub_df.iloc[:,i]>8000.0].index)
         df.drop(idx, inplace=True)
-        print('filter out {} rows'.format(idx.size))
             
         (max_row, max_col) = df.shape
-        print('row: {}, col: {}'.format(max_row,max_col))
         df[df.select_dtypes(include=[np.number]).ge(0).all(1)]
-        print('row: {}, col: {}'.format(max_row,max_col))
 
         power_pkg_table   = df.filter(regex=("^PW_PKG[0-9]*"))
         power_dram_table  = df.filter(regex=("^PW_DRAM[0-9]*"))
@@ -139,7 +136,7 @@ class EnergyEvaluator(BaseEvaluator):
         file_name_with_ext = f'{file_name}.exe'
         executable_path = f'{program_path}/bin/{file_name_with_ext}'
 
-        result = subprocess.run(['make', '-C', program_path, f'Olevel={self.olevel}', f'simd={self.simd}', 'last'],
+        result = subprocess.run(['make', '-C', program_path, f'Olevel={solution.olevel}', f'simd={solution.simd}', 'last'],
                                 stdout=subprocess.DEVNULL,
                                 env=dict(os.environ, CONFIG_EXE_NAME=file_name_with_ext))
         if result.returncode != 0:
