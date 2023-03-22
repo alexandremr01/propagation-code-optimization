@@ -136,7 +136,7 @@ class EnergyEvaluator(BaseEvaluator):
         file_name_with_ext = f'{file_name}.exe'
         executable_path = f'{program_path}/bin/{file_name_with_ext}'
 
-        result = subprocess.run(['make', '-C', program_path, f'Olevel={self.olevel}', f'simd={self.simd}', 'last'],
+        result = subprocess.run(['make', '-C', program_path, f'Olevel={solution.olevel}', f'simd={solution.simd}', 'last'],
                                 stdout=subprocess.DEVNULL,
                                 env=dict(os.environ, CONFIG_EXE_NAME=file_name_with_ext))
         if result.returncode != 0:
