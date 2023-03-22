@@ -126,7 +126,7 @@ class EnergyEvaluator(BaseEvaluator):
 
         return dram_energy,pkg_energy,dram_energy+pkg_energy
     
-    def cost(self, solution, verbose=False, delete_file=True, num_evaluations=1, ignore_cache=False, affinity='balanced'):
+    def energy_throughput_compute(self, solution, verbose=False, delete_file=True, num_evaluations=1, ignore_cache=False, affinity='balanced'):
         program_path = self.program_path
         if not ignore_cache and solution.calculated_cost is not None:
             return solution.calculated_cost
@@ -136,7 +136,7 @@ class EnergyEvaluator(BaseEvaluator):
         file_name_with_ext = f'{file_name}.exe'
         executable_path = f'{program_path}/bin/{file_name_with_ext}'
 
-        result = subprocess.run(['make', '-C', program_path, f'Olevel={solution.olevel}', f'simd={solution.simd}', 'last'],
+        result = subprocess.run(['make', '-C', program_path, f'Olevel={self.olevel}', f'simd={self.simd}', 'last'],
                                 stdout=subprocess.DEVNULL,
                                 env=dict(os.environ, CONFIG_EXE_NAME=file_name_with_ext))
         if result.returncode != 0:
@@ -158,20 +158,13 @@ class EnergyEvaluator(BaseEvaluator):
                                      capture_output=True,
                                      env=new_environment)
             energy = self.csv_to_energy('temporary_csv_file.csv')[2]
-            result = subprocess.run([executable_path,
-                                     str(solution.problem_size_x),
-                                     str(solution.problem_size_y),
-                                     str(solution.problem_size_z),
-                                     str(solution.nthreads), '100',
-                                     str(solution.thrdblock_x),
-                                     str(solution.thrdblock_y),
-                                     str(solution.thrdblock_z)],
-                                     capture_output=True,
-                                     env=new_environment)
+            
             if result.returncode != 0:
                 raise Exception(f'Failed executing: { result.returncode }')
 
-            output = result.stdout
+            with open('temporary_csv_file.out') as  f:
+                output =f.readlines()
+                f.close()
             m = re.search('throughput:\s+([\d\.]+)', str(output))
             throughput = m.group(1)
             try:
@@ -190,4 +183,8 @@ class EnergyEvaluator(BaseEvaluator):
         mean_throughput = round(mean_throughput/num_evaluations, 2)
         mean_energy = round(mean_energy/num_evaluations, 2)
         solution.calculated_cost = mean_throughput / mean_energy
-        return mean_throughput / mean_energy
+        return mean_throughput,mean_energy
+
+    def cost(self, solution, verbose=False, delete_file=True, num_evaluations=1, ignore_cache=False, affinity='balanced'):
+        throughput,energy = self.energy_throughput_compute(solution, verbose, delete_file, num_evaluations, ignore_cache, affinity)
+        return throughput/energy
