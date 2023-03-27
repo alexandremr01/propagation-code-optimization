@@ -9,11 +9,12 @@ class LocalConditionnalAcceptance(Algorithm):
     def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         self.register_hyperparameter('t0', 100)
+        self.register_hyperparameter('lambda', 0.9)
         self.parse_hyperparameters()
 
         self.T0 = self.hparams['t0']
         # TODO: current temperature function is hard coded
-        self.f = lambda x: 0.9*x
+        self.f = lambda x: self.hparams['lambda']*x
 
     def run(self, kmax, evaluator):
         self.logger.write_info('Starting simulated_annealing')

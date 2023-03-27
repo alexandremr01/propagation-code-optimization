@@ -4,11 +4,11 @@ import re
 import shutil, glob
 
 class Logger():
-    def __init__(self, process_id, logfile='lastrun.log', save_to_logfile=True):
+    def __init__(self, process_id, logfile='lastrun.log', save_to_logfile=True, save_to_terminal=True):
         self.Me = process_id
 
         self.log = open(logfile, "w") if save_to_logfile else None
-        self.terminal = sys.stdout
+        self.terminal = sys.stdout if save_to_terminal else None
     
     def write_msg(self, iteration_number, evaluation_number, cost, compilation_flags, flair=None):
         # Example:
@@ -24,23 +24,23 @@ class Logger():
         if flair:
             logstring += f"\t({flair})"
 
-        self.terminal.write(logstring + "\n")
+        if self.terminal: self.terminal.write(logstring + "\n")
         if self.log: self.log.write(logstring + "\n")
         if self.log: self.log.flush()
 
     def write_info(self, infostring):
-        self.terminal.write(f"[info] [Me={self.Me}] " + infostring + "\n")
+        if self.terminal: self.terminal.write(f"[info] [Me={self.Me}] " + infostring + "\n")
         if self.log: self.log.write(f"[info] [Me={self.Me}] " + infostring + "\n")
         if self.log: self.log.flush()
 
     def jumpline(self):
-        self.terminal.write("\n")
+        if self.terminal: self.terminal.write("\n")
         if self.log: self.log.write("\n")
         if self.log: self.log.flush()
 
     def write_raw(self, textstring):
         # Safe to use with strings starting with '\t'
-        self.terminal.write(textstring + "\n")
+        if self.terminal: self.terminal.write(textstring + "\n")
         if self.log: self.log.write(textstring + "\n")
         if self.log: self.log.flush()
 
