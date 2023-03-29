@@ -144,7 +144,7 @@ class EnergyEvaluator(BaseEvaluator):
 
         mean_throughput = 0
         mean_energy = 0
-        new_environment = dict(os.environ, KMP_AFFINITY='scatter')
+        new_environment = dict(os.environ, KMP_AFFINITY=affinity)
         csv_path = 'temporary_csv_file.csv'
         for _ in range(num_evaluations):
             result_nrj = subprocess.run(['cpu_monitor_binary/releases/default/cpu_monitor.x','--csv',f'--csv-file={csv_path}','--quiet','--redirect',executable_path,
