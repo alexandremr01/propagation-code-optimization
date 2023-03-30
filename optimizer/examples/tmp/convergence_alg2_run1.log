@@ -1,0 +1,101 @@
+[info] [Me=0] Args:
+	algorithm: tabu_greedy
+	batch: False
+	flexible_shape: False
+	hparams: {"n_tabu":5}
+	log: convergence_alg2_run1.log
+	phase: run
+	problem_size: [256, 256, 256]
+	program_path: iso3dfd-st7
+	seed: 33
+	steps: 10
+	use_energy: False
+[info] [Me=0] Hyperparameters:
+	n_tabu: 5
+[info] [Me=0] real seed: 33
+[info] [Me=0] Simulator initialized
+[info] [Me=0] Starting tabu_greedy hill climbing
+[21:27:54]	[Me=0]	[k=0]	[eval=1]	Cost=1323.96	-O2 avx 256 256 256 16 256 3 3	(Initial)
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 3 4
+[21:28:12]	[Me=0]	[k=1]	[eval=9]	Cost=1337.81	-O2 avx 256 256 256 16 256 3 4
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 3 4
+	-O2 avx 256 256 256 16 256 3 5
+[21:28:24]	[Me=0]	[k=2]	[eval=17]	Cost=1376.35	-O2 avx 256 256 256 16 256 3 5
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 3 4
+	-O2 avx 256 256 256 16 256 3 5
+	-O2 avx 256 256 256 16 256 4 5
+[21:28:35]	[Me=0]	[k=3]	[eval=25]	Cost=1431.46	-O2 avx 256 256 256 16 256 4 5
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 3 4
+	-O2 avx 256 256 256 16 256 3 5
+	-O2 avx 256 256 256 16 256 4 5
+	-O2 avx 256 256 256 16 256 4 6
+[21:28:46]	[Me=0]	[k=4]	[eval=33]	Cost=1433.64	-O2 avx 256 256 256 16 256 4 6
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 3 4
+	-O2 avx 256 256 256 16 256 3 5
+	-O2 avx 256 256 256 16 256 4 5
+	-O2 avx 256 256 256 16 256 4 6
+	-O2 avx 256 256 256 16 256 4 7
+[21:28:57]	[Me=0]	[k=5]	[eval=41]	Cost=1452.49	-O2 avx 256 256 256 16 256 4 7
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 3 5
+	-O2 avx 256 256 256 16 256 4 5
+	-O2 avx 256 256 256 16 256 4 6
+	-O2 avx 256 256 256 16 256 4 7
+	-O2 avx 256 256 256 16 256 4 8
+[21:29:08]	[Me=0]	[k=6]	[eval=49]	Cost=1462.76	-O2 avx 256 256 256 16 256 4 8
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 4 5
+	-O2 avx 256 256 256 16 256 4 6
+	-O2 avx 256 256 256 16 256 4 7
+	-O2 avx 256 256 256 16 256 4 8
+	-O2 avx 256 256 256 16 256 4 9
+[21:29:19]	[Me=0]	[k=7]	[eval=57]	Cost=1471.66	-O2 avx 256 256 256 16 256 4 9
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 4 6
+	-O2 avx 256 256 256 16 256 4 7
+	-O2 avx 256 256 256 16 256 4 8
+	-O2 avx 256 256 256 16 256 4 9
+	-O2 avx 256 256 256 16 256 4 10
+[21:29:30]	[Me=0]	[k=8]	[eval=65]	Cost=1480.17	-O2 avx 256 256 256 16 256 4 10
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 4 7
+	-O2 avx 256 256 256 16 256 4 8
+	-O2 avx 256 256 256 16 256 4 9
+	-O2 avx 256 256 256 16 256 4 10
+	-O2 avx 256 256 256 16 256 4 11
+[21:29:40]	[Me=0]	[k=9]	[eval=73]	Cost=1482.66	-O2 avx 256 256 256 16 256 4 11
+[info] [Me=0] Tabu List:
+	-O2 avx 256 256 256 16 256 4 8
+	-O2 avx 256 256 256 16 256 4 9
+	-O2 avx 256 256 256 16 256 4 10
+	-O2 avx 256 256 256 16 256 4 11
+	-O2 avx 256 256 256 16 256 4 12
+[21:29:51]	[Me=0]	[k=10]	[eval=81]	Cost=1487.0	-O2 avx 256 256 256 16 256 4 12
+[info] [Me=0] Path taken:
+	1323.96 -O2 avx 256 256 256 16 256 3 3
+	1337.81 -O2 avx 256 256 256 16 256 3 4
+	1376.35 -O2 avx 256 256 256 16 256 3 5
+	1431.46 -O2 avx 256 256 256 16 256 4 5
+	1433.64 -O2 avx 256 256 256 16 256 4 6
+	1452.49 -O2 avx 256 256 256 16 256 4 7
+	1462.76 -O2 avx 256 256 256 16 256 4 8
+	1471.66 -O2 avx 256 256 256 16 256 4 9
+	1480.17 -O2 avx 256 256 256 16 256 4 10
+	1482.66 -O2 avx 256 256 256 16 256 4 11
+	1487.0 -O2 avx 256 256 256 16 256 4 12
+[info] [Me=0] Best solution found:
+	1487.0 -O2 avx 256 256 256 16 256 4 12
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	1487.0 -O2 avx 256 256 256 16 256 4 12 Final evaluation: 1487.94
+[info] [Me=0] Best overall:
+	1487.94 -O2 avx 256 256 256 16 256 4 12
+[info] [Me=0] Total cost evaluations: 81
+[info] [Me=0] Elapsed time: 3.32 seconds
+[info] [Me=0] Run finished. Logs can be found at convergence_alg2_run1.log.

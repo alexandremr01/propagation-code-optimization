@@ -1,0 +1,51 @@
+[info] [Me=0] Args:
+	algorithm: greedy
+	batch: False
+	flexible_shape: False
+	hparams: {}
+	log: convergence_alg1_run1.log
+	phase: run
+	problem_size: [256, 256, 256]
+	program_path: iso3dfd-st7
+	seed: 33
+	steps: 10
+	use_energy: False
+[info] [Me=0] Hyperparameters:
+[info] [Me=0] real seed: 33
+[info] [Me=0] Simulator initialized
+[info] [Me=0] Starting greedy hill climbing
+[21:17:39]	[Me=0]	[k=0]	[eval=1]	Cost=1323.05	-O2 avx 256 256 256 16 256 3 3	(Initial)
+[21:17:50]	[Me=0]	[k=1]	[eval=9]	Cost=1339.12	-O2 avx 256 256 256 16 256 4 3
+[21:18:02]	[Me=0]	[k=2]	[eval=17]	Cost=1369.33	-O2 avx 256 256 256 16 256 4 4
+[21:18:13]	[Me=0]	[k=3]	[eval=25]	Cost=1427.83	-O2 avx 256 256 256 16 256 4 5
+[21:18:24]	[Me=0]	[k=4]	[eval=33]	Cost=1432.54	-O2 avx 256 256 256 16 256 4 6
+[21:18:35]	[Me=0]	[k=5]	[eval=41]	Cost=1449.16	-O2 avx 256 256 256 16 256 4 7
+[21:18:46]	[Me=0]	[k=6]	[eval=49]	Cost=1462.84	-O2 avx 256 256 256 16 256 4 8
+[21:18:57]	[Me=0]	[k=7]	[eval=57]	Cost=1472.98	-O2 avx 256 256 256 16 256 4 9
+[21:19:08]	[Me=0]	[k=8]	[eval=65]	Cost=1481.58	-O2 avx 256 256 256 16 256 4 10
+[21:19:19]	[Me=0]	[k=9]	[eval=73]	Cost=1484.01	-O2 avx 256 256 256 16 256 4 11
+[21:19:29]	[Me=0]	[k=10]	[eval=81]	Cost=1486.19	-O2 avx 256 256 256 16 256 4 12
+[info] [Me=0] End of the loop via number of iterations
+[info] [Me=0] Path taken:
+	1323.05 -O2 avx 256 256 256 16 256 3 3
+	1339.12 -O2 avx 256 256 256 16 256 4 3
+	1369.33 -O2 avx 256 256 256 16 256 4 4
+	1427.83 -O2 avx 256 256 256 16 256 4 5
+	1432.54 -O2 avx 256 256 256 16 256 4 6
+	1449.16 -O2 avx 256 256 256 16 256 4 7
+	1462.84 -O2 avx 256 256 256 16 256 4 8
+	1472.98 -O2 avx 256 256 256 16 256 4 9
+	1481.58 -O2 avx 256 256 256 16 256 4 10
+	1484.01 -O2 avx 256 256 256 16 256 4 11
+	1486.19 -O2 avx 256 256 256 16 256 4 12
+[info] [Me=0] Best solution found:
+	1486.19 -O2 avx 256 256 256 16 256 4 12
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	1486.19 -O2 avx 256 256 256 16 256 4 12 Final evaluation: 1488.91
+[info] [Me=0] Best overall:
+	1488.91 -O2 avx 256 256 256 16 256 4 12
+[info] [Me=0] Total cost evaluations: 81
+[info] [Me=0] Elapsed time: 3.33 seconds
+[info] [Me=0] Run finished. Logs can be found at convergence_alg1_run1.log.
