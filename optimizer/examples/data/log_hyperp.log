@@ -1,0 +1,103 @@
+Hyperparameters:
+	lambda: 0.9686238438410361
+	t0: 992.6788812965879
+Best solution found:
+	1424.59 -O2 avx 256 256 256 32 64 32 8
+Hyperparameters:
+	lambda: 0.9022190109208237
+	t0: 460.3064479746245
+Best solution found:
+	1126.41 -Ofast avx 256 256 256 32 64 64 4
+Hyperparameters:
+	lambda: 0.8524545881890173
+	t0: 420.8068781163532
+Best solution found:
+	1129.12 -O2 avx2 256 256 256 32 64 64 4
+Hyperparameters:
+	lambda: 0.8356721668419264
+	t0: 509.70442136391495
+Best solution found:
+	1421.76 -O2 avx 256 256 256 32 64 32 8
+Hyperparameters:
+	lambda: 0.8409204590122261
+	t0: 508.10694443797615
+Best solution found:
+	1124.52 -Ofast avx 256 256 256 32 64 64 4
+Hyperparameters:
+	lambda: 0.9654001558121975
+	t0: 545.8627573366737
+Best solution found:
+	1422.94 -Ofast avx 256 256 256 32 64 32 8
+Hyperparameters:
+	lambda: 0.8117595813825437
+	t0: 785.7125189802148
+Best solution found:
+	1420.1 -Ofast avx 256 256 256 32 64 32 8
+Hyperparameters:
+	lambda: 0.8953125070088144
+	t0: 140.8641953085566
+Best solution found:
+	1179.58 -Ofast avx 256 256 256 32 128 64 4
+Hyperparameters:
+	lambda: 0.8879536583369732
+	t0: 594.3178791936539
+Best solution found:
+	1423.45 -Ofast avx 256 256 256 32 64 32 8
+Hyperparameters:
+	lambda: 0.9275734681683021
+	t0: 490.41159308647013
+Best solution found:
+	1525.52 -Ofast avx 256 256 256 32 128 32 8
+Hyperparameters:
+	lambda: 0.9585170157427866
+	t0: 344.94413834866725
+Best solution found:
+	1299.14 -O2 avx 256 256 256 32 32 32 8
+Hyperparameters:
+	lambda: 0.993178994657414
+	t0: 932.7713162756221
+Best solution found:
+	872.94 -O3 avx2 256 256 256 32 256 128 16
+Hyperparameters:
+	lambda: 0.9629402455625949
+	t0: 29.21748793541369
+Best solution found:
+	1177.93 -Ofast avx 256 256 256 32 128 64 4
+Hyperparameters:
+	lambda: 0.8836754310652106
+	t0: 411.7878458085902
+Best solution found:
+	1189.06 -O2 avx 256 256 256 32 64 64 8
+Hyperparameters:
+	lambda: 0.8133736340545432
+	t0: 404.9362102253826
+Best solution found:
+	1395.78 -O2 avx 256 256 256 32 256 64 8
+Hyperparameters:
+	lambda: 0.9014101236361365
+	t0: 876.7517634326397
+Best solution found:
+	1150.8 -Ofast avx2 256 256 256 32 32 64 8
+Hyperparameters:
+	lambda: 0.8687689229399024
+	t0: 591.4920491337847
+Best solution found:
+	1423.23 -Ofast avx 256 256 256 32 64 32 8
+Hyperparameters:
+	lambda: 0.9215503999081587
+	t0: 296.86114265878183
+Best solution found:
+	1422.18 -Ofast avx 256 256 256 32 64 32 8
+Hyperparameters:
+	lambda: 0.8791330725756712
+	t0: 762.709420365026
+Best solution found:
+	1191.37 -O2 avx 256 256 256 32 64 64 8
+Hyperparameters:
+	lambda: 0.8106731227002884
+	t0: 48.599800489153616
+Best solution found:
+	1150.51 -Ofast avx2 256 256 256 32 32 64 8
+Recommendation:
+((), {'t0': 490.41159308647013, 'lbd': 0.9275734681683021})
+
