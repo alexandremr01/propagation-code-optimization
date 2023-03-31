@@ -11,6 +11,8 @@ from optimizer.algorithms.curious_simulated_annealing import group_particles, un
 
 class CMAESAlgorithm(Algorithm):
     def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
+        if optimize_problem_size:
+            raise Exception('CMAES not compatible with optimize problem size')
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         self.problem_size_product = problem_size[0] * problem_size[1] * problem_size[2]
         self.iteration = 0

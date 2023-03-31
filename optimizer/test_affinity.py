@@ -39,7 +39,7 @@ def execute_with_affinity(affinity=None, nthreads=16, num_evaluations=20):
     print('Std/Mean %: ', 100*np.std(throughputs) / np.average(throughputs), '\n\n')
 
 list_nthreads = [16, 32]
-affinities = [None, 'compact', 'scatter']
+affinities = [None, 'compact', 'scatter', 'balanced']
 for nthreads in list_nthreads:
     for affinity in affinities:
         execute_with_affinity(affinity, nthreads)
