@@ -1,0 +1,101 @@
+[info] [Me=0] Args:
+	algorithm: hill_climbing
+	batch: False
+	flexible_shape: False
+	hparams: {}
+	log: convergence_alg0_run3.log
+	phase: run
+	problem_size: [256, 256, 256]
+	program_path: iso3dfd-st7
+	seed: 33
+	steps: 100
+	use_energy: False
+[info] [Me=0] Hyperparameters:
+[info] [Me=0] real seed: 33
+[info] [Me=0] Simulator initialized
+[info] [Me=0] Starting hill_climbing
+[21:12:54]	[Me=0]	[k=0]	[eval=1]	Cost=1322.32	-O2 avx 256 256 256 16 256 3 3	(Initial)
+[21:12:56]	[Me=0]	[k=1]	[eval=2]	Cost=1321.68	-O2 avx2 256 256 256 16 256 3 3
+[21:12:57]	[Me=0]	[k=2]	[eval=3]	Cost=1240.3	-O2 avx 256 256 256 16 256 3 2
+[21:12:59]	[Me=0]	[k=3]	[eval=4]	Cost=1323.04	-O3 avx 256 256 256 16 256 3 3	(New best!)
+[21:13:00]	[Me=0]	[k=4]	[eval=5]	Cost=1297.77	-O3 avx 256 256 256 16 256 2 3
+[21:13:02]	[Me=0]	[k=5]	[eval=6]	Cost=1321.52	-O3 avx512 256 256 256 16 256 3 3
+[21:13:03]	[Me=0]	[k=6]	[eval=7]	Cost=1334.16	-O3 avx 256 256 256 16 256 3 4	(New best!)
+[21:13:05]	[Me=0]	[k=7]	[eval=8]	Cost=1331.41	-O3 avx2 256 256 256 16 256 3 4
+[21:13:06]	[Me=0]	[k=8]	[eval=9]	Cost=1322.54	-O3 avx 256 256 256 16 256 3 3
+[21:13:07]	[Me=0]	[k=9]	[eval=10]	Cost=1368.22	-O3 avx 256 256 256 16 256 4 4	(New best!)
+[21:13:09]	[Me=0]	[k=10]	[eval=11]	Cost=1370.24	-O3 avx 256 256 256 16 256 5 4	(New best!)
+[21:13:10]	[Me=0]	[k=11]	[eval=12]	Cost=1428.7	-O3 avx 256 256 256 16 256 5 5	(New best!)
+[21:13:12]	[Me=0]	[k=12]	[eval=13]	Cost=1431.48	-O3 avx 256 256 256 16 256 5 6	(New best!)
+[21:13:13]	[Me=0]	[k=13]	[eval=14]	Cost=1434.19	-O3 avx 256 256 256 16 256 4 6	(New best!)
+[21:13:16]	[Me=0]	[k=14]	[eval=15]	Cost=1433.65	-O2 avx 256 256 256 16 256 4 6
+[21:13:22]	[Me=0]	[k=15]	[eval=16]	Cost=1433.65	-O3 avx512 256 256 256 16 256 4 6
+[21:13:23]	[Me=0]	[k=16]	[eval=17]	Cost=1431.79	-O3 avx 256 256 256 16 256 5 6
+[21:13:25]	[Me=0]	[k=17]	[eval=18]	Cost=1384.22	-O3 avx 256 256 256 16 256 3 6
+[21:13:26]	[Me=0]	[k=18]	[eval=19]	Cost=1451.75	-O3 avx 256 256 256 16 256 4 7	(New best!)
+[21:13:27]	[Me=0]	[k=19]	[eval=20]	Cost=1451.24	-Ofast avx 256 256 256 16 256 4 7
+[21:13:29]	[Me=0]	[k=20]	[eval=21]	Cost=1434.51	-O3 avx 256 256 256 16 256 4 6
+[21:13:30]	[Me=0]	[k=21]	[eval=22]	Cost=1447.35	-O3 avx 256 256 256 16 256 5 7
+[21:13:31]	[Me=0]	[k=22]	[eval=23]	Cost=1413.88	-O3 avx 256 256 256 16 256 3 7
+[21:13:33]	[Me=0]	[k=23]	[eval=24]	Cost=1450.39	-O3 avx512 256 256 256 16 256 4 7
+[21:13:34]	[Me=0]	[k=24]	[eval=25]	Cost=1450.15	-O3 avx2 256 256 256 16 256 4 7
+[21:13:36]	[Me=0]	[k=25]	[eval=26]	Cost=1453.88	-O2 avx 256 256 256 16 256 4 7	(New best!)
+[21:13:37]	[Me=0]	[k=26]	[eval=27]	Cost=1450.39	-O3 avx 256 256 256 16 256 4 7
+[21:13:38]	[Me=0]	[k=27]	[eval=28]	Cost=1461.53	-O2 avx 256 256 256 16 256 4 8	(New best!)
+[21:13:40]	[Me=0]	[k=28]	[eval=29]	Cost=1465.11	-Ofast avx 256 256 256 16 256 4 8	(New best!)
+[21:13:41]	[Me=0]	[k=29]	[eval=30]	Cost=1463.86	-Ofast avx 256 256 256 16 256 5 8
+[21:13:42]	[Me=0]	[k=30]	[eval=31]	Cost=1464.24	-Ofast avx2 256 256 256 16 256 4 8
+[21:13:44]	[Me=0]	[k=31]	[eval=32]	Cost=1464.28	-O3 avx 256 256 256 16 256 4 8
+[21:13:45]	[Me=0]	[k=32]	[eval=33]	Cost=1462.84	-O2 avx 256 256 256 16 256 4 8
+[21:13:46]	[Me=0]	[k=33]	[eval=34]	Cost=1452.43	-Ofast avx 256 256 256 16 256 4 7
+[21:13:48]	[Me=0]	[k=34]	[eval=35]	Cost=1463.01	-Ofast avx512 256 256 256 16 256 4 8
+[21:13:49]	[Me=0]	[k=35]	[eval=36]	Cost=1470.69	-Ofast avx 256 256 256 16 256 4 9	(New best!)
+[21:13:50]	[Me=0]	[k=36]	[eval=37]	Cost=1473.3	-Ofast avx512 256 256 256 16 256 4 9	(New best!)
+[21:13:52]	[Me=0]	[k=37]	[eval=38]	Cost=1440.88	-Ofast avx512 256 256 256 16 256 3 9
+[21:13:53]	[Me=0]	[k=38]	[eval=39]	Cost=1473.92	-Ofast avx2 256 256 256 16 256 4 9	(New best!)
+[21:13:54]	[Me=0]	[k=39]	[eval=40]	Cost=1473.94	-O2 avx2 256 256 256 16 256 4 9	(New best!)
+[21:13:56]	[Me=0]	[k=40]	[eval=41]	Cost=1466.64	-O2 avx2 256 256 256 16 256 5 9
+[21:13:57]	[Me=0]	[k=41]	[eval=42]	Cost=1442.1	-O2 avx2 256 256 256 16 256 3 9
+[21:13:59]	[Me=0]	[k=42]	[eval=43]	Cost=1479.98	-O2 avx2 256 256 256 16 256 4 10	(New best!)
+[21:14:00]	[Me=0]	[k=43]	[eval=44]	Cost=1454.51	-O2 avx2 256 256 256 16 256 3 10
+[21:14:01]	[Me=0]	[k=44]	[eval=45]	Cost=1474.97	-O2 avx2 256 256 256 16 256 5 10
+[21:14:03]	[Me=0]	[k=45]	[eval=46]	Cost=1482.91	-O2 avx 256 256 256 16 256 4 10	(New best!)
+[21:14:04]	[Me=0]	[k=46]	[eval=47]	Cost=1471.84	-O2 avx 256 256 256 16 256 4 9
+[21:14:05]	[Me=0]	[k=47]	[eval=48]	Cost=1481.72	-O3 avx 256 256 256 16 256 4 10
+[21:14:07]	[Me=0]	[k=48]	[eval=49]	Cost=1482.26	-O2 avx 256 256 256 16 256 4 11
+[21:14:08]	[Me=0]	[k=49]	[eval=50]	Cost=1482.31	-Ofast avx 256 256 256 16 256 4 10
+[21:14:09]	[Me=0]	[k=50]	[eval=51]	Cost=1480.95	-O2 avx2 256 256 256 16 256 4 10
+[21:14:11]	[Me=0]	[k=51]	[eval=52]	Cost=1452.07	-O2 avx 256 256 256 16 256 3 10
+[21:14:12]	[Me=0]	[k=52]	[eval=53]	Cost=1480.48	-O2 avx512 256 256 256 16 256 4 10
+[21:14:13]	[Me=0]	[k=53]	[eval=54]	Cost=1473.15	-O2 avx 256 256 256 16 256 5 10
+[info] [Me=0] Algorithm exited: Best solution neighborhood was fully explored 
+[info] [Me=0] Path taken:
+	1322.32 -O2 avx 256 256 256 16 256 3 3
+	1323.04 -O3 avx 256 256 256 16 256 3 3
+	1334.16 -O3 avx 256 256 256 16 256 3 4
+	1368.22 -O3 avx 256 256 256 16 256 4 4
+	1370.24 -O3 avx 256 256 256 16 256 5 4
+	1428.7 -O3 avx 256 256 256 16 256 5 5
+	1431.48 -O3 avx 256 256 256 16 256 5 6
+	1434.19 -O3 avx 256 256 256 16 256 4 6
+	1451.75 -O3 avx 256 256 256 16 256 4 7
+	1453.88 -O2 avx 256 256 256 16 256 4 7
+	1461.53 -O2 avx 256 256 256 16 256 4 8
+	1465.11 -Ofast avx 256 256 256 16 256 4 8
+	1470.69 -Ofast avx 256 256 256 16 256 4 9
+	1473.3 -Ofast avx512 256 256 256 16 256 4 9
+	1473.92 -Ofast avx2 256 256 256 16 256 4 9
+	1473.94 -O2 avx2 256 256 256 16 256 4 9
+	1479.98 -O2 avx2 256 256 256 16 256 4 10
+	1482.91 -O2 avx 256 256 256 16 256 4 10
+[info] [Me=0] Best solution found:
+	1482.91 -O2 avx 256 256 256 16 256 4 10
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	1482.91 -O2 avx 256 256 256 16 256 4 10 Final evaluation: 1482.26
+[info] [Me=0] Best overall:
+	1482.26 -O2 avx 256 256 256 16 256 4 10
+[info] [Me=0] Total cost evaluations: 54
+[info] [Me=0] Elapsed time: 3.36 seconds
+[info] [Me=0] Run finished. Logs can be found at convergence_alg0_run3.log.
