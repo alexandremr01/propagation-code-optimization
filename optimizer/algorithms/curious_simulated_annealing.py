@@ -28,13 +28,14 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
     def __init__(self, hparams, problem_size, comm, logger, optimize_problem_size) -> None:
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         self.register_hyperparameter('t0', 1000)
-        self.register_hyperparameter('popsize', 6)
+        self.register_hyperparameter('lambda', 0.9)
+        self.register_hyperparameter('popsize', 4)
         self.parse_hyperparameters()
 
         self.T0 = self.hparams['t0']
         self.popsize = self.hparams['popsize']
         # TODO: current temperature function is hard coded
-        self.f = lambda x: 0.95 * x if x > 10 else x
+        self.f = lambda x: self.hparams['lambda'] * x
 
     def run(self, num_steps, evaluator) -> None:
         # Initialize communication

@@ -43,6 +43,14 @@ Test affinity parameters: run
 /usr/bin/mpirun -np 1 -map-by ppr:1:node:PE=16 python3 optimizer/test_affinity.py
 ```
 
+Hyperparameter optimization:
+
+```
+/usr/bin/mpirun -np 1 -map-by ppr:1:node:PE=16 python3 optimizer/test_sa_hyperparams.py
+/usr/bin/mpirun -np 1 -map-by ppr:1:node:PE=16 python3 optimizer/test_sa_hyperparams.py --algorithm csa --steps 50
+```
+
 ## FAQ
 
 Installation of CMA: Check if the pip used to install is the same as the Python being used to run. Sometimes we need to use `/usr/bin/pip` (TODO: avoid this).
+Installation of Nevergrad: for the BayesianOptimization, Nevergrad should be installed with the same instructions as the CMA
