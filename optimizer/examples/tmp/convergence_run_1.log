@@ -1,0 +1,47 @@
+[info] [Me=0] Args:
+	algorithm: greedy
+	batch: False
+	hparams: {}
+	log: convergence_run_0.log
+	phase: run
+	problem_size: [256, 256, 256]
+	seed: 33
+	steps: 10
+[info] [Me=0] Hyperparameters:
+[info] [Me=0] real seed: 33
+[info] [Me=0] Simulator initialized
+[info] [Me=0] Starting greedy hill climbing
+[19:23:30]	[Me=0]	[k=0]	[eval=1]	Cost=1165.82	-O2 avx 256 256 256 16 256 3 3	(Initial)
+[19:23:43]	[Me=0]	[k=1]	[eval=9]	Cost=1219.95	-O2 avx 256 256 256 16 256 3 4
+[19:23:56]	[Me=0]	[k=2]	[eval=17]	Cost=1263.6	-O2 avx 256 256 256 16 256 4 4
+[19:24:08]	[Me=0]	[k=3]	[eval=25]	Cost=1290.16	-O2 avx 256 256 256 16 256 4 5
+[19:24:20]	[Me=0]	[k=4]	[eval=33]	Cost=1332.66	-O2 avx 256 256 256 16 256 4 6
+[19:24:32]	[Me=0]	[k=5]	[eval=41]	Cost=1347.89	-O2 avx 256 256 256 16 256 4 7
+[19:24:44]	[Me=0]	[k=6]	[eval=49]	Cost=1379.48	-O2 avx 256 256 256 16 256 4 8
+[19:24:55]	[Me=0]	[k=7]	[eval=57]	Cost=1381.4	-O2 avx2 256 256 256 16 256 4 8
+[19:25:07]	[Me=0]	[k=8]	[eval=65]	Cost=1382.22	-O2 avx2 256 256 256 16 256 4 9
+[19:25:18]	[Me=0]	[k=9]	[eval=73]	Cost=1383.11	-O2 avx2 256 256 256 16 256 4 10
+[19:25:29]	[Me=0]	[k=10]	[eval=81]	Cost=1398.41	-O2 avx2 256 256 256 16 256 4 11
+[info] [Me=0] End of the loop via number of iterations
+[info] [Me=0] Path taken:
+	1165.82 -O2 avx 256 256 256 16 256 3 3
+	1219.95 -O2 avx 256 256 256 16 256 3 4
+	1263.6 -O2 avx 256 256 256 16 256 4 4
+	1290.16 -O2 avx 256 256 256 16 256 4 5
+	1332.66 -O2 avx 256 256 256 16 256 4 6
+	1347.89 -O2 avx 256 256 256 16 256 4 7
+	1379.48 -O2 avx 256 256 256 16 256 4 8
+	1381.4 -O2 avx2 256 256 256 16 256 4 8
+	1382.22 -O2 avx2 256 256 256 16 256 4 9
+	1383.11 -O2 avx2 256 256 256 16 256 4 10
+	1398.41 -O2 avx2 256 256 256 16 256 4 11
+[info] [Me=0] Best solution found:
+	1398.41 -O2 avx2 256 256 256 16 256 4 11
+
+[info] [Me=0] Gathering solutions from all processes
+[info] [Me=0] Best solutions:
+	1398.41 -O2 avx2 256 256 256 16 256 4 11
+[info] [Me=0] Best overall:
+	1398.41 -O2 avx2 256 256 256 16 256 4 11
+[info] [Me=0] Total cost evaluations: 81
+[info] [Me=0] Run finished. Logs can be found at convergence_run_0.log.
