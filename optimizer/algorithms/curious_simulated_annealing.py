@@ -29,7 +29,7 @@ class CuriousSimulatedAnnealing(Algorithm): #(n_iter, init_state=None, n_particl
         super().__init__(hparams, problem_size, comm, logger, optimize_problem_size)
         self.register_hyperparameter('t0', 1000)
         self.register_hyperparameter('lambda', 0.9)
-        self.register_hyperparameter('popsize', 6)
+        self.register_hyperparameter('popsize', 4)
         self.parse_hyperparameters()
 
         self.T0 = self.hparams['t0']
